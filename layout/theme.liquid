@@ -28,6 +28,8 @@
 
     {% render 'meta-tags' %}
 
+    {{ content_for_header }}
+
     {{ 'main.css' | asset_url | stylesheet_tag }}
   </head>
 
