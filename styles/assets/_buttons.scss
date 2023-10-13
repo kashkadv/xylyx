@@ -1,0 +1,141 @@
+.link {
+
+}
+
+.btn {
+  height: 44px;
+  width: fit-content;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--color-indigo-deep);
+  color: var(--color-indigo-deep);
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 400;
+  overflow: hidden;
+  position: relative;
+  transition: var(--transition);
+  cursor: pointer !important;
+  
+  span {
+    z-index: 1;
+  }
+  
+  &.btn-with-icon {
+    .label {
+      padding-right: 50px;
+      transition: var(--transition);
+    }
+
+    span {
+      &:first-of-type,
+      &:last-of-type {
+        transition: var(--transition);
+        position: absolute;
+        width: 50px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &:first-of-type {
+        left: 0;
+        transform: translateX(-100%);
+      }
+
+      &:last-of-type {
+        right: 0;
+        border-left: 1px solid;
+      }
+    }
+
+    &:hover {
+      .label {
+        padding-right: 0;
+        padding-left: 50px;
+      }
+
+      span {
+        &:first-of-type {
+          transform: translateX(0);
+        }
+
+        &:last-of-type {
+          transform: translateX(100%);
+        }
+      }
+    }
+  }
+
+  &::before {
+    content: ' ';
+    border-radius: 6px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--color-purple);
+    transform: translateX(-100%);
+    transition: var(--transition);
+    z-index: 0;
+  }
+
+  &--s {
+    height: 34px;
+    padding: 12px;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  &.purple {
+    color: var(--color-white);
+    border-color: var(--color-purple);
+    background-color: var(--color-purple);
+
+    &::before {
+      background-color: var(--color-purple);
+      transition: var(--transition);
+    }
+
+    &:hover {
+      border-color: var(--color-purple-light);
+
+      &::before {
+        background-color: var(--color-purple-light);
+      }
+    }
+  }
+
+  &.purple-light {
+    color: var(--color-indigo);
+    border-color: var(--color-purple-light);
+    background-color: var(--color-purple-light);
+
+    &::before {
+      background-color: var(--color-purple-light);
+      transition: var(--transition);
+    }
+
+    &:hover {
+      color: var(--color-indigo);
+      border-color: var(--color-purple);
+
+      &::before {
+        background-color: var(--color-purple);
+      }
+    }
+  }
+
+  &:hover {
+    color: var(--color-white);
+    border-color: var(--color-purple);
+
+    &::before {
+      transform: translateX(0);
+    }
+  }
+}

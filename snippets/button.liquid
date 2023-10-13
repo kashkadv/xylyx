@@ -1,0 +1,30 @@
+{% assign btnColor = '' %}
+{% assign btnSize = '' %}
+{% assign btnIcon = false %}
+
+{% if color %}
+  {% assign btnColor = color %}
+{% endif %}
+
+{% if size %}
+  {% assign btnSize = 'btn--' | append: size %}
+{% endif %}
+
+{% if icon %}
+  {% assign btnIcon = 'icon-' | append: icon %}
+{% endif %}
+
+<a class="btn {{ btnColor }} {{ btnSize }} {% if btnIcon %} btn-with-icon {% endif %}">
+  {% case btnIcon %}
+    {% when 'icon-download' %}
+      <span>{% render 'icon-download' %}</span>
+      <span class="label">{{ label }}</span>
+      <span>{% render 'icon-download' %}</span>
+    {% when 'icon-arrow-right' %}
+      <span>{% render 'icon-arrow-right' %}</span>
+      <span class="label">{{ label }}</span>
+      <span>{% render 'icon-arrow-right' %}</span>
+    {% else %}
+      <span class="label">{{ label }}</span>
+  {% endcase %}
+</a>
