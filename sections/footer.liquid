@@ -41,6 +41,11 @@
               >
                 {{- block.settings.email -}}
               </a>
+              <ul>
+                {% for link in linklist.social.links %}
+                  {{ link.title }}
+                {% endfor %}
+              </ul>
             </div>
         {% endcase %}
       {% endfor %}
