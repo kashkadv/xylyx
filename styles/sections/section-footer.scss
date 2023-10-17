@@ -2,6 +2,19 @@
   background-color: var(--color-indigo-deep);
   color: var(--color-white);
 
+  &__top {
+    display: flex;
+    gap: 68px;
+
+    & > div {
+      flex-basis: 15%;
+
+      &:first-child {
+        flex-basis: 55%;
+      }
+    }
+  }
+
   &__logo {
     max-width: 110px;
   }
@@ -13,15 +26,23 @@
   &__wrapper {
     padding-top: 55px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     row-gap: 63px;
+  }
 
-    & > div {
-      flex-basis: 15%;
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 
-      &:first-child {
-        flex-basis: 55%;
-      }
+    .heading {
+      color: var(--color-purple-light);
+    }
+  }
+
+  .contacts {
+    p {
+      margin: 0;
     }
   }
 
@@ -32,6 +53,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    label {
+      opacity: 0.4;
+    }
 
     &__links {
       display: flex;

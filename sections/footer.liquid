@@ -2,38 +2,66 @@
 
 <footer class="footer">
   <div class="container footer__wrapper">
-    <div>
-      <div class="footer__logo">{% render 'logo' %}</div>
-      <div class="footer__slogan text--l">{{ section.settings.footer_slogan }}</div>
-    </div>
-    {% for block in section.blocks %}
-      {% case block.type %}
-        {% when 'footer_navigation_block' %}
-          <div>
-            {{ block.settings.heading }}
-            {% for link in block.settings.menu.links %}
-              <a class="text--m link link--white" href="{{ link.url }}">{{ link.title }}</a>
-            {% endfor %}
-          </div>
+    <div class="footer__top">
+      <div class="">
+        <div class="footer__logo">{% render 'logo' %}</div>
+        <div class="footer__slogan text--l">{{ section.settings.footer_slogan }}</div>
+        <div class="subscription">
+          <form
+            accept-charset="UTF-8"
+            action="https://xylyxbio.com/"
+            id="customer_login"
+            method="post"
+          >
+            <input name="input_1" type="email">
+            <input type="submit" value="assddd">
+          </form>
+        </div>
+      </div>
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'footer_navigation_block' %}
+            <div class="column links">
+              <div class="heading uppercase text--xs">{{ block.settings.heading }}</div>
+              {% for link in block.settings.menu.links %}
+                <a class="text--m link link--white" href="{{ link.url }}">{{ link.title }}</a>
+              {% endfor %}
+            </div>
 
-        {% when 'copyright_block' %}
-          <div class="copyright">
-            <div class="copyright__text">© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</div>
-            <div class="copyright__links">
-              <div class="link">
-                <a href="{{ block.settings.terms_and_conditions_link }}">Terms and Conditions</a>
-              </div>
-              <div class="link">
-                <a href="{{ block.settings.privacy_policy_link }}">Privacy Policy</a>
-              </div>
-              <div class="link">
-                <label>Website by </label>
-                <a href="{{ block.settings.developer_link }}">Craft & Root</a>
+          {% when 'footer_contacts_block' %}
+            <div class="column contacts">
+              <div class="heading uppercase text--xs">{{ block.settings.heading }}</div>
+              <div class="address text--s">{{ block.settings.address }}</div>
+              <div class="phone text--s">{{ block.settings.phone }}</div>
+              <div class="email text--s">{{ block.settings.email }}</div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+    <div class="footer__bottom">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'copyright_block' %}
+            <div class="copyright text--2xs">
+              <label>© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</label>
+              <div class="copyright__links">
+                <div class="link">
+                  <a class="link link--white" href="{{ block.settings.terms_and_conditions_link }}"
+                    >Terms and Conditions</a
+                  >
+                </div>
+                <div class="link">
+                  <a class="link link--white" href="{{ block.settings.privacy_policy_link }}">Privacy Policy</a>
+                </div>
+                <div class="link">
+                  <label>Website by </label>
+                  <a class="link link--white" href="{{ block.settings.developer_link }}">Craft & Root</a>
+                </div>
               </div>
             </div>
-          </div>
-      {% endcase %}
-    {% endfor %}
+        {% endcase %}
+      {% endfor %}
+    </div>
   </div>
 </footer>
 
@@ -45,6 +73,12 @@
       "type": "richtext",
       "label": "Slogan",
       "id": "footer_slogan"
+    },
+    {
+      "type": "checkbox",
+      "id": "footer_subscription",
+      "label": "Show subscription form",
+      "default": true
     }
   ],
   "blocks": [
