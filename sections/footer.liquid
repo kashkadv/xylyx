@@ -6,17 +6,9 @@
       <div class="">
         <div class="footer__logo">{% render 'logo' %}</div>
         <div class="footer__slogan text--l">{{ section.settings.footer_slogan }}</div>
-        <div class="subscription">
-          <form
-            accept-charset="UTF-8"
-            action="https://xylyxbio.com/"
-            id="customer_login"
-            method="post"
-          >
-            <input name="input_1" type="email">
-            <input type="submit" value="assddd">
-          </form>
-        </div>
+        {% if section.settings.footer_subscription %}
+          SUBSCRIPTION FORM
+        {% endif %}
       </div>
       {% for block in section.blocks %}
         {% case block.type %}
