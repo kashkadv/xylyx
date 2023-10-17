@@ -7,6 +7,13 @@
     <div>3</div>
     <div>4</div>
     <div class="copyrights">Copyrights</div>
+
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'copyright_block' %}
+          {% render block %}
+      {% endcase %}
+    {% endfor %}
   </div>
 </footer>
 
