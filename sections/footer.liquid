@@ -11,6 +11,7 @@
         {% when 'footer_navigation_block' %}
           <div>
             {{ block.settings.heading }}
+            {{ block.settings.links }}
             {% for link in block.settings.links %}
               {{ link.url }}
               {{ link.title }}
