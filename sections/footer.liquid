@@ -11,7 +11,7 @@
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'copyright_block' %}
-          {% render block %}
+          <div> {{ block.settings.copyright_text }} </div>
           {{ block }}
       {% endcase %}
     {% endfor %}
