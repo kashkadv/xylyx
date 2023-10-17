@@ -10,8 +10,8 @@
       {% case block.type %}
         {% when 'copyright_block' %}
           <div class="copyrights">
-            © {{ 'now' | date: '%Y' }}.
-            {{ block.settings.copyright_text }}
+            <div class="copyrights__text">© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</div>
+            <div class="copyrights__links"></div>
           </div>
       {% endcase %}
     {% endfor %}
