@@ -6,11 +6,11 @@
       <div class="footer__logo">{% render 'logo' %}</div>
       <div class="footer__slogan text--l">{{ section.settings.footer_slogan }}</div>
     </div>
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
     {% for block in section.blocks %}
       {% case block.type %}
+        {% when 'footer_navigation_block' %}
+          <div>2</div>
+
         {% when 'copyright_block' %}
           <div class="copyright">
             <div class="copyright__text">© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</div>
