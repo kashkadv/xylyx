@@ -6,7 +6,10 @@
     <div>2</div>
     <div>3</div>
     <div>4</div>
-    <div class="copyrights">Copyrights</div>
+    <div class="copyrights">
+      © {{ 'now' | date: '%Y' }}.
+      {{ section.settings.copyrights_text }}
+    </div>
   </div>
 </footer>
 
@@ -17,7 +20,22 @@
     {
       "type": "text",
       "id": "copyrights_text",
-      "label": "Copyrights text"
+      "label": "Copyright text"
+    },
+    {
+      "type": "link",
+      "id": "terms_and_conditions_link",
+      "label": "Terms and Conditions link"
+    },
+    {
+      "type": "link",
+      "id": "privacy_policy_link",
+      "label": "Privacy Policy link"
+    },
+    {
+      "type": "link",
+      "id": "dev_link",
+      "label": "Developer link"
     }
   ]
 }
