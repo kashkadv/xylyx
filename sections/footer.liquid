@@ -29,8 +29,18 @@
             <div class="column contacts">
               <div class="heading uppercase text--xs">{{ block.settings.heading }}</div>
               <div class="address text--s">{{ block.settings.address }}</div>
-              <div class="phone text--s">{{ block.settings.phone }}</div>
-              <div class="email text--s">{{ block.settings.email }}</div>
+              <a
+                class="link link--white text--s"
+                href="tel:{{ block.settings.phone | replace: "(", "" | replace: ")", "" | replace: " ", "" | replace: "-", "" }}"
+              >
+                {{- block.settings.phone -}}
+              </a>
+              <a
+                class="link link--white text--s"
+                href="mailto:{{ block.settings.email }}"
+              >
+                {{- block.settings.email -}}
+              </a>
             </div>
         {% endcase %}
       {% endfor %}
