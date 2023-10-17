@@ -167,7 +167,9 @@
           "a1b1e7c2-c3d1-43ee-9af3-a422b4b6d22a"
         ],
         "settings": {
-          "footer_slogan": "<p>Harnessing systemic <br\/>physiology to save lives<\/p>"
+          "footer_slogan": "<p>Harnessing systemic <br\/>physiology to save lives<\/p>",
+          "footer_subscription": true,
+          "subscription_heading": "Sign up below to get the latest news."
         }
       }
     },
