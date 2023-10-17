@@ -2,7 +2,10 @@
 
 <footer class="footer">
   <div class="container footer__wrapper">
-    <div>1</div>
+    <div>
+      <div class="footer__logo">{% render 'logo' %}</div>
+      <div class="footer__slogan text--l">{{ section.settings.footer_slogan }}</div>
+    </div>
     <div>2</div>
     <div>3</div>
     <div>4</div>
@@ -10,8 +13,8 @@
       {% case block.type %}
         {% when 'copyright_block' %}
           <div class="copyright">
-            <div class="copyright__text">© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</div>
-            <div class="copyright__links">
+            <div class="copyright__text text--2xs">© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</div>
+            <div class="copyright__links text-2xs">
               <div class="link">
                 <a href="{{ block.settings.terms_and_conditions_link }}">Terms and Conditions</a>
               </div>

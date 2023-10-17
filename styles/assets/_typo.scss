@@ -1,0 +1,50 @@
+.text {
+  &--s {
+    font-size: 17px;
+    line-height: 25px;
+  }
+
+  &--xs {
+    font-size: 15px;
+    line-height: 20px;
+
+    @include breakpoint-down(mobile) {
+      line-height: 22px;
+    }
+  } 
+
+  &--2xs {
+    font-size: 13px;
+    line-height: 17px;
+  }
+
+  &--l {
+    font-size: 37px;
+    line-height: 40px;
+
+    @include breakpoint-down(mobile) {
+      font-size: 26px;
+      line-height: 38px;
+    }
+  }
+
+  &--xl {
+    font-size: 46px;
+    line-height: 54px;
+
+    @include breakpoint-down(mobile) {
+      font-size: 30px;
+      line-height: 39px;
+    }
+  }
+
+  &--2xl {
+    font-size: 70px;
+    line-height: 84px;
+
+    @include breakpoint-down(mobile) {
+      font-size: 35px;
+      line-height: 44px;
+    }
+  }
+}
