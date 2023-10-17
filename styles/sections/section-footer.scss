@@ -1,3 +1,25 @@
 .footer {
   background-color: var(--color-indigo-deep);
+  color: var(--color-white);
+
+  &__wrapper {
+    padding-top: 55px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 63px;
+
+    & > div {
+      flex-basis: 15%;
+
+      &:first-child {
+        flex-basis: 55%;
+      }
+    }
+  }
+
+  .copyrights {
+    border-top: 1px solid var(--color-purple-light);
+    flex-basis: 100%;
+    padding: 15px 63px 30px 0;
+  }
 }

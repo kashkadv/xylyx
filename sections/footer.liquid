@@ -1,6 +1,24 @@
-{% comment %}theme-check-disable UndefinedObject{% endcomment %}
 {{ 'section-footer.css' | asset_url | stylesheet_tag }}
 
 <footer class="footer">
-  <div class="footer__wrapper">123</div>
+  <div class="container footer__wrapper">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div class="copyrights">Copyrights</div>
+  </div>
 </footer>
+
+{% schema %}
+{
+  "name": "Copyrights section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "copyrights_text",
+      "label": "Copyrights text"
+    }
+  ]
+}
+{% endschema %}
