@@ -11,7 +11,11 @@
         {% when 'copyright_block' %}
           <div class="copyrights">
             <div class="copyrights__text">© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</div>
-            <div class="copyrights__links"></div>
+            <div class="copyrights__links">
+              {{ block.settings.terms_and_conditions_link }}
+              {{ block.settings.privacy_policy_link }}
+              {{ block.settings.developer_link }}
+            </div>
           </div>
       {% endcase %}
     {% endfor %}
@@ -22,17 +26,32 @@
 {
   "name": "Footer section",
   "blocks": [
-   {
-     "name": "Copyright block",
-     "type": "copyright_block",
-     "settings": [
-       {
-         "type": "text",
-         "id": "copyright_text",
-         "label": "Copyright text"
-       }
-     ]
-   }
+    {
+      "name": "Copyright block",
+      "type": "copyright_block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "copyright_text",
+          "label": "Copyright text"
+        },
+        {
+          "type": "url",
+          "id": "terms_and_conditions_link",
+          "label": "Terms and Conditions link"
+        },
+        {
+          "type": "url",
+          "id": "privacy_policy_link",
+          "label": "Privacy Policy link"
+        },
+        {
+          "type": "url",
+          "id": "developer_link",
+          "label": "Developer link"
+        }
+      ]
+    }
   ]
 }
 {% endschema %}
