@@ -6,37 +6,25 @@
     <div>2</div>
     <div>3</div>
     <div>4</div>
-    <div class="copyrights">
-      © {{ 'now' | date: '%Y' }}.
-      {{ section.settings.copyrights_text }}
-    </div>
+    <div class="copyrights">Copyrights</div>
   </div>
 </footer>
 
 {% schema %}
 {
-  "name": "Copyrights section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "copyrights_text",
-      "label": "Copyright text"
-    },
-    {
-      "type": "link",
-      "id": "terms_and_conditions_link",
-      "label": "Terms and Conditions link"
-    },
-    {
-      "type": "link",
-      "id": "privacy_policy_link",
-      "label": "Privacy Policy link"
-    },
-    {
-      "type": "link",
-      "id": "dev_link",
-      "label": "Developer link"
-    }
+  "name": "Footer section",
+  "blocks": [
+   {
+     "name": "Copyright block",
+     "type": "copyright_block",
+     "settings": [
+       {
+         "type": "text",
+         "id": "copyright_text",
+         "label": "Copyright text"
+       }
+     ]
+   }
   ]
 }
 {% endschema %}
