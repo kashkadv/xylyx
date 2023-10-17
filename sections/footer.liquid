@@ -12,6 +12,7 @@
       {% case block.type %}
         {% when 'copyright_block' %}
           {% render block %}
+          {{ block }}
       {% endcase %}
     {% endfor %}
   </div>
