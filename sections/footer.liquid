@@ -9,7 +9,13 @@
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'footer_navigation_block' %}
-          <div>2</div>
+          <div>
+            {{ block.settings.heading }}
+            {% for link in block.settings.links %}
+              {{ link.url }}
+              {{ link.title }}
+            {% endfor %}
+          </div>
 
         {% when 'copyright_block' %}
           <div class="copyright">
