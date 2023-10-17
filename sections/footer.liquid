@@ -6,13 +6,13 @@
     <div>2</div>
     <div>3</div>
     <div>4</div>
-    <div class="copyrights">Copyrights</div>
-
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'copyright_block' %}
-          <div> {{ block.settings.copyright_text }} </div>
-          {{ block }}
+          <div class="copyrights">
+            © {{ 'now' | date: '%Y' }}.
+            {{ block.settings.copyright_text }}
+          </div>
       {% endcase %}
     {% endfor %}
   </div>
