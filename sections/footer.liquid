@@ -12,8 +12,7 @@
           <div>
             {{ block.settings.heading }}
             {% for link in block.settings.menu.links %}
-              {{ link.url }}
-              {{ link.title }}
+              <a href="{{ link.url }}">{{ link.title }}</a>              
             {% endfor %}
           </div>
 
