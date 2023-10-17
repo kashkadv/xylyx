@@ -7,7 +7,12 @@
         <div class="footer__logo">{% render 'logo' %}</div>
         <div class="footer__slogan text--l">{{ section.settings.footer_slogan }}</div>
         {% if section.settings.footer_subscription %}
-          SUBSCRIPTION FORM
+          <div class="subscription">
+            <div class="subscription__heading text--m">{{ section.settings.subscription_heading }}</div>
+            <div class="subscription__form">
+              <input name="input_1" type="email">
+            </div>
+          </div>
         {% endif %}
       </div>
       {% for block in section.blocks %}
