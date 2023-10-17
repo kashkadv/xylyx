@@ -41,11 +41,11 @@
               >
                 {{- block.settings.email -}}
               </a>
-              <ul>
-                {% for link in linklist.social.links %}
-                  {{ link.title }}
+              <div class="social-links">
+                {% for link in linklists.social.links %}
+                  {% render 'social-link', link: link %}
                 {% endfor %}
-              </ul>
+              </div>
             </div>
         {% endcase %}
       {% endfor %}

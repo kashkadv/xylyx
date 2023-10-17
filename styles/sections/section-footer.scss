@@ -63,4 +63,11 @@
       gap: 38px;
     }
   }
+
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
 }
