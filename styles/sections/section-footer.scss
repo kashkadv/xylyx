@@ -17,9 +17,16 @@
     }
   }
 
-  .copyrights {
+  .copyright {
     border-top: 1px solid var(--color-purple-light);
     flex-basis: 100%;
     padding: 15px 63px 30px 0;
+    display: flex;
+    justify-content: space-between;
+
+    &__links {
+      display: flex;
+      gap: 38px;
+    }
   }
 }

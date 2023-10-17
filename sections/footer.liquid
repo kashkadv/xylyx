@@ -9,12 +9,19 @@
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'copyright_block' %}
-          <div class="copyrights">
-            <div class="copyrights__text">© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</div>
-            <div class="copyrights__links">
-              {{ block.settings.terms_and_conditions_link }}
-              {{ block.settings.privacy_policy_link }}
-              {{ block.settings.developer_link }}
+          <div class="copyright">
+            <div class="copyright__text">© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</div>
+            <div class="copyright__links">
+              <div class="link">
+                <a href="{{ block.settings.terms_and_conditions_link }}">Terms and Conditions</a>
+              </div>
+              <div class="link">
+                <a href="{{ block.settings.privacy_policy_link }}">Privacy Policy</a>
+              </div>
+              <div class="link">
+                <label>Website by </label>
+                <a href="{{ block.settings.developer_link }}">Craft & Root</a>
+              </div>
             </div>
           </div>
       {% endcase %}
@@ -25,6 +32,13 @@
 {% schema %}
 {
   "name": "Footer section",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Slogan",
+      "id": "footer_slogan"
+    }
+  ],
   "blocks": [
     {
       "name": "Copyright block",
