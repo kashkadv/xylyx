@@ -141,13 +141,6 @@
               "links": ""
             }
           },
-          "2d6a11a8-37dc-493f-bd9f-e5b017b52903": {
-            "type": "footer_navigation_block",
-            "settings": {
-              "heading": "",
-              "links": ""
-            }
-          },
           "a1b1e7c2-c3d1-43ee-9af3-a422b4b6d22a": {
             "type": "copyright_block",
             "settings": {
@@ -161,7 +154,6 @@
         "block_order": [
           "2ca560df-4364-4c8f-92a0-62088c705d42",
           "286f9a78-9c7b-42cd-8a62-e1e210eeac4b",
-          "2d6a11a8-37dc-493f-bd9f-e5b017b52903",
           "a1b1e7c2-c3d1-43ee-9af3-a422b4b6d22a"
         ],
         "settings": {
