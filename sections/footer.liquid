@@ -9,11 +9,9 @@
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'footer_navigation_block' %}
-          {% assign links = linklists[block.settings.links] %}
           <div>
             {{ block.settings.heading }}
-            {{ block.settings.links }}
-            {% for link in links %}
+            {% for link in block.settings.menu.links %}
               {{ link.url }}
               {{ link.title }}
             {% endfor %}
