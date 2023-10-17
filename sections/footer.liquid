@@ -12,7 +12,7 @@
           <div>
             {{ block.settings.heading }}
             {{ block.settings.links }}
-            {% for link in block.settings.links %}
+            {% for link in linklists.company.links %}
               {{ link.url }}
               {{ link.title }}
             {% endfor %}
