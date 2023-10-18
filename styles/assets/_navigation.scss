@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+
 .link {
   text-decoration: none;
   transition: var(--transition);
@@ -86,7 +90,8 @@
 
       &:first-of-type {
         left: 0;
-        transform: translateX(-100%);
+        transform: translateX(-101%);
+        transition-delay: 0.1s;
       }
 
       &:last-of-type {
@@ -104,6 +109,7 @@
       span {
         &:first-of-type {
           transform: translateX(0);
+          transition-delay: unset;
         }
 
         &:last-of-type {
@@ -121,7 +127,7 @@
     height: 100%;
     position: absolute;
     background-color: var(--color-purple);
-    transform: translateX(-100%);
+    transform: translateX(-101%);
     transition: var(--transition);
     z-index: 0;
   }

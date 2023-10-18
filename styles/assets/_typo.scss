@@ -59,6 +59,12 @@
   }
 }
 
+.weight{
+  &--normal {
+    font-weight: 400;
+  }
+}
+
 .uppercase {
   text-transform: uppercase;
 }

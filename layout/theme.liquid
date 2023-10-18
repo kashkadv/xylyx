@@ -34,6 +34,17 @@
   <body>
     {% section 'header' %}
     <main id="MainContent" class="content" role="main" tabindex="-1">
+      <div class="container">
+        <div style="display: flex; flex-direction: column; gap: 24px; margin: 48px 0">
+          {% render 'button', label: 'Default button' %}
+          {% render 'button', label: 'Purple button', color: 'purple' %}
+          {% render 'button', label: 'Purple Light button', color: 'purple-light' %}
+          {% render 'button', label: 'Small button', size: 's' %}
+          {% render 'button', label: 'Datasheet', color: 'purple', icon: 'download' %}
+          {% render 'button', label: 'Submit', color: 'purple', icon: 'arrow-right' %}
+          {% render 'button', label: 'Submit', color: 'purple-light', icon: 'arrow-right' %}
+        </div>
+      </div>
       {{ content_for_layout }}
     </main>
     {% section 'footer' %}

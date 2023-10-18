@@ -6,11 +6,11 @@
       <div class="logo">
         {% render 'logo' %}
       </div>
-      <div class="nav">
+      <div class="nav nav--desktop">
         {% for link in linklists['main-menu'].links %}
           <div class="nav__item">
             <a
-              class="underline link text--2xs {% if link.url == 'https://shop.xylyxbio.com/' %}active{% endif %} {% if link.links != blank %}has-dropdown{% endif %}"
+              class="underline weight--normal link text--2xs {% if link.url == 'https://shop.xylyxbio.com/' %}active{% endif %} {% if link.links != blank %}has-dropdown{% endif %}"
               href="{% if link.links != blank %}#{% else %}{{ link.url }}{% endif %}"
             >
               {{- link.title -}}
@@ -26,6 +26,16 @@
             {% endif %}
           </div>
         {% endfor %}
+        <div class="nav__item">
+          {% render 'button', href: 'https://xylyxbio.com/#contact-us', label: 'Contact us', size: 's' %}
+        </div>
+      </div>
+      <div class="nav nav--mobile">
+        {% render 'button', href: 'https://xylyxbio.com/#contact-us', label: 'Contact us', size: 's' %}
+        <div class="menu-toggle">
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
   </div>

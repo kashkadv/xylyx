@@ -14,7 +14,12 @@
   {% assign btnIcon = 'icon-' | append: icon %}
 {% endif %}
 
-<a class="btn {{ btnColor }} {{ btnSize }} {% if btnIcon %} btn-with-icon {% endif %}">
+<a
+  {% if href != blank %}
+    href="{{ href }}"
+  {% endif %}
+  class="btn {{ btnColor }} {{ btnSize }} {% if btnIcon %} btn-with-icon {% endif %}"
+>
   {% case btnIcon %}
     {% when 'icon-download' %}
       <span>{% render 'icon-download' %}</span>
