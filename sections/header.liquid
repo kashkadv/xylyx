@@ -1,28 +1,32 @@
 {{ 'section-header.css' | asset_url | stylesheet_tag }}
 
 <header class="header">
-  <div class="header__wrapper container">
-    <div class="logo">
-      {% render 'logo' %}
-    </div>
-    <div class="nav">
-      {% for link in linklists['main-menu'].links %}
-        <div class="nav__item">
-          <a
-            class="link {% if link.links != blank %}has-dropdown{% endif %}"
-            href="{% if link.links != blank %}#{% else %}{{ link.url }}{% endif %}"
-          >
-            {{- link.title -}}
-          </a>
-          {% if link.links != blank %}
-            <div class="dropdown">
-              {% for child_link in link.links %}
-                <a href="{{ child_link.url }}">{{ child_link.title }}</a>
-              {% endfor %}
-            </div>
-          {% endif %}
-        </div>
-      {% endfor %}
+  <div class="header__wrapper">
+    <div class="container">
+      <div class="logo">
+        {% render 'logo' %}
+      </div>
+      <div class="nav">
+        {% for link in linklists['main-menu'].links %}
+          <div class="nav__item">
+            <a
+              class="underline link text--2xs {% if link.url == 'https://shop.xylyxbio.com/' %}active{% endif %} {% if link.links != blank %}has-dropdown{% endif %}"
+              href="{% if link.links != blank %}#{% else %}{{ link.url }}{% endif %}"
+            >
+              {{- link.title -}}
+            </a>
+            {% if link.links != blank %}
+              <div class="dropdown">
+                {% for child_link in link.links %}
+                  <div class="dropdown__item ">
+                    <a class="underline link text--s" href="{{ child_link.url }}">{{ child_link.title }}</a>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </header>

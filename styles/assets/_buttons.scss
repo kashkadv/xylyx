@@ -1,10 +1,42 @@
 .link {
   text-decoration: none;
   transition: var(--transition);
+  color: var(--indigo);
+  
+  &.underline {
+    display: block;
+    position: relative; 
+    width: fit-content;
+    overflow: hidden;
+
+    span:first-of-type {
+      display: inline-block;
+      position: relative;
+    }
+
+    &:after, span:first-of-type:after {
+      content: ' ';
+      display: inline-block;
+      height: 1px;
+      width: 100%;
+      background-color: var(--color-indigo);
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      transform: translateX(-101%);
+      transition: var(--transition);
+    }
+
+    &:hover, &.active {
+      &:after, span:first-of-type:after {
+        transform: translateX(0);
+      }
+    }
+  }
 
   &--white {
     color: var(--color-white);
-
+    
     &:hover {
       color: var(--color-purple-light);
     }
