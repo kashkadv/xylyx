@@ -7,9 +7,9 @@
         <div class="footer__logo">{% render 'logo' %}</div>
         <div class="footer__slogan text--l">{{ section.settings.footer_slogan }}</div>
         {% if section.settings.footer_subscription %}
-          <div class="subscription">
-            <div class="subscription__heading text--m">{{ section.settings.subscription_heading }}</div>
-            <div class="subscription__form">
+          <div class="footer__subscription">
+            <div class="heading text--m">{{ section.settings.subscription_heading }}</div>
+            <div class="form">
               <input name="input_1" type="email">
             </div>
           </div>
@@ -18,7 +18,7 @@
       {% for block in section.blocks %}
         {% case block.type %}
           {% when 'footer_navigation_block' %}
-            <div class="column links">
+            <div class="footer__column links">
               <div class="heading uppercase text--xs">{{ block.settings.heading }}</div>
               {% for link in block.settings.menu.links %}
                 <a class="text--m link link--white" href="{{ link.url }}">{{ link.title }}</a>
@@ -26,7 +26,7 @@
             </div>
 
           {% when 'footer_contacts_block' %}
-            <div class="column contacts">
+            <div class="footer__column contacts">
               <div class="heading uppercase text--xs">{{ block.settings.heading }}</div>
               <div class="address text--s">{{ block.settings.address }}</div>
               <a
@@ -54,9 +54,9 @@
       {% for block in section.blocks %}
         {% case block.type %}
           {% when 'copyright_block' %}
-            <div class="copyright text--2xs">
+            <div class="footer__copyright text--2xs">
               <label>© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</label>
-              <div class="copyright__links">
+              <div class="links">
                 <div class="link">
                   <a class="link link--white" href="{{ block.settings.terms_and_conditions_link }}"
                     >Terms and Conditions</a

@@ -59,19 +59,6 @@
   }
 }
 
-.link {
-  text-decoration: none;
-  transition: var(--transition);
-
-  &--white {
-    color: var(--color-white);
-
-    &:hover {
-      color: var(--color-purple-light);
-    }
-  }
-}
-
 .uppercase {
   text-transform: uppercase;
 }

@@ -1,0 +1,51 @@
+body {
+  min-height: 300vh;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 76px;
+  background: var(--color-white);
+
+  .logo {
+    color: var(--color-black);
+    width: 117px;
+    height: auto;
+  }
+
+  .nav {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    height: 100%;
+
+    .dropdown {
+      position: fixed;
+      background-color: var(--color-grey-light);
+      top: 76px;
+      left: 0;
+      width: 100%;
+      padding: 0 25px;
+      display: flex;
+      justify-content: center;
+
+      a {
+        display: block;
+        margin: 0 40px;
+        padding: 20px;
+      }
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    position: relative;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

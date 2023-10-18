@@ -7,7 +7,7 @@
     gap: 68px;
 
     & > div {
-      flex-basis: 15%;
+      flex-basis: 17%;
 
       &:first-child {
         flex-basis: 55%;
@@ -30,23 +30,39 @@
     row-gap: 63px;
   }
 
-  .column {
+  &__subscription {
+    margin-top: 100px;
+
+    .heading {
+      margin-bottom: 18px;
+    }
+  }
+
+  &__column {
     display: flex;
     flex-direction: column;
     gap: 24px;
 
     .heading {
       color: var(--color-purple-light);
+      font-weight: 400;
     }
-  }
 
-  .contacts {
-    p {
-      margin: 0;
+    &.contacts {
+      p {
+        margin: 0;
+      }
+  
+      .social-links {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
     }
-  }
+  }  
 
-  .copyright {
+  &__copyright {
     border-top: 1px solid var(--color-purple-light);
     flex-basis: 100%;
     padding: 15px 63px 30px 0;
@@ -58,16 +74,9 @@
       opacity: 0.4;
     }
 
-    &__links {
+    .links {
       display: flex;
       gap: 38px;
     }
-  }
-
-  .social-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
   }
 }
