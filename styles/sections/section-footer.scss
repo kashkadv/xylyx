@@ -1,3 +1,5 @@
+@import '../assets/mixins';
+
 .footer {
   background-color: var(--color-indigo-deep);
   color: var(--color-white);
@@ -12,6 +14,11 @@
       &:first-child {
         flex-basis: 55%;
       }
+    }
+
+    @include breakpoint-down(mobile) {
+      flex-direction: column;
+      gap: 37px;
     }
   }
 
@@ -28,13 +35,98 @@
     display: flex;
     flex-direction: column;
     row-gap: 63px;
+
+    @include breakpoint-down(mobile) {
+      padding-top: 30px;
+      row-gap: 45px;
+    }
   }
 
   &__subscription {
     margin-top: 100px;
 
+    form {
+      width: 100%;
+      max-width: 442px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+
+      input {
+        background-color: transparent;
+        padding: 18px 20px;
+        border-radius: 10px;
+        color: var(--color-white);
+        border: 1px solid var(--color-purple-light);
+        box-sizing: border-box;
+        height: 60px;
+        width: 100%;
+        font-weight: bold;
+  
+        &:focus,
+        &:active,
+        &:focus-visible {
+          border-color: var(--color-purple-light) !important;
+          outline: none !important;
+        }
+      }
+
+      button {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        right: 0;
+        background-color: transparent;
+        border: 1px solid var(--color-purple-light);
+        box-shadow: none;
+        cursor: pointer;
+        overflow: hidden;
+
+        span {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          display: flex;
+          justify-content: center;
+          color: var(--color-purple-light);
+          transition: var(--transition);
+          
+          svg {
+            width: 24px;
+          }
+
+          &:first-of-type {
+            transform: translateX(-100%);
+            background-color: var(--color-purple-light);
+            color: var(--color-white);
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+          }
+        }
+
+        &:hover {
+          span {
+            &:last-of-type {
+              transform: translate(100%);
+            }
+
+            &:first-of-type {
+              transform: translateX(0);
+            }
+          }
+        }        
+      }
+
+    }
+
     .heading {
       margin-bottom: 18px;
+    }
+
+    @include breakpoint-down(mobile) {
+      margin-top: 30px;
     }
   }
 
@@ -60,7 +152,25 @@
         flex-wrap: wrap;
       }
     }
-  }  
+
+    @include breakpoint-down(mobil) {
+      gap: 15px;
+    }
+  }
+
+  &__bottom {
+    @include breakpoint-down(mobile) {
+      &.desktop {
+        display: none;
+      }
+    }
+
+    @include breakpoint-up(mobile) {
+      &.mobile {
+        display: none;
+      }
+    }
+  }
 
   &__copyright {
     border-top: 1px solid var(--color-purple-light);
@@ -77,6 +187,24 @@
     .links {
       display: flex;
       gap: 38px;
+
+      .mobile & {
+        border-bottom: 1px solid var(--color-purple-light);
+        width: 100%;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+      }
+    }
+
+    .mobile & {
+      border-top: none;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-right: 0;
+
+      & > *:last-child {
+        margin-top: 10px;
+      }
     }
   }
 }

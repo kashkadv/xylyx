@@ -13,4 +13,8 @@ body {
   padding: 0 32px;
   max-width: 1440px;
   margin-inline: auto;
+
+  @include breakpoint-down(mobile) {
+    padding: 0 20px;
+  }
 }

@@ -9,9 +9,13 @@
         {% if section.settings.footer_subscription %}
           <div class="footer__subscription">
             <div class="heading text--m">{{ section.settings.subscription_heading }}</div>
-            <div class="form">
-              <input name="input_1" type="email">
-            </div>
+            <form class="form" id="subscription-form">
+              <input class="text--s" name="input_1" type="email">
+              <button type="button">
+                <span>{% render 'icon-arrow' %}</span>
+                <span>{% render 'icon-arrow' %}</span>
+              </button>
+            </form>
           </div>
         {% endif %}
       </div>
@@ -50,7 +54,7 @@
         {% endcase %}
       {% endfor %}
     </div>
-    <div class="footer__bottom">
+    <div class="footer__bottom desktop">
       {% for block in section.blocks %}
         {% case block.type %}
           {% when 'copyright_block' %}
@@ -70,6 +74,31 @@
                   <a class="link link--white" href="{{ block.settings.developer_link }}">Craft & Root</a>
                 </div>
               </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    <div class="footer__bottom mobile">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'copyright_block' %}
+            <div class="footer__copyright text--2xs">
+              <div class="links">
+                <div class="link">
+                  <a class="link link--white" href="{{ block.settings.terms_and_conditions_link }}"
+                    >Terms and Conditions</a
+                  >
+                </div>
+                <div class="link">
+                  <a class="link link--white" href="{{ block.settings.privacy_policy_link }}">Privacy Policy</a>
+                </div>
+              </div>
+              <div class="link">
+                <label>Website by </label>
+                <a class="link link--white" href="{{ block.settings.developer_link }}">Craft & Root</a>
+              </div>
+              <label>© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</label>
             </div>
         {% endcase %}
       {% endfor %}

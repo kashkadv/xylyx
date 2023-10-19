@@ -91,7 +91,6 @@ a {
       &:first-of-type {
         left: 0;
         transform: translateX(-101%);
-        transition-delay: 0.1s;
       }
 
       &:last-of-type {
@@ -109,7 +108,7 @@ a {
       span {
         &:first-of-type {
           transform: translateX(0);
-          transition-delay: unset;
+          transition-delay: 0.15s;
         }
 
         &:last-of-type {
