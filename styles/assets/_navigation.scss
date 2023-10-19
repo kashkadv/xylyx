@@ -65,6 +65,7 @@ a {
   position: relative;
   transition: var(--transition);
   cursor: pointer !important;
+  font-family: var(--font-secondary);
   
   span {
     z-index: 1;

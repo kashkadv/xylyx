@@ -7,9 +7,14 @@
   --color-purple: #7a53d1;
   --color-purple-light: #a799ff;
   --color-grey-light: #e1dfe7;
-
   --transition: 0.4s ease-in-out;
-
   --font-primary: aktiv-grotesk;
   --font-secondary: halyard-micro;
+  --menu-height: 76px;
+}
+
+@include breakpoint-down(mobile) {
+  :root {  
+    --menu-height: 94px;
+  }
 }

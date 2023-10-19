@@ -36,6 +36,34 @@
           <span></span>
           <span></span>
         </div>
+        <div class="mobile-menu-wrapper">
+          <div class="nav">
+            {% for link in linklists['main-menu'].links %}
+              <div class="nav__item">
+                <a
+                  class="underline weight--normal link text--xl {% if link.url == 'https://shop.xylyxbio.com/' %}active{% endif %} {% if link.links != blank %}has-dropdown{% endif %}"
+                  href="{% if link.links != blank %}#{% else %}{{ link.url }}{% endif %}"
+                >
+                  {{- link.title -}}
+                </a>
+                {% if link.links != blank %}
+                  <div class="submenu">
+                    {% for child_link in link.links %}
+                      <div class="submenu__item ">
+                        <a class="underline link text--m" href="{{ child_link.url }}">{{ child_link.title }}</a>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="social-links">
+            {% for link in linklists.social.links %}
+              {% render 'social-link', link: link %}
+            {% endfor %}
+          </div>
+        </div>
       </div>
     </div>
   </div>
