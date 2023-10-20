@@ -1,11 +1,5 @@
 {
   "settings_schema": {
-    "main-hero": {
-      "name": "Main hero",
-      "presets": {
-        "name": "Main hero"
-      }
-    },
     "global": {
       "settings": {
         "header__border": {
@@ -1837,6 +1831,12 @@
             "label": "2 columns"
           }
         }
+      }
+    },
+    "main-hero": {
+      "name": "Main hero",
+      "presets": {
+        "name": "Main hero"
       }
     },
     "main-list-collections": {
