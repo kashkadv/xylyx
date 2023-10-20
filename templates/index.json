@@ -43,10 +43,34 @@
       ],
       "settings": {
       }
+    },
+    "c8565fad-cecb-476d-a4cb-8c313ab1f1b8": {
+      "type": "main-list-products",
+      "blocks": {
+        "0e8bb170-51ac-4d6d-9d09-9314dc7611ec": {
+          "type": "collection",
+          "settings": {
+            "item": "ecm-kits"
+          }
+        },
+        "c9dde57d-bdf7-4947-ab82-d08afe31304a": {
+          "type": "collection",
+          "settings": {
+            "item": "assays"
+          }
+        }
+      },
+      "block_order": [
+        "0e8bb170-51ac-4d6d-9d09-9314dc7611ec",
+        "c9dde57d-bdf7-4947-ab82-d08afe31304a"
+      ],
+      "settings": {
+      }
     }
   },
   "order": [
     "multicolumn",
-    "78035039-78ea-446f-b033-84509fdb3af0"
+    "78035039-78ea-446f-b033-84509fdb3af0",
+    "c8565fad-cecb-476d-a4cb-8c313ab1f1b8"
   ]
 }
