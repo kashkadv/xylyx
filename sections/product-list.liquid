@@ -1,0 +1,5 @@
+{% for collection in collections %}
+  {% for product in collection.products %}
+    {% render 'product-item', product: product %}
+  {% endfor %}
+{% endfor %}
