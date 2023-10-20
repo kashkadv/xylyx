@@ -1862,6 +1862,16 @@
     },
     "main-list-products": {
       "name": "Products list",
+      "blocks": {
+        "collection": {
+          "name": "Collection",
+          "settings": {
+            "item": {
+              "label": "Select collection"
+            }
+          }
+        }
+      },
       "presets": {
         "name": "Products list"
       }
