@@ -1,4 +1,12 @@
-<div>Main hero</div>
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'image' %}
+      {{ block.settings.image }}
+    {% when 'content' %}
+      {{ block.settings.heading }}
+      {{ block.settings.text }}
+  {% endcase %}
+{% endfor %}
 
 {% schema %}
 {
