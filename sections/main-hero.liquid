@@ -10,15 +10,31 @@
   "blocks": [
     {
        "type": "image",
-       "name": "Image",
+       "name": "t:sections.main-hero.blocks.image.name",
        "settings": [
          {
            "type": "image_picker",
-           "id": "hero-image",
-           "label": "Hero image"
+           "id": "hero_image",
+           "label": "t:sections.main-hero.blocks.image.settings.image-hero.label"
          }
        ]
-     }
+     },
+    {
+      "type": "content",
+      "name": "t:sections.main-hero.blocks.content.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "t:sections.main-hero.blocks.content.settings.heading.label"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "t:sections.main-hero.blocks.content.settings.text.label"
+        }
+      ]
+    }
   ],
   "presets": [
     {
