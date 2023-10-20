@@ -1,0 +1,11 @@
+<div id="product-{{ product.id }}" class="product">
+  <h2>{{ product.title }}</h2>
+  <a href="{{ product.url }}">Link</a>
+  <div class="product__variants">
+    {% for variant in product.variants %}
+      <div class="variant">
+        <h4>{{ variant.title }}</h4>
+      </div>
+    {% endfor %}
+  </div>
+</div>

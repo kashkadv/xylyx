@@ -45,8 +45,10 @@
           {% render 'button', label: 'Submit', color: 'purple', icon: 'arrow-right' %}
           {% render 'button', label: 'Submit', color: 'purple-light', icon: 'arrow-right' %}
         </div>
+
+        {% section 'product-list' %}
+        {{ content_for_layout }}
       </div>
-      {{ content_for_layout }}
     </main>
     {% section 'footer' %}
   </body>
