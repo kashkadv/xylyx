@@ -1835,6 +1835,11 @@
     },
     "main-hero": {
       "name": "Main hero",
+      "blocks": {
+        "image": {
+          "label": "Hero image"
+        }
+      },
       "presets": {
         "name": "Main hero"
       }
