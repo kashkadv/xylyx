@@ -1840,12 +1840,20 @@
           "name": "Hero image",
           "settings": {
             "image": {
-              "label": "image"
+              "label": "Image"
             }
           }
         },
         "content": {
-          "name": "Hero content"
+          "name": "Hero content",
+          "settings": {
+            "heading": {
+              "label": "Heading"
+            },
+            "text": {
+              "label": "Text"
+            }
+          }
         }
       },
       "presets": {
