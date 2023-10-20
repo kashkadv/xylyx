@@ -44,6 +44,7 @@
       background-color: var(--color-white);
       position: absolute;
       z-index: -1;
+      bottom: -1px;
 
       @include breakpoint-down(mobile) {
         border-radius: 0;

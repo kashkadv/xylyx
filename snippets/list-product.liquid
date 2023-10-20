@@ -1,0 +1,8 @@
+{{ 'snippet-list-product.css' | asset_url | stylesheet_tag }}
+
+<div class="list-product">
+  <div class="list-product__heading">
+    {{ product.metafields.custom.icon | json }}
+    <h3 class="text--xl">{{ product.title }}</h3>
+  </div>
+</div>

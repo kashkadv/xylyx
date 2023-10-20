@@ -1,29 +1,37 @@
-{% for collection in collections %}
-  PRODUCT LIST
-{% endfor %}
+{{ 'section-main-list-products.css' | asset_url | stylesheet_tag }}
+
+<div class="container">
+  {% for block in section.blocks %}
+    {% assign collection = block.settings.item %}
+
+    {% for product in collection.products %}
+      {% render 'list-product', product: product %}
+    {% endfor %}
+  {% endfor %}
+</div>
 
 {% schema %}
-  {
-    "name": "t:sections.main-list-products.name",
-    "tag": "section",
-    "class": "section main-list-products",
-    "blocks": [
-      {
-        "type": "collection",
-        "name": "t:sections.main-list-products.blocks.collection.name",
-        "settings": [
-          {
-            "type": "collection",
-            "id": "item",
-            "label": "t:sections.main-hero.blocks.collection.settings.item.label"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "t:sections.main-list-products.presets.name"
-      }
-    ]
-  }
+{
+  "name": "t:sections.main-list-products.name",
+  "tag": "section",
+  "class": "section main-list-products",
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "t:sections.main-list-products.blocks.collection.name",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "item",
+          "label": "t:sections.main-hero.blocks.collection.settings.item.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.main-list-products.presets.name"
+    }
+  ]
+}
 {% endschema %}
