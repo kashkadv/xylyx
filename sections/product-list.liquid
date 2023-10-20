@@ -1,5 +1,13 @@
 {% for collection in collections %}
-  {% for product in collection.products %}
-    {% render 'product-item', product: product %}
-  {% endfor %}
+  PRODUCT LIST
 {% endfor %}
+
+{% schema %}
+  {
+    "name": "t:sections.product-list.name",
+    "tag": "section",
+    "class": "section product-list",
+    "blocks": [],
+    "presets": []
+  }
+{% endschema %}
