@@ -19,9 +19,33 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "78035039-78ea-446f-b033-84509fdb3af0": {
+      "type": "main-hero",
+      "blocks": {
+        "template--21293313622308__78035039-78ea-446f-b033-84509fdb3af0-image-1": {
+          "type": "image",
+          "settings": {
+          }
+        },
+        "template--21293313622308__78035039-78ea-446f-b033-84509fdb3af0-content-1": {
+          "type": "content",
+          "settings": {
+            "heading": "heading content",
+            "text": "text content"
+          }
+        }
+      },
+      "block_order": [
+        "template--21293313622308__78035039-78ea-446f-b033-84509fdb3af0-image-1",
+        "template--21293313622308__78035039-78ea-446f-b033-84509fdb3af0-content-1"
+      ],
+      "settings": {
+      }
     }
   },
   "order": [
-    "multicolumn"
+    "multicolumn",
+    "78035039-78ea-446f-b033-84509fdb3af0"
   ]
 }
