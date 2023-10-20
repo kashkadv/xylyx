@@ -1860,6 +1860,9 @@
         "name": "Main hero"
       }
     },
+    "main-list-products": {
+      "name": "Products list"
+    },
     "main-list-collections": {
       "name": "Collections list page",
       "settings": {
