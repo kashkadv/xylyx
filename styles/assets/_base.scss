@@ -1,8 +1,14 @@
 body {
   margin: 0;
   font-family: var(--font-primary);
+  color: var(--color-indigo);
   font-weight: 300; 
   cursor: default;
+}
+
+*::selection {
+  color: var(--color-indigo);
+  background-color: var(--color-purple-light);
 }
 
 .content {

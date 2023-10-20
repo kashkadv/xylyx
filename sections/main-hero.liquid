@@ -1,12 +1,22 @@
-{% for block in section.blocks %}
-  {% case block.type %}
-    {% when 'image' %}
-      {{ block.settings.image }}
-    {% when 'content' %}
-      {{ block.settings.heading }}
-      {{ block.settings.text }}
-  {% endcase %}
-{% endfor %}
+{{ 'section-main-hero.css' | asset_url | stylesheet_tag }}
+
+<div class="main-hero__wrapper">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'image' %}
+        <div class="main-hero__image" style="background-image: url({{ block.settings.image | image_url }});"></div>
+      {% when 'content' %}
+        <div class="main-hero__content">
+          <div class="container">
+            <div class="content-wrapper">
+              <h1 class="text--2xl">{{ block.settings.heading }}</h1>
+              <p class="text--s">{{ block.settings.text }}</p>
+            </div>
+          </div>
+        </div>
+    {% endcase %}
+  {% endfor %}
+</div>
 
 {% schema %}
 {
