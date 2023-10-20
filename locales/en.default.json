@@ -277,7 +277,10 @@
       }
     },
     "main-hero": {
-      "name": "Main hero"
+      "name": "Main hero",
+      "presets": {
+        "name": "Main hero"
+      }
     },
     "cart": {
       "title": "Your cart",
