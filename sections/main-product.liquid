@@ -4,6 +4,7 @@
   data-section="{{ section.id }}"
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {{ 'section-product-desc.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
@@ -538,6 +539,63 @@
           {{ 'products.product.view_full_details' | t }}
           {% render 'icon-arrow' %}
         </a>
+
+        {% for variant in product.variants %}
+          <div class="variant__description" data-variant-id="{{variant.id}}">
+          {% if variant.metafields.custom.kit_contents %}
+            <div class="product_kit-content">
+              <h2>Kit contents</h2>
+               {{ variant.metafields.custom.kit_contents | metafield_tag }}
+            </div>
+          {% endif %}
+          {% if variant.metafields.custom.download %}
+            <div class="product_downloads">
+              <h2>Downloads</h2>
+              {% for item in variant.metafields.custom.download.value %}
+                {% assign item_name = item.url | split: '/' | last | split: '.' | first | replace: '_', ' ' %}
+                {% render 'button', href: item.url, label: item_name, color: 'purple', icon: 'download' %}
+              {% endfor %}
+            </div>
+          {% endif %}
+          {% if variant.metafields.custom.graphical_workflow %}
+            <div class="product_graphic-workflow">
+              <h2>Graphical workflow</h2>
+              {{ variant.metafields.custom.graphical_workflow | metafield_tag }}
+            </div>
+          {% endif %}
+          {% if variant.metafields.custom.download_supporting_protocols %}
+            <div class="product_protocols">
+              <h2>Download supporting protocols</h2>
+              {{ variant.metafields.custom.download_supporting_protocols | metafield_tag }}
+            </div>
+          {% endif %}
+          {% if variant.metafields.custom.material_properties %}
+            <div class="product_material">
+              <h2>Material properties</h2>
+              {{ variant.metafields.custom.material_properties | metafield_tag }}
+            </div>
+          {% endif %}
+          {% if variant.metafields.custom.usage %}
+            <div class="product_usage">
+              <h2>Usage</h2>
+              {{ variant.metafields.custom.usage | metafield_tag }}
+            </div>
+          {% endif %}
+          {% if variant.metafields.custom.quality %}
+            <div class="product_quality">
+              <h2>Quality</h2>
+              {{ variant.metafields.custom.quality | metafield_tag }}
+            </div>
+          {% endif %}
+          {% if variant.metafields.custom.ordering %}
+            <div class="product_ordering">
+              <h2>Ordering</h2>
+              {{ variant.metafields.custom.ordering | metafield_tag }}
+            </div>
+          {% endif %}
+          </div>
+        {% endfor %}
+
       </product-info>
     </div>
     {%- if section.settings.media_position == 'right' -%}

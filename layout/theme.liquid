@@ -29,6 +29,7 @@
     {{ content_for_header }}
 
     {{ 'main.css' | asset_url | stylesheet_tag }}
+    {{ 'global.js' | asset_url | script_tag }}
     {{ 'menu.js' | asset_url | script_tag }}
     {{ 'product.js' | asset_url | script_tag }}
   </head>
