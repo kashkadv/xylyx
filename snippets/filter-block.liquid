@@ -1,0 +1,19 @@
+<div class="filters__block">
+  {% if title != blank %}
+    <div class="block__title uppercase weight--semi-bold text--xs">{{ title }}</div>
+  {% endif %}
+  <div class="block__options">
+    {% for handle in items %}
+      {% assign _product = all_products[handle] %}
+      <div data-key="{{ key }}" data-target="{{ _product.handle }}" class="option text--s">
+        <span>{{ _product.title }}</span>
+        <span class="option__clear">
+          <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 0.5L11 10.5" stroke="currentColor" stroke-width="0.7"/>
+            <path d="M11 0.5L1 10.5" stroke="currentColor" stroke-width="0.7"/>
+          </svg>
+        </span>
+      </div>
+    {% endfor %}
+  </div>
+</div>

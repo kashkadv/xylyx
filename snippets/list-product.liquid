@@ -1,7 +1,7 @@
 {{ 'snippet-list-product.css' | asset_url | stylesheet_tag }}
 
 <div class="list-product">
-  <div class="list-product__head">
+  <div class="list-product__head" id="{{ product.handle }}">
     <img src="{{ product.metafields.custom.product_icon.value | image_url }}">
     <h3 class="text--xl">{{ product.title }}</h3>
   </div>
@@ -9,7 +9,7 @@
     {% for variant in product.variants %}
       <div class="variant">
         <div class="variant__title">
-          <a class="link text--m-s" href="{{ product.url }}/#{{ variant.id }}">{{ variant.title }}</a>
+          <a class="link text--m-s" href="{{ product.url }}/?variant={{ variant.id }}">{{ variant.title }}</a>
         </div>
         <div class="variant__price text--m-xs weight--semi-bold">{{ variant.price | money }}</div>
         <div class="variant__controls">

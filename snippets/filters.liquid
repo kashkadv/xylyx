@@ -1,0 +1,51 @@
+{{ 'snippet-filters.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'filters.js' | asset_url }}" defer></script>
+
+<div class="container">
+  {% for block in section.blocks %}
+    {% assign collection = block.settings.item %}
+    {% assign products = collection.products | sort: 'title' %}
+
+    {% assign disease_areas = '' %}
+    {% assign tissues = '' %}
+    {% assign has_filters = false %}
+
+    {% for product in products %}
+      {% if product.metafields.filters != blank %}
+        {% assign has_filters = true %}
+
+        {% if product.metafields.filters.disease_areas != blank %}
+          {% assign disease_areas = disease_areas | append: product.handle | append: ',' %}
+        {% endif %}
+
+        {% if product.metafields.filters.tissues != blank %}
+          {% assign tissues = tissues | append: product.handle | append: ',' %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    <div class="filters">
+      <div class="text--l text-color--purple">{{ collection.title }}</div>
+      {% if has_filters %}
+        {% assign tissues = tissues | split: ',' %}
+        {% assign disease_areas = disease_areas | split: ',' %}
+
+        <div class="filters__wrapper">
+          {% render 'filter-block', key: 'tissues', title: 'Tissues', items: tissues %}
+          {% render 'filter-block', key: 'disease_areas', title: 'Disease areas', items: disease_areas %}
+        </div>
+      {% else %}
+        {% assign items = '' %}
+        {% for product in products %}
+          {% assign items = items | append: product.handle | append: ',' %}
+        {% endfor %}
+        {% assign items = items | split: ',' %}
+
+        <div class="filters__wrapper">
+          {% render 'filter-block', key: 'assays', items: items %}
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>

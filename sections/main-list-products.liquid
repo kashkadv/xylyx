@@ -1,5 +1,9 @@
 {{ 'section-main-list-products.css' | asset_url | stylesheet_tag }}
 
+{% assign products = '' %}
+
+{% render 'filters', section: section %}
+
 <div class="container">
   {% for block in section.blocks %}
     {% assign collection = block.settings.item %}

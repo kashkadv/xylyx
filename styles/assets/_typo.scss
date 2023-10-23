@@ -112,7 +112,11 @@ h5 {
 }
 
 .text-color {
-  &--inidigo {
+  &--indigo {
     color: var(--color-indigo);
+  }
+
+  &--purple {
+    color: var(--color-purple);
   }
 }
