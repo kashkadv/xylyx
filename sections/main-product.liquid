@@ -539,7 +539,7 @@
           {{ 'products.product.view_full_details' | t }}
           {% render 'icon-arrow' %}
         </a>
-
+        {% if product.selected_variant %}
         {% for variant in product.variants %}
           <div class="variant__description" data-variant-id="{{variant.id}}">
           {% if variant.metafields.custom.kit_contents %}
@@ -595,7 +595,7 @@
           {% endif %}
           </div>
         {% endfor %}
-
+        {% endif %}
       </product-info>
     </div>
     {%- if section.settings.media_position == 'right' -%}
@@ -648,6 +648,24 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+
+      function showVariant() {
+        const variantEl = document.querySelectorAll('variant-radios[data-section="{{ section.id }}"] input');
+        const variants = document.querySelectorAll('[data-variant-id]');
+        const prodId = window.location.search.split('=')[1];
+        variantEl.forEach(function (item) {
+          if (item.checked) {
+            variants.forEach(function (variant) {
+              if (prodId == variant.dataset.variantId) {
+                variant.style.display = 'block';
+              }
+            });
+          }
+        });
+      }
+
+      showVariant();
+
       function isIE() {
         const ua = window.navigator.userAgent;
         const msie = ua.indexOf('MSIE ');
