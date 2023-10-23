@@ -1,0 +1,17 @@
+.product-description {
+   .download-block {
+     &-row {
+        display: flex;
+        margin-left: -10px;
+        margin-right: -10px;
+
+        a {
+          margin: 10px;
+        }
+     }
+   }
+}
+
+.variant__description {
+  display: none;
+}
