@@ -6,6 +6,10 @@ a {
   text-decoration: none;
   transition: var(--transition);
   color: var(--indigo);
+
+  &:hover {
+    color: var(--color-purple-light);
+  }
   
   &.underline {
     display: block;
@@ -32,6 +36,8 @@ a {
     }
 
     &:hover, &.active {
+      color: var(--color-indigo);
+
       &:after, span:first-of-type:after {
         transform: translateX(0);
       }
@@ -49,7 +55,7 @@ a {
 
 .btn {
   box-sizing: border-box;
-  height: 44px;
+  height: 46px;
   width: fit-content;
   padding: 14px;
   display: flex;

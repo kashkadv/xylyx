@@ -1,3 +1,43 @@
+@import '../assets/mixins';
+
 .list-product {
   margin-top: 50px;
+
+  &__head {
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+  }
+
+  &__variants {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 17px;
+
+    @include breakpoint-down(mobile) {
+      grid-template-columns: 1fr;
+    }
+
+    .variant {
+      min-width: 0;
+      padding: 15px;
+      border: 1px solid var(--color-grey);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      &__price {
+        margin-top: auto;
+      }
+
+      &__controls {
+        margin-top: 25px;
+        display: flex;
+        gap: 10px;
+        user-select: none;
+      }
+    }
+  }
 }

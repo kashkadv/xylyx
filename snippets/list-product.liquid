@@ -1,8 +1,22 @@
 {{ 'snippet-list-product.css' | asset_url | stylesheet_tag }}
 
 <div class="list-product">
-  <div class="list-product__heading">
-    {{ product.metafields.custom.icon | json }}
+  <div class="list-product__head">
+    <img src="{{ product.metafields.custom.product_icon.value | image_url }}">
     <h3 class="text--xl">{{ product.title }}</h3>
+  </div>
+  <div class="list-product__variants">
+    {% for variant in product.variants %}
+      <div class="variant">
+        <div class="variant__title">
+          <a class="link text--m-s" href="{{ product.url }}/#{{ variant.id }}">{{ variant.title }}</a>
+        </div>
+        <div class="variant__price text--m-xs weight--semi-bold">{{ variant.price | money }}</div>
+        <div class="variant__controls">
+          {% render 'input-quantity', value: 1, id: variant.id %}
+          {% render 'button', label: 'Add to cart', color: 'purple' %}
+        </div>
+      </div>
+    {% endfor %}
   </div>
 </div>

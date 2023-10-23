@@ -23,6 +23,26 @@
     }
   }
 
+  &--m-s {
+    font-size: 24px;
+    line-height: 37px;
+
+    @include breakpoint-down(mobile) {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+
+  &--m-xs {
+    font-size: 22px;
+    line-height: 37px;
+
+    @include breakpoint-down(mobile) {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+
   &--2xs {
     font-size: 13px;
     line-height: 17px;
@@ -62,6 +82,10 @@
 .weight{
   &--normal {
     font-weight: 400;
+  }
+
+  &--semi-bold {
+    font-weight: 500;
   }
 }
 

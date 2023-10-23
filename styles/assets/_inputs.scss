@@ -1,0 +1,47 @@
+input {
+  font-family: var(--font-primary);
+
+  .input-quantity & {
+    pointer-events: none;
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid var(--color-grey);
+    box-shadow: none;
+    outline: none;
+    height: 46px;
+    box-sizing: border-box;
+    font-weight: 300;
+  }
+}
+
+.input-quantity {
+  display: flex;
+  align-items: center;
+  position: relative;
+  
+  span {
+    position: absolute;
+    display: flex;
+    cursor: pointer;
+    color: var(--color-indigo);
+    transition: var(--transition);
+    height: 100%;
+    width: 30px;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      color: var(--color-purple);
+    }
+
+    & > * {
+      pointer-events: none;
+    }
+
+    &.plus {
+      right: 0;
+    }
+  }
+}
