@@ -1,7 +1,5 @@
-{{ 'snippet-list-product.css' | asset_url | stylesheet_tag }}
-
-<div class="list-product">
-  <div class="list-product__head" id="{{ product.handle }}">
+<div class="list-product" id="{{ product.handle }}" data-product>
+  <div class="list-product__head">
     <img src="{{ product.metafields.custom.product_icon.value | image_url }}">
     <h3 class="text--xl">{{ product.title }}</h3>
   </div>

@@ -5,7 +5,7 @@
   <div class="block__options">
     {% for handle in items %}
       {% assign _product = all_products[handle] %}
-      <div data-key="{{ key }}" data-target="{{ _product.handle }}" class="option text--s">
+      <div data-filter-option data-key="{{ key }}" data-target="{{ _product.handle }}" class="option text--s">
         <span>{{ _product.title }}</span>
         <span class="option__clear">
           <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
