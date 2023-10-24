@@ -37,6 +37,7 @@ function hideCart() {}
 function toggleCart() {
   const cart = document.querySelector('.cart-drawer');
   const scrollbarWidth = window.innerWidth - document.documentElement.offsetWidth;
+  const header = document.querySelector('.header__wrapper');
 
   if (!cart) return;
 
@@ -45,6 +46,8 @@ function toggleCart() {
   cart.matches('.active')
     ? (document.body.style.paddingRight = `${scrollbarWidth}px`)
     : (document.body.style.paddingRight = 0);
+
+  cart.matches('.active') ? (header.style.width = `calc(100% - ${scrollbarWidth}px)`) : (header.style.width = '100%');
 }
 
 async function UpdateCart() {
@@ -61,5 +64,5 @@ async function UpdateCart() {
 }
 
 function handleCartClick(e) {
-  if (e.target.matches('.cart-toggle')) toggleCart();
+  if (e.target.matches('.cart-toggle') || e.target.matches('.cart-drawer')) toggleCart();
 }

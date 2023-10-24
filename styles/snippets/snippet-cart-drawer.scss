@@ -11,9 +11,16 @@
   top: 0;
   left: 0;
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   visibility: hidden;
   transition: var(--transition);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
   
   &.active {   
     visibility: visible;
@@ -92,6 +99,7 @@
 
     &:not(:last-of-type) {
       border-bottom: 1px solid var(--color-indigo-deep);
+      margin-bottom: 20px;
     }
 
     &__wrapper {
