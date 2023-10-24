@@ -4,6 +4,10 @@ body {
   color: var(--color-indigo);
   font-weight: 300; 
   cursor: default;
+
+  &:has(.cart-drawer.active) {
+    overflow-y: hidden;
+  }
 }
 
 *::selection {

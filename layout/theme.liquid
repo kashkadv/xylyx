@@ -32,10 +32,12 @@
     {{ 'global.js' | asset_url | script_tag }}
     {{ 'menu.js' | asset_url | script_tag }}
     {{ 'product.js' | asset_url | script_tag }}
+    {{ 'cart.js' | asset_url | script_tag }}
   </head>
 
   <body>
     {% section 'header' %}
+    {% section 'cart-drawer' %}
     <main id="MainContent" class="content" role="main" tabindex="-1">
       {% comment %}
         <div class="container">

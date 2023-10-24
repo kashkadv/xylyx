@@ -36,6 +36,11 @@
     align-items: center;
     height: 100%;
 
+    &__group {
+      display: flex;
+      gap: 15px;
+    }
+
     &__item:hover {
       .dropdown {
         transform: translateY(0);

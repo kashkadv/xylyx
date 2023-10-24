@@ -1,11 +1,17 @@
+{% assign dataType = 'data-qty' %}
+
+{% if type != blank %}
+  {% assign dataType = 'data-' | append: type %}
+{% endif %}
+
 <div class="input-quantity">
-  <span class="minus" data-qty>
+  <span class="minus" {{ dataType }}>
     <svg width="14" height="3" viewBox="0 0 14 3" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M14 0.891441H7.6087L6.3913 0.891357L0 0.891441V2.10883H6.3913L7.6087 2.10875L14 2.10883V0.891441Z" fill="currentColor"/>
     </svg>
   </span>
-  <input class="text--m-xs" readonly value="{{ value }}" id="{{ id }}">
-  <span class="plus" data-qty>
+  <input class="text--m-xs" readonly value="{{ value }}" id="{{ id }}" name="quantity">
+  <span class="plus" {{ dataType }}>
     <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M14 6.8913H7.6087V0.5H6.3913V6.8913H0V8.1087H6.3913V14.5H7.6087V8.1087H14V6.8913Z" fill="currentColor"/>
     </svg>

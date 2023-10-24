@@ -32,8 +32,6 @@ function checkFilters() {
 function showProducts(targets) {
   const products = document.querySelectorAll('[data-product]');
 
-  console.log(targets.length);
-
   if (targets.length) {
     products.forEach((product) => {
       if (targets.includes(product.id)) {

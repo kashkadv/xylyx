@@ -14,11 +14,16 @@
   {% assign btnIcon = 'icon-' | append: icon %}
 {% endif %}
 
-<a
+<{% if tag != blank %}{{ tag }}{% else %}a{% endif %}
   {% if href != blank %}
     href="{{ href }}"
   {% endif %}
-  class="btn {{ btnColor }} {{ btnSize }} {% if btnIcon %} btn-with-icon {% endif %}"
+
+  {% if id != blank %}
+    id="{{ id }}"
+  {% endif %}
+
+  class="btn{% if btnColor != '' %} {{ btnColor }}{% endif %}{% if btnSize != '' %} {{ btnSize }}{% endif %}{% if btnIcon %} btn-with-icon{% endif %}{% if class %} {{ class }}{% endif %}"
 >
   {% case btnIcon %}
     {% when 'icon-download' %}
@@ -32,4 +37,4 @@
     {% else %}
       <span class="label">{{ label }}</span>
   {% endcase %}
-</a>
+</{% if tag != blank %}{{ tag }}{% else %}a{% endif %}>

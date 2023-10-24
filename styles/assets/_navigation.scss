@@ -10,6 +10,10 @@ a {
   &:hover {
     color: var(--color-purple-light);
   }
+
+  &.underlined {
+    text-decoration: underline;
+  }
   
   &.underline {
     display: block;
@@ -47,6 +51,14 @@ a {
   &--white {
     color: var(--color-white);
     
+    &:hover {
+      color: var(--color-purple-light);
+    }
+  }
+
+  &--purple {
+    color: var(--color-purple);
+
     &:hover {
       color: var(--color-purple-light);
     }
