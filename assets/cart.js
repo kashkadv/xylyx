@@ -29,7 +29,7 @@ function updateCartTotal(cart) {
 
 function showCart() {
   const cart = document.querySelector('.cart-drawer');
-  cart.classList.add('active');
+  cart.classList.add('active')
 }
 
 function hideCart() {}
@@ -43,11 +43,17 @@ function toggleCart() {
 
   cart.classList.toggle('active');
 
-  cart.matches('.active')
-    ? (document.body.style.paddingRight = `${scrollbarWidth}px`)
-    : (document.body.style.paddingRight = 0);
-
-  cart.matches('.active') ? (header.style.width = `calc(100% - ${scrollbarWidth}px)`) : (header.style.width = '100%');
+  if (cart.matches('.active')) {
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+    document.body.style.overflowY = 'hidden';
+    header.style.width = `calc(100% - ${scrollbarWidth}px)`;
+  } else {    
+    setTimeout(() => {
+      document.body.style.paddingRight = 0;
+      document.body.style.overflowY = 'visible';
+      header.style.width = '100%';
+    }, 300)
+  }
 }
 
 async function UpdateCart() {
@@ -56,13 +62,49 @@ async function UpdateCart() {
   const html = document.createElement('div');
   html.innerHTML = text;
   const cartDrawer = html.querySelector('.cart-drawer').innerHTML;
-  document.querySelector('.cart-drawer').innerHTML = cartDrawer;
+
+  const cart = document.querySelector('.cart-drawer')
+  cart.innerHTML = cartDrawer;
 
   setTimeout(() => {
-    showCart();
+    if (!cart.matches('.active')) toggleCart()
   }, 100);
 }
 
 function handleCartClick(e) {
-  if (e.target.matches('.cart-toggle') || e.target.matches('.cart-drawer')) toggleCart();
+  const target = e.target
+  
+  if (target.matches('.cart-toggle') || target.matches('.cart-drawer')) toggleCart();
+  if (target.matches('.plus') || target.matches('.minus') || target.matches('.remove-product')) changeCartQuantity(target);
+}
+
+function getProductKey(target) {
+  const key = target.closest('.cart-product').dataset.key
+  return key
+}
+
+async function changeCartQuantity(target) {
+  const key = getProductKey(target)
+  let quantity = 0
+  
+  if (!target.matches('.remove-product')) {
+    quantity = +target.closest('.input-quantity').querySelector('input[name="quantity"]').value
+  }
+
+  if (target.matches('.plus')) quantity += 1
+  if (target.matches('.minus') && quantity > 1) quantity -= 1
+
+  const res = await fetch('/cart/change.js', {
+    method: 'post',
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({quantity, id: key})
+  });
+
+  const json = await res.json()
+
+  updateCartTotal(json)
+  UpdateCart()
 }

@@ -19,7 +19,7 @@
             {% assign parent_product_obj = collections.all.products | where: 'id', product.product_id %}
             {% assign parent_product = parent_product_obj[0] %}
 
-            <div class="cart-product">
+            <div class="cart-product" data-key="{{ product.key }}">
               <div class="cart-product__wrapper">
                 <div class="image">
                   <img class="product-icon" src="{{ parent_product.metafields.custom.product_icon.value | image_url }}">
@@ -33,7 +33,7 @@
                   </div>
                   <div class="body__row bottom">
                     {% render 'input-quantity', value: product.quantity, type: 'cart-drawer' %}
-                    <a class="link link--purple underlined weight--normal text--xs" href="">Remove</a>
+                    <a class="link link--purple underlined weight--normal text--xs remove-product">Remove</a>
                   </div>
                 </div>
               </div>
@@ -43,16 +43,20 @@
       {% endform %}
     </div>
     <div class="cart-drawer__footer">
-      <div class="cart-drawer__totals">
-        <div class="tax-message text--s">Shipping, taxes, and discounts will be calculated at checkout.</div>
-        <div class="subtotal text--m-s">
-          <label>Subtotal</label>
-          <div class="weight--semi-bold">{{ cart.total_price | money }}</div>
+      {% if cart.item_count != 0 %}
+        <div class="cart-drawer__totals">
+          <div class="tax-message text--s">Shipping, taxes, and discounts will be calculated at checkout.</div>
+          <div class="subtotal text--m-s">
+            <label>Subtotal</label>
+            <div class="weight--semi-bold">{{ cart.total_price | money }}</div>
+          </div>
         </div>
-      </div>
+      {% endif %}
       <div class="cart-drawer__controls">
         {% render 'button', label: 'Continue shopping', class: 'close-cart-drawer cart-toggle' %}
-        {% render 'button', label: 'Checkout', color: 'purple', icon: 'arrow-right', href: '/cart' %}
+        {% if cart.item_count != 0 %}
+          {% render 'button', label: 'Checkout', color: 'purple', icon: 'arrow-right', href: '/cart' %}
+        {% endif  %}
       </div>
     </div>
   </div>
