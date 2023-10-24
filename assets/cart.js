@@ -55,7 +55,9 @@ async function UpdateCart() {
   const cartDrawer = html.querySelector('.cart-drawer').innerHTML;
   document.querySelector('.cart-drawer').innerHTML = cartDrawer;
 
-  showCart();
+  setTimeout(() => {
+    showCart();
+  }, 100);
 }
 
 function handleCartClick(e) {
