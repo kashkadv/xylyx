@@ -35,7 +35,7 @@
                     <div class="weight--semi-bold text--m-s">{{ line_item.line_price | money }}</div>
                   </div>
                   <div class="body__row bottom">
-                    {% render 'input-quantity', value: variant.quantity, type: 'cart-drawer' %}
+                    {% render 'input-quantity', value: line_item.quantity, type: 'cart-drawer' %}
                     <a class="link link--purple underlined weight--normal text--xs remove-product">Remove</a>
                   </div>
                 </div>
