@@ -3,12 +3,12 @@
   class="page-width section-{{ section.id }}-padding"
   data-section="{{ section.id }}"
 >
-  {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {% comment %} {{ 'section-main-product.css' | asset_url | stylesheet_tag }} {% endcomment %}
   {{ 'section-product-desc.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
-  {{ 'component-rating.css' | asset_url | stylesheet_tag }}
+  {% comment %} {{ 'component-rating.css' | asset_url | stylesheet_tag }} {% endcomment %}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
   {%- if product.quantity_price_breaks_configured? -%}
     {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
@@ -30,14 +30,14 @@
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-  {%- if product.quantity_price_breaks_configured? -%}
+  {% comment %} {%- if product.quantity_price_breaks_configured? -%}
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
-  {%- endif -%}
+  {%- endif -%} {% endcomment %}
 
-  {% if section.settings.image_zoom == 'hover' %}
+  {% comment %} {% if section.settings.image_zoom == 'hover' %}
     <script id="EnableZoomOnHover-main" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
-  {% endif %}
+  {% endif %} {% endcomment %}
   {%- if request.design_mode -%}
     <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
@@ -61,11 +61,25 @@
     >
   {%- endif -%}
 
+  {% capture variant_images_custom %}
+    {% for variant in product.variants %}
+      {% for item in variant.metafields.custom.variant_images.value %}
+        {% if variant.metafields.custom.variant_images %}
+          {{ item.image | img_url: "1024x" }}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endcapture %}
+  
+  
+  {% assign variant_image_urls = variant_images_custom | strip %}
+
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
   <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
-      {% render 'product-media-gallery', variant_images: variant_images %}
+      {% comment %} {% render 'product-media-gallery', variant_images: variant_image_urls %} {% endcomment %}
+      {% render 'variant-media-gallery', url: variant_image_urls %}
     </div>
     <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <product-info
@@ -90,13 +104,9 @@
             {%- when 'title' -%}
               <div class="product__title" {{ block.shopify_attributes }}>
                 <h1>{{ product.title | escape }}</h1>
-                <a href="{{ product.url }}" class="product__title">
-                  <h2 class="h1">
-                    {{ product.title | escape }}
-                  </h2>
-                </a>
               </div>
-            {%- when 'price' -%}
+            {%- when 'price' -%}  
+              <div class="price-block">
               <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                 {%- render 'price',
                   product: product,
@@ -124,6 +134,14 @@
                   <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
                   {{ form | payment_terms }}
                 {%- endform -%}
+              </div>
+              {% if product.selected_variant %}
+                {% for variant in product.variants %}
+                  <div class="variant__description variant-title" data-variant-id="{{variant.id}}">
+                    {{ variant.title }}
+                  </div>
+                {% endfor %}
+              {% endif %}
               </div>
             {%- when 'inventory' -%}
               <p
@@ -208,6 +226,17 @@
                 </details>
               </div>
             {%- when 'quantity_selector' -%}
+              {% if product.selected_variant %}
+                {% for variant in product.variants %}
+                  <div class="variant__description" data-variant-id="{{variant.id}}">
+                  {% if variant.metafields.custom.description %}
+                    <div class="product_kit-content variant__description--col">
+                      {{ variant.metafields.custom.description | metafield_tag }}
+                    </div>
+                  {% endif %}
+                  </div>
+                {% endfor %}
+              {% endif %}
               <div
                 id="Quantity-Form-{{ section.id }}"
                 class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %}"
@@ -382,6 +411,7 @@
                   {%- endif -%}
                   </volume-pricing>
                 {%- endif -%}
+                {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
               </div>
             {%- when 'popup' -%}
               <modal-opener
@@ -401,12 +431,12 @@
               <a href="{{ block.settings.page.url }}" class="product-popup-modal__button link no-js">
                 {{- block.settings.text -}}
               </a>
-            {%- when 'share' -%}
+            {% comment %} {%- when 'share' -%}
               {% assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin %}
               {% render 'share-button',
                 block: block,
                 share_link: share_url
-              %}
+              %} {% endcomment %}
 
             {%- when 'variant_picker' -%}
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
@@ -535,21 +565,21 @@
               %}
           {%- endcase -%}
         {%- endfor -%}
-        <a href="{{ product.url }}" class="link product__view-details animate-arrow">
+        {% comment %} <a href="{{ product.url }}" class="link product__view-details animate-arrow">
           {{ 'products.product.view_full_details' | t }}
           {% render 'icon-arrow' %}
-        </a>
+        </a> {% endcomment %}
         {% if product.selected_variant %}
         {% for variant in product.variants %}
           <div class="variant__description" data-variant-id="{{variant.id}}">
           {% if variant.metafields.custom.kit_contents %}
-            <div class="product_kit-content">
+            <div class="product_kit-content variant__description--col">
               <h2>Kit contents</h2>
                {{ variant.metafields.custom.kit_contents | metafield_tag }}
             </div>
           {% endif %}
           {% if variant.metafields.custom.download %}
-            <div class="product_downloads">
+            <div class="product_downloads variant__description--col">
               <h2>Downloads</h2>
               {% for item in variant.metafields.custom.download.value %}
                 {% assign item_name = item.url | split: '/' | last | split: '.' | first | replace: '_', ' ' %}
@@ -558,37 +588,37 @@
             </div>
           {% endif %}
           {% if variant.metafields.custom.graphical_workflow %}
-            <div class="product_graphic-workflow">
+            <div class="product_graphic-workflow variant__description--col">
               <h2>Graphical workflow</h2>
               {{ variant.metafields.custom.graphical_workflow | metafield_tag }}
             </div>
           {% endif %}
           {% if variant.metafields.custom.download_supporting_protocols %}
-            <div class="product_protocols">
+            <div class="product_protocols variant__description--col">
               <h2>Download supporting protocols</h2>
               {{ variant.metafields.custom.download_supporting_protocols | metafield_tag }}
             </div>
           {% endif %}
           {% if variant.metafields.custom.material_properties %}
-            <div class="product_material">
+            <div class="product_material variant__description--col">
               <h2>Material properties</h2>
               {{ variant.metafields.custom.material_properties | metafield_tag }}
             </div>
           {% endif %}
           {% if variant.metafields.custom.usage %}
-            <div class="product_usage">
+            <div class="product_usage variant__description--col">
               <h2>Usage</h2>
               {{ variant.metafields.custom.usage | metafield_tag }}
             </div>
           {% endif %}
           {% if variant.metafields.custom.quality %}
-            <div class="product_quality">
+            <div class="product_quality variant__description--col">
               <h2>Quality</h2>
               {{ variant.metafields.custom.quality | metafield_tag }}
             </div>
           {% endif %}
           {% if variant.metafields.custom.ordering %}
-            <div class="product_ordering">
+            <div class="product_ordering variant__description--col">
               <h2>Ordering</h2>
               {{ variant.metafields.custom.ordering | metafield_tag }}
             </div>
@@ -650,16 +680,16 @@
     document.addEventListener('DOMContentLoaded', function () {
 
       function showVariant() {
-        const variantEl = document.querySelectorAll('variant-radios[data-section="{{ section.id }}"] input');
+        const variantEl = document.querySelector('variant-radios[data-section="{{ section.id }}"] input:checked');
         const variants = document.querySelectorAll('[data-variant-id]');
         const prodId = window.location.search.split('=')[1];
-        variantEl.forEach(function (item) {
-          if (item.checked) {
-            variants.forEach(function (variant) {
-              if (prodId == variant.dataset.variantId) {
-                variant.style.display = 'block';
-              }
-            });
+        const regex = /template--(\d+)__/;
+        const inputId = variantEl.id;
+        const match = inputId.match(regex);
+
+        variants.forEach(function (variant) {
+          if (prodId == variant.dataset.variantId || match[1] == variant.dataset.variantId) {
+            variant.style.display = 'block';
           }
         });
       }
