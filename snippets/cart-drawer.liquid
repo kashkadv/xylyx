@@ -25,7 +25,7 @@
                   <img class="product-icon" src="{{ parent_product.metafields.custom.product_icon.value | image_url }}">
                   <img src="{{ product.metafields.cart.image.value | image_url }}">
             
-                  {% assign var = product.product.variants | where: 'id', 47419556200740 %}
+                  {% assign var = product.product.variants | where: 'id', 47419556200740 | first %}
                   {{ var | json }}
                 </div>
                 <div class="body">
