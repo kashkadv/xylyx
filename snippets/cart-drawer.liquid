@@ -15,14 +15,13 @@
         {% if cart.item_count == 0 %}
           <p>Your cart is empty</p>
         {% else %}
-          {% for line_item in cart.items %}
-            {% assign product_obj = collections.all.products | where: 'id', line_item.id %}
-            {% assign product = product_obj[0] %}
-            
-            {% assign parent_product_obj = collections.all.products | where: 'id', line_item.product_id %}
+          {% for product in cart.items %}
+            {% assign parent_product_obj = collections.all.products | where: 'id', product.product_id %}
             {% assign parent_product = parent_product_obj[0] %}
 
-            <div class="cart-product" data-key="{{ line_item.key }}">
+            {{ parent_product.variants | where: 'id', product.id || json }}
+
+            <div class="cart-product" data-key="{{ product.key }}">
               <div class="cart-product__wrapper">
                 <div class="image">
                   <img class="product-icon" src="{{ parent_product.metafields.custom.product_icon.value | image_url }}">
