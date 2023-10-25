@@ -15,27 +15,27 @@
         {% if cart.item_count == 0 %}
           <p>Your cart is empty</p>
         {% else %}
-          {% for product in cart.items %}
-            {% assign parent_product_obj = collections.all.products | where: 'id', product.product_id %}
-            {% assign parent_product = parent_product_obj[0] %}
+          {% for line_item in cart.items %}
+            
+            {% assign product = line_item.product %}
+            {% assign variant = product.variants | where: 'id', line_item.variant_id | first %}
 
-            <div class="cart-product" data-key="{{ product.key }}">
+            <div class="cart-product" data-key="{{ line_item.key }}">
               <div class="cart-product__wrapper">
                 <div class="image">
                   <img class="product-icon" src="{{ parent_product.metafields.custom.product_icon.value | image_url }}">
                   <img src="{{ product.metafields.cart.image.value | image_url }}">
             
-                  {% assign var = product.product.variants | where: 'id', 47419556200740 | first %}
-                  {{ var.metafields.cart | json }}
+                  {{ var.metafields.cart.image.value | json }}
                 </div>
                 <div class="body">
                   <div class="product-label text--s">{{ parent_product.title }}</div>
                   <div class="body__row top">
-                    <a class="link text--m-s" href="{{ product.url }}">{{ product.title }}</a>
-                    <div class="weight--semi-bold text--m-s">{{ product.line_price | money }}</div>
+                    <a class="link text--m-s" href="{{ variant.url }}">{{ variant.title }}</a>
+                    <div class="weight--semi-bold text--m-s">{{ line_item.line_price | money }}</div>
                   </div>
                   <div class="body__row bottom">
-                    {% render 'input-quantity', value: product.quantity, type: 'cart-drawer' %}
+                    {% render 'input-quantity', value: variant.quantity, type: 'cart-drawer' %}
                     <a class="link link--purple underlined weight--normal text--xs remove-product">Remove</a>
                   </div>
                 </div>
