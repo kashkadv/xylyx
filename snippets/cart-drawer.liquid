@@ -26,9 +26,9 @@
                   {% if product.metafields.custom.product_icon.value != blank %}
                     <img class="product-icon" src="{{ product.metafields.custom.product_icon.value | image_url }}">
                   {% endif %}
-                  <img src="{{ variant.metafields.cart.image.value | image_url }}">
-            
-                  {{ var.metafields.cart.image.value | json }}
+                  {% if variant.metafields.cart.image.value != blank %}
+                    <img src="{{ variant.metafields.cart.image.value | image_url }}">
+                  {% endif %}
                 </div>
                 <div class="body">
                   <div class="product-label text--s">{{ product.title }}</div>
