@@ -26,7 +26,13 @@
             {% endif %}
           </div>
         {% endfor %}
-        <div class="nav__item">
+        <div class="nav__group">
+          {% assign cart_label = 'Cart'
+            | append: ' <span  id="cart-count">'
+            | append: cart.item_count
+            | append: '</span>'
+          %}
+          {% render 'button', class: 'cart-toggle', label: cart_label, color: 'purple', size: 's' %}
           {% render 'button', href: 'https://xylyxbio.com/#contact-us', label: 'Contact us', size: 's' %}
         </div>
       </div>

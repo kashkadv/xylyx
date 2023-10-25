@@ -10,10 +10,14 @@
           <a class="link text--m-s" href="{{ product.url }}?variant={{ variant.id }}">{{ variant.title }}</a>
         </div>
         <div class="variant__price text--m-xs weight--semi-bold">{{ variant.price | money }}</div>
-        <div class="variant__controls">
+        <form class="variant__controls" action="/cart/add">
+          <input type="hidden" name="form_type" value="product">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="id" value="{{ variant.id }}">
+          <input type="hidden" name="product-id" value="{{ product.id }}">
           {% render 'input-quantity', value: 1, id: variant.id %}
-          {% render 'button', label: 'Add to cart', color: 'purple' %}
-        </div>
+          {% render 'button', label: 'Add to cart', color: 'purple', class="add-to-cart", tag: 'button' %}
+        </form>
       </div>
     {% endfor %}
   </div>
