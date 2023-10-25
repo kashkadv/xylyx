@@ -106,7 +106,7 @@
     "predictive_search_enabled": true,
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
-    "currency_code_enabled": true,
+    "currency_code_enabled": false,
     "cart_type": "notification",
     "show_vendor": false,
     "show_cart_note": false,
@@ -170,6 +170,16 @@
           "footer_slogan": "<p>Harnessing systemic <br\/>physiology to save lives<\/p>",
           "footer_subscription": true,
           "subscription_heading": "Sign up below to get the latest news."
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+        }
+      },
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {
         }
       }
     },

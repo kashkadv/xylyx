@@ -1,0 +1,58 @@
+<div class="container cart-block">
+  {{  }}
+
+  <div class="cart__items">
+    {% for line_item in cart.items %}
+      {% assign product = line_item.product %}
+      {% assign variant = product.variants | where: 'id', line_item.variant_id | first %}
+
+      <div class="cart-product" data-key="{{ line_item.key }}">
+        <div class="cart-product__wrapper">
+          <div class="image">
+            {% if product.metafields.custom.product_icon.value != blank %}
+              <img class="product-icon" src="{{ product.metafields.custom.product_icon.value | image_url }}">
+            {% endif %}
+            {% if variant.metafields.cart.image.value != blank %}
+              <img src="{{ variant.metafields.cart.image.value | image_url }}">
+            {% endif %}
+          </div>
+          <div class="body">
+            <div class="product-label text--s">{{ product.title }}</div>
+            <div class="body__row top">
+              <a class="link text--m-s" href="{{ variant.url }}">{{ variant.title }}</a>
+              <div class="weight--semi-bold text--m-s">{{ line_item.line_price | money }}</div>
+            </div>
+            <div class="body__row bottom">
+              {% render 'input-quantity', value: line_item.quantity, type: 'cart-drawer' %}
+              <a class="link link--purple underlined weight--normal text--xs remove-product">Remove</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="cart__footer">
+    <div class="totals">
+      <div class="tax-message text--s">Shipping, taxes, and discounts will be calculated at checkout.</div>
+      <div class="subtotal text--m-s">
+        <label>Subtotal</label>
+        <div class="weight--semi-bold">{{ cart.total_price | money }}</div>
+      </div>
+    </div>
+    <div class="controls">
+      {% if cart.item_count != 0 %}
+        {% assign checkout_url = '/cart/' %}
+        {% for line_item in cart.items %}
+          {% assign checkout_url = checkout_url
+            | append: line_item.variant_id
+            | append: ':'
+            | append: line_item.quantity
+            | append: ','
+          %}
+        {% endfor %}
+
+        {% render 'button', label: 'Checkout', color: 'purple', icon: 'arrow-right', href: checkout_url %}
+      {% endif %}
+    </div>
+  </div>
+</div>

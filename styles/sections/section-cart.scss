@@ -1,0 +1,114 @@
+.cart-block {
+  margin: 50px auto;
+
+  & > * {
+    padding-top: 50px;
+  }
+}
+
+.cart {
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__items {
+    .cart-product {
+      padding: 25px 0;
+  
+      &:not(:last-of-type) {
+        border-bottom: 1px solid var(--color-indigo-deep);
+        margin-bottom: 25px;
+      }
+  
+      &__wrapper {
+        display: flex;
+        gap: 50px;
+      }
+  
+      .image {
+        width: 200px;
+        height: auto;
+        position: relative;
+        flex-shrink: 0;
+        background-color: rgba(0,0,0,.05);
+        line-height: 0;
+        aspect-ratio: 5/4;
+  
+        .product-icon {
+          box-sizing: border-box;
+          position: absolute;
+          right: 0;
+          top: 0;
+          transform: translateX(50%) translateY(-50%);
+          width: 52px;
+          height: 52px;
+          padding: 10px;
+          border: 1px solid var(--color-indigo-deep);
+          border-radius: 50%;
+          background-color: var(--color-white);
+        }
+  
+        img {
+          max-width: 100%;
+        }
+      }
+  
+      .body {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+        width: 100%;
+  
+        .product-label {
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translateY(-100%);
+          width: fit-content;
+        }
+  
+        &__row {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          gap: 50px;
+  
+          &.top {
+            padding-top: 10px;
+          }
+  
+          &.bottom {
+            margin-top: auto;
+            align-items: flex-end;
+          }
+        }
+      }
+    }
+  }
+
+  &__footer {
+    margin-top: 50px;
+    border-top: 1px solid var(--color-indigo-deep);
+
+    .totals {
+      display: flex;
+      justify-content: space-between;
+
+      .subtotal {
+        display: flex;
+        gap: 50px;
+      }
+    }
+
+    .controls {
+      margin-top: 50px;
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+    }
+  }
+}
