@@ -23,7 +23,9 @@
             <div class="cart-product" data-key="{{ line_item.key }}">
               <div class="cart-product__wrapper">
                 <div class="image">
-                  <img class="product-icon" src="{{ product.metafields.custom.product_icon.value | image_url }}">
+                  {% if product.metafields.custom.product_icon.value != blank %}
+                    <img class="product-icon" src="{{ product.metafields.custom.product_icon.value | image_url }}">
+                  {% endif %}
                   <img src="{{ variant.metafields.cart.image.value | image_url }}">
             
                   {{ var.metafields.cart.image.value | json }}
