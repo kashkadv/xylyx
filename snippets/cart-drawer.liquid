@@ -24,7 +24,7 @@
                 <div class="image">
                   <img class="product-icon" src="{{ parent_product.metafields.custom.product_icon.value | image_url }}">
                   <img src="{{ product.metafields.cart.image.value | image_url }}">
-                  {{ product.product.metafields | json }}
+                  {{ product.product.metafields.cart.image | json }}
                 </div>
                 <div class="body">
                   <div class="product-label text--s">{{ parent_product.title }}</div>
