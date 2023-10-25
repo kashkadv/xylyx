@@ -1,10 +1,14 @@
 {
   "sections": {
     "heading": {
-      "type": "cart-heading"
+      "type": "cart-heading",
+      "settings": {
+      }
     },
     "items": {
-      "type": "cart-items"
+      "type": "cart-items",
+      "settings": {
+      }
     }
   },
   "order": [
