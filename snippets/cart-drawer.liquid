@@ -22,7 +22,7 @@
             {% assign parent_product_obj = collections.all.products | where: 'id', line_item.product_id %}
             {% assign parent_product = parent_product_obj[0] %}
 
-            <div class="cart-product" data-key="{{ product.key }}">
+            <div class="cart-product" data-key="{{ line_item.key }}">
               <div class="cart-product__wrapper">
                 <div class="image">
                   <img class="product-icon" src="{{ parent_product.metafields.custom.product_icon.value | image_url }}">
