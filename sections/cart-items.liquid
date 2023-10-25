@@ -1,4 +1,6 @@
 <div class="container cart-block">
+  {{  }}
+
   <div class="cart__items">
     {% for line_item in cart.items %}
       {% assign product = line_item.product %}
@@ -39,7 +41,17 @@
     </div>
     <div class="controls">
       {% if cart.item_count != 0 %}
-        {% render 'button', label: 'Checkout', color: 'purple', icon: 'arrow-right', href: '/checkouts' %}
+        {% assign checkout_url = '/cart/' %}
+        {% for line_item in cart.items %}
+          {% assign checkout_url = checkout_url
+            | append: line_item.variant_id
+            | append: ':'
+            | append: line_item.quantity
+            | append: ','
+          %}
+        {% endfor %}
+
+        {% render 'button', label: 'Checkout', color: 'purple', icon: 'arrow-right', href: checkout_url %}
       {% endif %}
     </div>
   </div>

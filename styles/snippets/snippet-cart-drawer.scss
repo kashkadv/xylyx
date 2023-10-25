@@ -112,6 +112,9 @@
       height: auto;
       position: relative;
       flex-shrink: 0;
+      aspect-ratio: 5 / 4;
+      background-color: rgba(0,0,0,.05);
+      line-height: 0;
 
       .product-icon {
         box-sizing: border-box;
