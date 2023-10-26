@@ -29,7 +29,7 @@ function updateCartTotal(cart) {
 
 function showCart() {
   const cart = document.querySelector('.cart-drawer');
-  cart.classList.add('active')
+  cart.classList.add('active');
 }
 
 function hideCart() {}
@@ -45,14 +45,14 @@ function toggleCart() {
 
   if (cart.matches('.active')) {
     document.body.style.paddingRight = `${scrollbarWidth}px`;
-    document.body.style.overflowY = 'hidden';
+    document.body.style.overflow = 'hidden';
     header.style.width = `calc(100% - ${scrollbarWidth}px)`;
-  } else {    
+  } else {
     setTimeout(() => {
       document.body.style.paddingRight = 0;
-      document.body.style.overflowY = 'visible';
+      document.body.style.overflow = 'visible';
       header.style.width = '100%';
-    }, 300)
+    }, 300);
   }
 }
 
@@ -63,48 +63,49 @@ async function UpdateCart() {
   html.innerHTML = text;
   const cartDrawer = html.querySelector('.cart-drawer').innerHTML;
 
-  const cart = document.querySelector('.cart-drawer')
+  const cart = document.querySelector('.cart-drawer');
   cart.innerHTML = cartDrawer;
 
   setTimeout(() => {
-    if (!cart.matches('.active')) toggleCart()
+    if (!cart.matches('.active')) toggleCart();
   }, 100);
 }
 
 function handleCartClick(e) {
-  const target = e.target
-  
+  const target = e.target;
+
   if (target.matches('.cart-toggle') || target.matches('.cart-drawer')) toggleCart();
-  if (target.matches('.plus') || target.matches('.minus') || target.matches('.remove-product')) changeCartQuantity(target);
+  if (target.matches('.plus') || target.matches('.minus') || target.matches('.remove-product'))
+    changeCartQuantity(target);
 }
 
 function getProductKey(target) {
-  const key = target.closest('.cart-product').dataset.key
-  return key
+  const key = target.closest('.cart-product').dataset.key;
+  return key;
 }
 
 async function changeCartQuantity(target) {
-  const key = getProductKey(target)
-  let quantity = 0
-  
+  const key = getProductKey(target);
+  let quantity = 0;
+
   if (!target.matches('.remove-product')) {
-    quantity = +target.closest('.input-quantity').querySelector('input[name="quantity"]').value
+    quantity = +target.closest('.input-quantity').querySelector('input[name="quantity"]').value;
   }
 
-  if (target.matches('.plus')) quantity += 1
-  if (target.matches('.minus') && quantity > 1) quantity -= 1
+  if (target.matches('.plus')) quantity += 1;
+  if (target.matches('.minus') && quantity > 1) quantity -= 1;
 
   const res = await fetch('/cart/change.js', {
     method: 'post',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({quantity, id: key})
+    body: JSON.stringify({ quantity, id: key }),
   });
 
-  const json = await res.json()
+  const json = await res.json();
 
-  updateCartTotal(json)
-  UpdateCart()
+  updateCartTotal(json);
+  UpdateCart();
 }
