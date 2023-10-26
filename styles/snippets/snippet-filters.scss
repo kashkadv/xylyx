@@ -20,7 +20,20 @@
 
     &__options {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
+      align-items: center;
+
+      .clear-filter-group {
+        margin-left: 20px;
+        display: none;
+      }
+
+      &.active {
+        .clear-filter-group {
+          display: block;
+        }
+      }
     }
   }
 

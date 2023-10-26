@@ -57,7 +57,11 @@
         </div>
       {% endif %}
       <div class="cart-drawer__controls">
-        {% render 'button', label: 'Continue shopping', class: 'close-cart-drawer cart-toggle' %}
+        {% render 'button',
+          color: 'purple-outlined',
+          label: 'Continue shopping',
+          class: 'close-cart-drawer cart-toggle'
+        %}
         {% if cart.item_count != 0 %}
           {% assign checkout_url = '/cart/' %}
           {% for line_item in cart.items %}
