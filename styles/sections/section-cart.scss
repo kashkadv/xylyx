@@ -1,3 +1,5 @@
+@import '../assets/mixins';
+
 .cart-block {
   margin: 50px auto;
 
@@ -36,6 +38,11 @@
         background-color: rgba(0,0,0,.05);
         line-height: 0;
         aspect-ratio: 5/4;
+
+        @include breakpoint-down(mobile) {
+          width: 72px;
+          height: fit-content;
+        }
   
         .product-icon {
           box-sizing: border-box;
@@ -79,6 +86,11 @@
   
           &.top {
             padding-top: 10px;
+
+            @include breakpoint-down(mobile) {
+              flex-direction: column;
+              gap: 5px;
+            }
           }
   
           &.bottom {

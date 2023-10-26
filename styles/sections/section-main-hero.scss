@@ -9,6 +9,7 @@
 
     @include breakpoint-down(mobile) {
       flex-direction: column-reverse;
+      height: fit-content;
     }
   }
 

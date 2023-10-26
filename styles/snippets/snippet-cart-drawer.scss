@@ -1,3 +1,5 @@
+@import '../assets/mixins';
+
 .cart-toggle {
   & > * {
     pointer-events: none;
@@ -59,6 +61,10 @@
     transform: translateX(100%);
     transition: var(--transition);
 
+    @include breakpoint-down(mobile) {
+      padding: 20px;
+    }
+
     .active & {
       transform: translateX(0);
     }
@@ -74,6 +80,10 @@
     margin-top: auto;
     padding-top: 10px;
     border-top: 1px solid var(--color-purple-deep);
+
+    @include breakpoint-down(mobile) {
+      border-top: unset;
+    }
   }
 
   &__totals {
@@ -81,17 +91,36 @@
     justify-content: space-between;
     align-items: center;
 
+    @include breakpoint-down(mobile) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
     .subtotal {
       display: flex;
       gap: 42px;
+
+      @include breakpoint-down(mobile) {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 10px;
+        border-top: 1px solid var(--color-indigo-deep);
+        padding-top: 10px;
+      }
     }
   }
 
   &__controls {
     margin-top: 25px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 10px;
+
+    .btn {
+      font-size: 14px;
+      line-height: 1;
+      letter-spacing: -0.03rem;
+    }
   }
 
   .cart-product {
@@ -105,6 +134,10 @@
     &__wrapper {
       display: flex;
       gap: 50px;
+
+      @include breakpoint-down(mobile) {
+        gap: 16px;
+      }
     }
 
     .image {
@@ -115,6 +148,11 @@
       aspect-ratio: 5 / 4;
       background-color: rgba(0,0,0,.05);
       line-height: 0;
+
+      @include breakpoint-down(mobile) {
+        width: 72px;
+        height: fit-content;
+      }
 
       .product-icon {
         box-sizing: border-box;
@@ -128,6 +166,14 @@
         border: 1px solid var(--color-indigo-deep);
         border-radius: 50%;
         background-color: var(--color-white);
+
+        @include breakpoint-down(mobile) {
+          width: 37px;
+          height: 37px;
+          bottom: 0;
+          top: unset;
+          transform: translateY(30px);
+        }
       }
 
       img {
@@ -142,12 +188,21 @@
       position: relative;
       width: 100%;
 
+      @include breakpoint-down(mobile) {
+        gap: 5px;
+      }
+
       .product-label {
         position: absolute;
         top: 0;
         left: 0;
         transform: translateY(-100%);
         width: fit-content;
+
+        @include breakpoint-down(mobile) {
+          position: relative;
+          transform: unset;
+        }
       }
 
       &__row {
@@ -158,11 +213,21 @@
 
         &.top {
           padding-top: 10px;
+
+          @include breakpoint-down(mobile) {
+            flex-direction: column;
+            gap: 5px;
+            padding-top: 0;
+          }
         }
 
         &.bottom {
           margin-top: auto;
           align-items: flex-end;
+
+          @include breakpoint-down(mobile) {
+            margin-top: 10px;
+          }
         }
       }
     }
