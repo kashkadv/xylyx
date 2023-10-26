@@ -93,7 +93,7 @@ a {
   transition: var(--transition);
   cursor: pointer !important;
   font-family: var(--font-secondary);
-  
+
   span {
     z-index: 1;
   }
@@ -176,6 +176,14 @@ a {
     border-color: var(--color-purple);
     background-color: var(--color-purple);
 
+    &.loading {
+      animation: blink 2s infinite both;
+
+      &:active {
+        pointer-events: none;
+      }
+    }
+
     &::before {
       background-color: var(--color-purple);
       transition: var(--transition);
@@ -217,5 +225,18 @@ a {
     &::before {
       transform: translateX(0);
     }
+  }
+}
+
+
+@keyframes blink {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0.5;
   }
 }

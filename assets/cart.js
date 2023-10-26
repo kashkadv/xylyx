@@ -11,9 +11,7 @@ async function handleFormSubmit(e, form) {
   e.preventDefault();
 
   const btn = form.querySelector('button');
-
-  btn.style.webkitFilter = 'grayscale(1) opacity(0.5)';
-  btn.style.pointerEvents = 'none';
+  btn.classList.add('loading');
 
   await fetch('/cart/add', {
     method: 'post',
@@ -23,8 +21,7 @@ async function handleFormSubmit(e, form) {
   const res = await fetch('/cart.json');
   const cart = await res.json();
 
-  btn.style.webkitFilter = null;
-  btn.style.pointerEvents = null;
+  btn.classList.remove('loading');
 
   updateCartTotal(cart);
   UpdateCart();
