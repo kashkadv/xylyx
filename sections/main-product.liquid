@@ -5,11 +5,13 @@
 >
   {% comment %} {{ 'section-main-product.css' | asset_url | stylesheet_tag }} {% endcomment %}
   {{ 'section-product-desc.css' | asset_url | stylesheet_tag }}
+  {{ 'product-gallery-modal.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
-  {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+  {% comment %} {{ 'component-slider.css' | asset_url | stylesheet_tag }} {% endcomment %}
   {% comment %} {{ 'component-rating.css' | asset_url | stylesheet_tag }} {% endcomment %}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   {%- if product.quantity_price_breaks_configured? -%}
     {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
   {%- endif -%}
@@ -61,25 +63,18 @@
     >
   {%- endif -%}
 
-  {% capture variant_images_custom %}
-    {% for variant in product.variants %}
-      {% for item in variant.metafields.custom.variant_images.value %}
-        {% if variant.metafields.custom.variant_images %}
-          {{ item.image | img_url: "1024x" }}
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-  {% endcapture %}
-  
-  
-  {% assign variant_image_urls = variant_images_custom | strip %}
-
-  {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
+  {% comment %} {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %} {% endcomment %}
 
   <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
       {% comment %} {% render 'product-media-gallery', variant_images: variant_image_urls %} {% endcomment %}
-      {% render 'variant-media-gallery', url: variant_image_urls %}
+      {% comment %} {% render 'variant-media-gallery', url: variant_image_urls %} {% endcomment %}
+    
+      {% for variant in product.variants %}
+        <div class="product-gallery" id="{{ variant.id }}" data-variant-id="{{variant.id}}">
+          {% render 'variant-media-gallery' data: variant.metafields.custom.variant_images.value %}
+        </div>
+      {% endfor %}
     </div>
     <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <product-info
@@ -431,12 +426,12 @@
               <a href="{{ block.settings.page.url }}" class="product-popup-modal__button link no-js">
                 {{- block.settings.text -}}
               </a>
-            {% comment %} {%- when 'share' -%}
+            {%- when 'share' -%}
               {% assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin %}
               {% render 'share-button',
                 block: block,
                 share_link: share_url
-              %} {% endcomment %}
+              %}
 
             {%- when 'variant_picker' -%}
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
@@ -636,7 +631,21 @@
     {%- endif -%}
   </div>
 
-  {% render 'product-media-modal' variant_images: variant_images %}
+  {% for variant in product.variants %}
+    <div class="product-gallery-modal" id="{{ variant.id }}" data-modal-id="{{variant.id}}">
+      <div class="product-gallery-modal__header">
+          <div class="container">
+          <h2>{{ variant.title }}</h2>
+          <button class="close"></button>
+        </div>
+      </div>
+      <div class="container">
+        {% render 'variant-modal' data: variant.metafields.custom.variant_images.value %}
+      </div>
+    </div>
+  {% endfor %}
+
+  {% comment %} {% render 'product-media-modal' variant_images: variant_images %}
 
   {% assign popups = section.blocks | where: 'type', 'popup' %}
   {%- for block in popups -%}
@@ -662,7 +671,7 @@
         </div>
       </div>
     </modal-dialog>
-  {%- endfor -%}
+  {%- endfor -%} {% endcomment %}
 
   {%- if product.media.size > 0 -%}
     <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
@@ -675,6 +684,8 @@
     </script>
     <script src="{{ 'product-model.js' | asset_url }}" defer></script>
   {%- endif -%}
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -695,6 +706,113 @@
       }
 
       showVariant();
+
+      function sliderInit() {
+          const galleries = document.querySelectorAll('.product-gallery');
+
+          galleries.forEach((gallery, i) => {
+              const sliderFull = gallery.querySelector('.product-gallery-full');
+              const sliderThumb = gallery.querySelector('.product-gallery-thumb');
+
+              sliderFull.classList.add('slider-product-' + i);
+              sliderThumb.classList.add('slider-thumb-' + i);
+
+              const swiper = new Swiper('.slider-thumb-' + i, {
+                  spaceBetween: 10,
+                  slidesPerView: 5,
+                  freeMode: true,
+                  watchSlidesProgress: true,
+              });
+
+              const swiper2 = new Swiper('.slider-product-' + i, {
+                  thumbs: {
+                      swiper: swiper,
+                  },
+              });
+
+          });
+      }
+
+      sliderInit();
+
+      function initGallerySlider(gallery) {
+          const sliderFull = gallery.querySelector('.product-gallery-modal__item-slider');
+          const sliderThumb = gallery.querySelector('.product-gallery-modal__item-thumb');
+
+          const swiperThumb = new Swiper(sliderThumb, {
+              spaceBetween: 10,
+              slidesPerView: 5,
+          });
+
+          const swiperSlider = new Swiper(sliderFull, {
+              effect : 'fade',
+              fadeEffect: {
+                      crossFade: true
+              },
+              navigation: {
+                  nextEl: ".product-gallery-modal__nav-next",
+                  prevEl: ".product-gallery-modal__nav-prev",
+              },
+              thumbs: {
+                  swiper: swiperThumb,
+              },
+          });
+
+          return swiperSlider;
+      }
+
+      function openGalleryModal() {
+          const activeSlider = document.querySelectorAll('.product-gallery-full__img');
+          const body = document.querySelector('body');
+          const html = document.querySelector('html');
+
+          activeSlider.forEach((item) => {
+              item.addEventListener('click', function () {
+                  const variantId = item.closest('[data-variant-id]').dataset.variantId;
+                  const itemId = item.id;
+                  const ariaLabel = item.getAttribute('aria-label').split('/');
+                  const itemPos = ariaLabel[0] - 1;
+
+                  const modalEl = document.querySelector(`.product-gallery-modal[data-modal-id="${variantId}"]`);
+                  const slider = initGallerySlider(modalEl);
+
+                  slider.slideTo(itemPos);
+                  setTimeout(() => {
+                    body.style.overflow = 'hidden';
+                    html.style.overflow = 'hidden';
+                    modalEl.style.opacity = '1';
+                    modalEl.style.visibility = 'visible';
+                  }, 100);
+              });
+          });
+      }
+
+      function closeGalleryModal() {
+          const modalClose = document.querySelectorAll('.product-gallery-modal__header .close');
+          const body = document.querySelector('body');
+          const html = document.querySelector('html');
+
+          modalClose.forEach((item) => {
+              item.addEventListener('click', function () {
+                  const modalEl = item.closest('.product-gallery-modal');
+                  body.style.overflow = '';
+                  html.style.overflow = '';
+                  modalEl.style.opacity = '0';
+                  modalEl.style.visibility = 'hidden';
+              });
+          });
+      }
+
+      function modalSliderInit() {
+          const galleriesModal = document.querySelectorAll('.product-gallery-modal');
+          galleriesModal.forEach((gallery) => {
+              initGallerySlider(gallery);
+          });
+      }
+
+      modalSliderInit();
+      openGalleryModal();
+      closeGalleryModal();
 
       function isIE() {
         const ua = window.navigator.userAgent;
@@ -719,7 +837,11 @@
         hiddenInput.value = event.currentTarget.value;
       });
     });
+
+
   </script>
+
+
 
   {%- liquid
     if product.selected_or_first_available_variant.featured_media

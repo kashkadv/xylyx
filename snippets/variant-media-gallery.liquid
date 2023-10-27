@@ -1,17 +1,49 @@
 {% comment %}
-    Renders product media
+  Renders product media
 
-    Accepts:
-    - media: {Object} Product Media object
-    - loop: {Boolean} Enable video looping (optional)
-    - variant_image: {Boolean} Whether or not media is associated with a variant
+  Accepts:
+  - data: {Object} JSON data object
 
-    Usage:
-    {% render 'product-media',
-      media: media,
-      loop: section.settings.enable_video_looping,
-      variant_image: true
-    %}
+  Usage:
+  {% render 'variant-media-gallery',
+    data: data,
+  %}
 {% endcomment %}
 
-<img src="{{ url }}" alt="">
+{% assign variants = data | json_parse %}
+
+<div class="product-gallery-full swiper">
+    <div class="swiper-wrapper">
+        {% for item in variants %}
+            <div class="product-gallery-full__img swiper-slide" id="{{item.title | handleize }}-{{forloop.index0}}">
+                <img src="{{ item.image | img_url: "1024x" }}" alt="">
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="product-gallery-thumb swiper">
+    <div class="swiper-wrapper">
+        {% for thumb in variants %}
+            <div class="image swiper-slide" id="{{thumb.title | handleize }}-{{forloop.index0}}">
+                <img src="{{ thumb.image | img_url: "1024x" }}" alt="">
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% for label in item %}
+    <div class="modal" data-modal="{{label.title | handleize }}-{{forloop.index0}}">
+        <div class="container">
+            <div class="row">
+                <img src="{{ label.image | img_url: "1024x" }}" alt="">
+                <div class="content">
+                    <h2>{{ label.title }}</h2>
+                    <p>{{ label.description | metafield_tag }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% comment %} <img src="{{ data.image | img_url: "1024x" }}" alt=""> {% endcomment %}
