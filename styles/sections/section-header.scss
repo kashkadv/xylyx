@@ -130,15 +130,16 @@
 
 .mobile-menu-wrapper {
   transform: translateX(100%);
-  position: absolute;
+  position: fixed;
   background-color: var(--color-indigo);
   left: 0;
   top: 0;
   width: 100%;
-  min-height: 100vh;
+  height: calc(100% - var(--menu-height));
   z-index: -1;
   transition: var(--transition);
   padding-top: var(--menu-height);
+  overflow: scroll;
   
   .nav {
     padding: 50px 20px 0;
@@ -146,6 +147,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 30px;
+    height: fit-content;
 
     .submenu {
       margin-top: 26px;

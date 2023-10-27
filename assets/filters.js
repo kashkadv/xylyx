@@ -6,11 +6,19 @@ const keys = urlParams.keys(),
   entries = urlParams.entries();
 
 let options;
+let groups;
+let clearBtns;
 
 document.addEventListener('DOMContentLoaded', () => {
   options = document.querySelectorAll('[data-filter-option]');
+  groups = document.querySelectorAll('.block__options');
+  clearBtns = document.querySelectorAll('.clear-filter-group');
+
+  clearBtns?.forEach((btn) => btn.addEventListener('click', (e) => handleFilterGroupClear(e)));
+
   if (!options) return;
   buildFilters();
+  updateFilterGroups();
 });
 
 function buildFilters() {
@@ -20,6 +28,27 @@ function buildFilters() {
   });
 
   checkFilters();
+}
+
+function updateFilterGroups() {
+  groups.forEach((group) => {
+    const hasSelected = group.querySelectorAll('.selected');
+    hasSelected.length ? group.classList.add('active') : group.classList.remove('active');
+  });
+}
+
+function handleFilterGroupClear(e) {
+  const group = e.target.closest('.block__options');
+  const options = group?.querySelectorAll('[data-filter-option]');
+
+  options?.forEach((option) => {
+    option.classList.remove('selected');
+    urlParams.delete(option.dataset.key, option.dataset.target);
+  });
+
+  updateUrl();
+  checkFilters();
+  updateFilterGroups();
 }
 
 function checkFilters() {
@@ -63,6 +92,7 @@ function handleOptionClick(e) {
 
   updateUrl();
   checkFilters();
+  updateFilterGroups();
 }
 
 function updateUrl() {

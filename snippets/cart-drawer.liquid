@@ -23,7 +23,9 @@
               <div class="cart-product__wrapper">
                 <div class="image">
                   {% if product.metafields.custom.product_icon.value != blank %}
-                    <img class="product-icon" src="{{ product.metafields.custom.product_icon.value | image_url }}">
+                    <div class="product-icon">
+                      <img src="{{ product.metafields.custom.product_icon.value | image_url }}">
+                    </div>
                   {% endif %}
                   {% if variant.metafields.cart.image.value != blank %}
                     <img src="{{ variant.metafields.cart.image.value | image_url }}">
@@ -57,7 +59,11 @@
         </div>
       {% endif %}
       <div class="cart-drawer__controls">
-        {% render 'button', label: 'Continue shopping', class: 'close-cart-drawer cart-toggle' %}
+        {% render 'button',
+          color: 'purple-outlined',
+          label: 'Continue Shopping',
+          class: 'close-cart-drawer cart-toggle'
+        %}
         {% if cart.item_count != 0 %}
           {% assign checkout_url = '/cart/' %}
           {% for line_item in cart.items %}
@@ -68,7 +74,7 @@
               | append: ','
             %}
           {% endfor %}
-          {% render 'button', label: 'Checkout', color: 'purple', icon: 'arrow-right', href: checkout_url %}
+          {% render 'button', label: 'Check Out', color: 'purple', icon: 'arrow-right', href: checkout_url %}
         {% endif %}
       </div>
     </div>
