@@ -1,0 +1,46 @@
+{% comment %}
+  Renders product media
+
+  Accepts:
+  - data: {Object} JSON data object
+
+  Usage:
+  {% render 'variant-media-gallery',
+    data: data,
+  %}
+{% endcomment %}
+
+{% assign variants = data | json_parse %}
+
+<div class="product-gallery-modal__item">
+        <div class="swiper product-gallery-modal__item-slider">
+            <div class="swiper-wrapper">
+                {% for item in variants %}
+                    <div class="swiper-slide product-gallery-modal__item-slide" data-toggl="{{item.title | handleize }}-{{forloop.index0}}">
+                        <div class="swiper-slide__image">
+                            <img src="{{ item.image | img_url: '1024x' }}" alt="{{ item.title | escape }}" />
+                        </div>
+                        <div class="swiper-slide__description">
+                            <h2>{{ item.title }}</h2>
+                            {{ item.description |  metafield_tag }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="product-gallery-modal__footer">
+            <div class="product-gallery-modal__item-thumb">
+                <div class="swiper-wrapper">
+                    {% for item in variants %}
+                        <div class="swiper-slide swiper-slide__thumb" data-toggl="{{item.title | handleize }}-{{forloop.index0}}">
+                            <img src="{{ item.image | img_url: '1024x' }}" alt="{{ item.title | escape }}" />
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="product-gallery-modal__nav">
+                <div class="product-gallery-modal__nav-prev"></div>
+                <div class="product-gallery-modal__nav-next"></div>
+            </div>
+        </div>
+</div>

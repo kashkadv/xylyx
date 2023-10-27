@@ -61,6 +61,11 @@
     >
     <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
       {{ value -}}
+        {% for variant in product.variants %}
+          {%  if value == variant.title %}
+               <span class="price">{{ variant.price | money }}</span>
+          {%  endif %} 
+         {%  endfor %}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
   {%- elsif block.settings.picker_type == 'dropdown' -%}
