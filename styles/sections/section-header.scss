@@ -48,6 +48,12 @@
     }
 
     &--mobile {
+      gap: 5px;
+
+      .menu-toggle {
+        margin-left: 10px;
+      }
+
       @include breakpoint-up(mobile) {
         display: none;
       }
