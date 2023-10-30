@@ -1,23 +1,33 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const subscriptionForm = document.getElementById('subscription-form');
-  subscriptionForm?.addEventListener('submit', (e) => handleFormSubmit(e));
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//   const subscriptionForm = document.getElementById('subscription-form');
+//   subscriptionForm?.addEventListener('submit', (e) => handleFormSubmit(e));
 
-async function handleFormSubmit(e) {
-  e.preventDefault();
+//   const signUpForm = document.getElementById('sign-up-form');
+//   if (signUpForm) {
+//     var cssLink = document.createElement('link');
+//     cssLink.href = 'iframe-style.css';
+//     cssLink.rel = 'stylesheet';
+//     cssLink.type = 'text/css';
+//     signUpForm.document.head.appendChild(cssLink);
+//   }
+//   console.log(signUpForm);
+// });
 
-  console.log('submit form');
+// async function handleFormSubmit(e) {
+//   e.preventDefault();
 
-  // const data = new FormData(e.target);
+//   console.log('submit form');
 
-  // const req = await fetch('https://wp-dev.space/craftandroot/xylyxbio/master/', {
-  //   method: 'post',
-  //   data: data,
-  // });
+//   // const data = new FormData(e.target);
 
-  // const res = await req.text();
+//   // const req = await fetch('https://wp-dev.space/craftandroot/xylyxbio/master/', {
+//   //   method: 'post',
+//   //   data: data,
+//   // });
 
-  // console.log(res);
+//   // const res = await req.text();
 
-  // e.target.reset();
-}
+//   // console.log(res);
+
+//   // e.target.reset();
+// }
