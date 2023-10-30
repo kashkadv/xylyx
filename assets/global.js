@@ -969,6 +969,7 @@ class VariantSelects extends HTMLElement {
       this.renderProductInfo();
       this.updateShareUrl();
       this.updateVariantDetails(this.currentVariant);
+      this.updateQuantity(this.currentVariant);
     }
   }
 
@@ -981,6 +982,11 @@ class VariantSelects extends HTMLElement {
         variant.style.display = 'block';
       }
     });
+  }
+
+  updateQuantity(currentVariant) {
+    const variantInputControl = document.querySelector('.variant__controls input[name="id"]');
+    variantInputControl.value = currentVariant.id;
   }
 
   updateOptions() {

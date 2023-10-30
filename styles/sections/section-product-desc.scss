@@ -161,11 +161,12 @@
     margin-right: 10px;
   }
 
-  .product-form__quantity {
+  .variant__controls {
     display: flex;
+    margin-bottom: 45px;
 
-    label {
-      display: none;
+    .input-quantity {
+      margin-right: 10px;
     }
   }
 }
