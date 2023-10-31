@@ -1,33 +1,43 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//   const subscriptionForm = document.getElementById('subscription-form');
-//   subscriptionForm?.addEventListener('submit', (e) => handleFormSubmit(e));
+document.addEventListener('DOMContentLoaded', () => {
+  const forms = document.querySelectorAll('[data-external-form]');
+  forms?.forEach((form) => form.addEventListener('submit', (e) => handleFormSubmit(e)));
+});
 
-//   const signUpForm = document.getElementById('sign-up-form');
-//   if (signUpForm) {
-//     var cssLink = document.createElement('link');
-//     cssLink.href = 'iframe-style.css';
-//     cssLink.rel = 'stylesheet';
-//     cssLink.type = 'text/css';
-//     signUpForm.document.head.appendChild(cssLink);
-//   }
-//   console.log(signUpForm);
-// });
+async function handleFormSubmit(e) {
+  e.preventDefault();
 
-// async function handleFormSubmit(e) {
-//   e.preventDefault();
+  const object = {};
+  const formData = new FormData(e.target);
 
-//   console.log('submit form');
+  formData.forEach((value, key) => (object[key] = value));
 
-//   // const data = new FormData(e.target);
+  const body = JSON.stringify(object);
+  const action = e.target.action;
 
-//   // const req = await fetch('https://wp-dev.space/craftandroot/xylyxbio/master/', {
-//   //   method: 'post',
-//   //   data: data,
-//   // });
+  const res = await submitForm(action, body);
 
-//   // const res = await req.text();
+  let message = 'Error while submitting form';
+  if (res?.is_valid) {
+    message = res.confirmation_message;
+  }
 
-//   // console.log(res);
+  e.target.innerHTML = message;
+}
 
-//   // e.target.reset();
-// }
+async function submitForm(action, body) {
+  const myHeaders = new Headers();
+  myHeaders.append('Authorization', 'Basic ZGV2ZWxvcGVyX3h5bHl4YmlvOmdwazFST3FIQzNuRE1nOEJnMUZ5cFg3VQ==');
+  myHeaders.append('Content-Type', 'application/json');
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body,
+    redirect: 'follow',
+  };
+
+  const req = await fetch(action, requestOptions);
+  const res = await req.json();
+
+  return res;
+}
