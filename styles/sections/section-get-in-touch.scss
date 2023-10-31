@@ -1,0 +1,198 @@
+@import '../assets/mixins';
+
+.get-in-touch {
+  background: var(--color-indigo);
+  padding: 40px 0;
+
+  .container {
+    display: flex;
+    border-radius: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+
+    @include breakpoint-up(lg) {
+      flex-wrap: nowrap;
+      border: 1px solid var(--color-purple-light);
+      margin: 0 24px;
+    }
+
+    @include breakpoint-up(xxl) {
+      margin: 0 auto;
+    }
+  }
+
+  .gform_confirmation_message {
+    text-align: center;
+    color: var(--color-white);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    
+    @include breakpoint-up(lg) {
+      flex: 0 0 49.5%;
+      padding-right: 72px;
+      border-right: 1px solid var(--color-purple-light);
+    }
+
+    &--subtitle {
+      margin-top: 40px;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      font-family: var(--font-secondary);
+      color: var(--color-purple-light);
+    }
+
+    &--title {
+      font-size: 60px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 68px;
+      letter-spacing: 0.6px;
+      color: var(--color-white);
+      margin-bottom: 25px;
+      
+      @include breakpoint-up(lg) {
+        margin-bottom: 140px;
+      }
+    }
+
+    &--footer {
+      margin-bottom: 25px;
+
+      p {
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 25px;
+        letter-spacing: 0.17px;
+        color: var(--color-white);
+        margin-bottom: 15px;
+      }
+
+      a {
+        color: var(--color-white);
+        transition: ease-in-out 0.3s;
+        margin-bottom: 15px;
+
+        &:hover {
+          color: var(--color-purple-light);
+        }
+      }
+    }
+  }
+
+  &__form {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+
+    @include breakpoint-up(lg) {
+      flex: 0 0 50.5%;
+      padding: 0 52px 0 72px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 100%;
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 25px;
+
+      @include breakpoint-up(lg) {
+        margin-top: 40px;
+      }
+
+      .form__container {
+        position: relative;
+        box-sizing: border-box;
+      }
+
+      .form__row {
+        display: flex;
+        flex-wrap: wrap;
+
+        @include breakpoint-up(lg) {
+          flex-wrap: nowrap;
+        }
+
+        .form__container {
+          flex: 0 0 100%;
+
+          @include breakpoint-up(lg) {
+            flex: 0 0 47.5%;
+            margin-right: 25px;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      label {
+        color: var(--color-indigo);
+        font-size: 17px;
+        font-weight: 300;
+        position: absolute;
+        top: 0;
+        pointer-events: none;
+        left: 0;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+        padding-top: 0;
+        transition: transform ease-in-out 0.3s, color ease-in-out 0.3s;
+        transform: translate(20px, 18px);
+        will-change: transform, color;
+      }
+
+      input {
+        background: var(--color-white);
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        height: 60px;
+        padding: 8px 20px;
+        margin-bottom: 33px;
+        font-weight: 500;
+        color: var(--sk-color-primary);
+        font-size: 17px;
+        line-height: 25px;
+        letter-spacing: 0.01em;
+        transition: ease-in-out 0.3s;
+        box-sizing: border-box;
+
+        &::placeholder {
+          font-size: 0;
+        }
+
+        &:focus,
+        &:active,
+        &:focus-visible,
+        &:not(:placeholder-shown),
+        &:-webkit-autofill {
+            &+label {
+                color: var(--color-white);
+                padding-left: 0;
+                font-size: 12px;
+                transform: translate(10px, -20px);
+            }
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}

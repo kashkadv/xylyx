@@ -1,0 +1,73 @@
+{{ 'section-get-in-touch.css' | asset_url | stylesheet_tag }}
+
+<div class="get-in-touch">
+    <div class="container">
+        <div class="get-in-touch__info">
+            <p class="get-in-touch__info--subtitle">{{ section.settings.subtitle_id }}</p>
+            <h2 class="get-in-touch__info--title">{{ section.settings.title_id }}</h2>
+
+            <div class="get-in-touch__info--footer">
+                {{ section.settings.adress_id }}
+            </div>
+        </div>
+        <div class="get-in-touch__form">
+            <form class="form" id="get-in-touch-form" data-external-form action="{{ section.settings.form_action_id }}">
+                <div class="form__row">
+                    <span class="form__container">
+                        <input type="text" name="input_1.3" id="input_1_1_3" placeholder="First Name">
+                        <label for="input_1_1_3">First Name</label>
+                    </span>
+                    <span class="form__container">
+                        <input type="text" name="input_1.6" id="input_1_1_6" placeholder="Last Name">
+                        <label for="input_1_1_6">Last Name</label>
+                    </span>
+                </div>
+                <span class="form__container">
+                    <input type="email" name="input_3" id="input_1_3" placeholder="Email Address" required>
+                    <label for="input_1_3">Email Address</label>
+                </span>
+                <span class="form__container">
+                    <input type="text" name="input_4" id="input_1_4" placeholder="How can we help?">
+                    <label for="input_1_4">How can we help?</label>
+                </span>
+                {% render 'button', label: 'Submit', color: 'purple', tag: 'button', icon: 'arrow-right' %}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% schema %} 
+{
+   "name" : "Get in touch section",
+   "tag": "section",
+   "settings": [
+    {
+      "type" : "text",
+      "label" : "Subtitle",
+      "id" : "subtitle_id"
+    },
+    {
+      "type" : "text",
+      "label" : "Title",
+      "id" : "title_id"
+    },
+    {
+      "type" : "richtext",
+      "label" : "Adress",
+      "id" : "adress_id"
+    },
+    {
+      "type" : "text",
+      "label" : "Form action",
+      "id" : "form_action_id"
+    }
+   ],
+   "presets": [
+    {
+      "name": "Get in touch section",
+      "category": "Custom"
+    }
+  ]
+   
+}
+{% endschema %}
