@@ -169,7 +169,8 @@
         "settings": {
           "footer_slogan": "<p>Harnessing systemic <br\/>physiology to save lives<\/p>",
           "footer_subscription": true,
-          "subscription_heading": "Sign up below to get the latest news."
+          "subscription_heading": "Sign up below to get the latest news.",
+          "subscription_action": "https:\/\/wp-dev.space\/craftandroot\/xylyxbio\/develop\/wp-json\/gf\/v2\/forms\/2\/submissions"
         }
       },
       "header": {
