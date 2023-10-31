@@ -9,8 +9,8 @@
         {% if section.settings.footer_subscription %}
           <div class="footer__subscription">
             <div class="heading text--m">{{ section.settings.subscription_heading }}</div>
-            <form class="form" id="subscription-form">
-              <input class="text--s" name="input_1" type="email" placeholder="Email address">
+            <form class="form" id="subscription-form" data-external-form>
+              <input class="text--s" name="input_1" type="email" placeholder="Email address" required>
               <label class="text--s">Email address</label>
               <button type="submit">
                 <span>{% render 'icon-arrow' %}</span>
@@ -126,6 +126,11 @@
       "type": "text",
       "id": "subscription_heading",
       "label": "Subscription heading"
+    },
+    {
+      "type": "text",
+      "id": "subscription_action",
+      "label": "Subscription action URL"
     }
   ],
   "blocks": [
