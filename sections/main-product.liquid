@@ -32,14 +32,6 @@
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-  {% comment %} {%- if product.quantity_price_breaks_configured? -%}
-    <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
-  {%- endif -%} {% endcomment %}
-
-  {% comment %} {% if section.settings.image_zoom == 'hover' %}
-    <script id="EnableZoomOnHover-main" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
-  {% endif %} {% endcomment %}
   {%- if request.design_mode -%}
     <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
@@ -63,13 +55,16 @@
     >
   {%- endif -%}
 
-  {% comment %} {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %} {% endcomment %}
-
   <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
-      {% comment %} {% render 'product-media-gallery', variant_images: variant_image_urls %} {% endcomment %}
-      {% comment %} {% render 'variant-media-gallery', url: variant_image_urls %} {% endcomment %}
-    
+      <div class="product-title--mobile">
+        <div class="product__breadcrumbs">
+          <p><span>{{ product.type | escape }}</span><span class="divider">/</span><span>{{ product.title | escape }}</span></p>
+        </div>
+        <div class="product__title" {{ block.shopify_attributes }}>
+          <h1>{{ product.title | escape }}</h1>
+        </div>
+      </div>
       {% for variant in product.variants %}
         <div class="product-gallery" id="{{ variant.id }}" data-variant-id="{{variant.id}}">
           {% render 'variant-media-gallery' data: variant.metafields.custom.variant_images.value %}
@@ -97,8 +92,13 @@
                 {{- block.settings.text -}}
               </p>
             {%- when 'title' -%}
-              <div class="product__title" {{ block.shopify_attributes }}>
-                <h1>{{ product.title | escape }}</h1>
+              <div class="product-title">
+                <div class="product__breadcrumbs">
+                  <p><span>{{ product.type | escape }}</span><span class="divider">/</span><span>{{ product.title | escape }}</span></p>
+                </div>
+                <div class="product__title" {{ block.shopify_attributes }}>
+                  <h1>{{ product.title | escape }}</h1>
+                </div>
               </div>
             {%- when 'price' -%}  
               <div class="price-block">
@@ -221,14 +221,27 @@
                 </details>
               </div>
             {%- when 'quantity_selector' -%}
-            <form class="variant__controls" action="/cart/add">
-              <input type="hidden" name="form_type" value="product">
-              <input type="hidden" name="utf8" value="✓">
-              <input type="hidden" name="id" value="{{ variant.id }}">
-              <input type="hidden" name="product-id" value="{{ product.id }}">
-              {% render 'input-quantity', value: 1, id: variant.id %}
-              {% render 'button', label: 'Add to cart', color: 'purple', class="add-to-cart", tag: 'button' %}
-            </form>
+            <div class="quantity-selector">
+              {% if product.selected_variant %}
+                {% for variant in product.variants %}
+                  <div class="variant__description" data-variant-id="{{variant.id}}">
+                  {% if variant.metafields.custom.description %}
+                    <div class="product_description variant__description--col">
+                      {{ variant.metafields.custom.description | metafield_tag }}
+                    </div>
+                  {% endif %}
+                  </div>
+                {% endfor %}
+              {% endif %}  
+              <form class="variant__controls" action="/cart/add">
+                <input type="hidden" name="form_type" value="product">
+                <input type="hidden" name="utf8" value="✓">
+                <input type="hidden" name="id" value="{{ variant.id }}">
+                <input type="hidden" name="product-id" value="{{ product.id }}">
+                {% render 'input-quantity', value: 1, id: variant.id %}
+                {% render 'button', label: 'Add to cart', color: 'purple', class="add-to-cart", tag: 'button' %}
+              </form>
+            </div>
             {%- when 'popup' -%}
               <modal-opener
                 class="product-popup-modal__opener no-js-hidden quick-add-hidden"
@@ -381,10 +394,6 @@
               %}
           {%- endcase -%}
         {%- endfor -%}
-        {% comment %} <a href="{{ product.url }}" class="link product__view-details animate-arrow">
-          {{ 'products.product.view_full_details' | t }}
-          {% render 'icon-arrow' %}
-        </a> {% endcomment %}
         {% if product.selected_variant %}
         {% for variant in product.variants %}
           <div class="variant__description" data-variant-id="{{variant.id}}">
@@ -406,7 +415,9 @@
           {% if variant.metafields.custom.graphical_workflow %}
             <div class="product_graphic-workflow variant__description--col">
               <h2>Graphical workflow</h2>
-              {{ variant.metafields.custom.graphical_workflow | metafield_tag }}
+              <div class="product_graphic-workflow__img">
+                <img src="{{ variant.metafields.custom.graphical_workflow | img_url: '584x' }}" width="584" height="280" alt="Graphical workflow">
+              </div>
             </div>
           {% endif %}
           {% if variant.metafields.custom.download_supporting_protocols %}
@@ -464,6 +475,31 @@
         {% render 'variant-modal' data: variant.metafields.custom.variant_images.value %}
       </div>
     </div>
+  {% endfor %}
+
+  {% for variant in product.variants %}
+    {% if variant.metafields.custom.related_publications.value %}
+      <div class="related-publications" data-variant-id="{{variant.id}}">
+        <div class="container">
+          <h2>Related publications</h2>
+          <div class="related-publications-row">
+          {% assign article = variant.metafields.custom.related_publications.value %}
+            {% for item in article %}
+            <div class="related-publications-article">
+              <div class="related-publications-article__img">
+                <img src="{{ item.image | img_url: '1024x' }}" alt="{{ item.title }}">
+              </div>
+              <div class="related-publications-article__content">
+                <p class="date">{{ item.date }}</p>
+                <h2> {{ item.title }}</h2>
+                <a class="related-publications-article__btn" href="{{ item.link }}" target="_blank" rel="noreferrer noopener"><span>Read more</span><span class="link--arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 11.5C5.72386 11.5 5.5 11.7239 5.5 12C5.5 12.2761 5.72386 12.5 6 12.5V11.5ZM18.3536 12.3536C18.5488 12.1583 18.5488 11.8417 18.3536 11.6464L15.1716 8.46447C14.9763 8.2692 14.6597 8.2692 14.4645 8.46447C14.2692 8.65973 14.2692 8.97631 14.4645 9.17157L17.2929 12L14.4645 14.8284C14.2692 15.0237 14.2692 15.3403 14.4645 15.5355C14.6597 15.7308 14.9763 15.7308 15.1716 15.5355L18.3536 12.3536ZM6 12.5H18V11.5H6V12.5Z" fill="#7A53D1"></path><rect x="0.5" y="0.5" width="23" height="23" rx="11.5" stroke="#7A53D1"></rect></svg></span></a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
   {% endfor %}
 
   {% comment %} {% render 'product-media-modal' variant_images: variant_images %}

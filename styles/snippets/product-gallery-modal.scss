@@ -121,12 +121,14 @@
     }
 
     .swiper-slide {
-      flex: 0 0 96px;
-      width: 96px;
-      height: 83px;
+      height: 53px;
       background: #F2F2F0;
       border: 2px solid transparent;
       cursor: pointer;
+
+      @include breakpoint-up(lg) {
+        height: 83px;
+      }
 
       &.swiper-slide-thumb-active {
         border: 2px solid var(--color-purple);

@@ -18,17 +18,51 @@
     object-fit: contain;
   }
 
+  &-title {
+    display: none;
+
+    @include breakpoint-up(mobile) {
+      display: block;
+    }
+  }
+
   &__title {
     font-size: 35px;
     font-style: normal;
     font-weight: 300;
     line-height: 39px;
     letter-spacing: 0.6px;
-    margin: 45px 0;
+    margin: 0 0 30px 0;
 
     @include breakpoint-up(mobile) {
       font-size: 60px;
       line-height: 68px;
+      margin: 45px 0;
+    }
+  }
+
+  &__breadcrumbs {
+    margin-bottom: 15px;
+
+    .divider {
+      margin: 0 10px;
+    }
+
+    span {
+      font-family: var(--font-secondary);
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px;
+      text-transform: uppercase;
+    }
+  }
+
+  &-title--mobile {
+    display: block;
+
+    @include breakpoint-up(mobile) {
+      display: none;
     }
   }
 
@@ -43,10 +77,14 @@
 
     .swiper-slide {
       width: 100%;
-      height: 569px;
+      height: 366px;
       display: flex;
       background:#F2F2F0;
       cursor: pointer;
+
+      @include breakpoint-up(lg) {
+        height: 569px;
+      }
 
       img {
         width: 100%;
@@ -58,9 +96,13 @@
     &-thumb {
       .swiper-slide {
         width: 97px;
-        height: 83px;
+        height: 53px;
         box-sizing: border-box;
         border: 2px solid transparent;
+
+        @include breakpoint-up(lg) {
+          height: 83px;
+        }
 
         &.swiper-slide-thumb-active {
           border: 2px solid var(--color-purple);
@@ -87,7 +129,7 @@
     }
 
     @include breakpoint-up(xl) {
-      flex: 0 0 60%;
+      flex: 0 0 59.5%;
     }
 
     .shopify-payment-button {
@@ -98,13 +140,16 @@
   &__media-wrapper {
     flex: 0 0 100%;
     overflow-x: hidden;
+    margin-bottom: 40px;
 
     @include breakpoint-up(mobile) {
       flex: 0 0 calc(50% - 70px);
+      margin-bottom: 0;
     }
 
     @include breakpoint-up(xl) {
-      flex: 0 0 calc(40% - 70px);
+      flex: 0 0 calc(42.7% - 70px);
+      margin-left: -28px;
     }
   }
 
@@ -112,9 +157,14 @@
     fieldset {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
       width: 100%;
-      margin-bottom: 30px;
+      gap: 15px;
+      margin-bottom: 47px;
+      justify-content: space-between;
+
+      @include breakpoint-up(xxl) {
+        justify-content: flex-start;
+      }
 
       legend {
         font-size: 17px;
@@ -141,6 +191,7 @@
     align-items: flex-start;
     flex-direction: row-reverse;
     justify-content: space-between;
+    max-width: 750px;
     margin-bottom: 25px;
 
     .variant-title {
@@ -294,17 +345,55 @@
     margin-bottom: 45px;
   }
 
+  .product_description {
+    margin-bottom: 25px;
+
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
   .product_downloads {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 30px;
 
     h2 {
       flex: 0 0 100%;
+      margin-bottom: 10px;
     }
 
     a {
       margin-right: 20px;
       margin-bottom: 10px;
+    }
+  }
+
+  .product_graphic-workflow {
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+
+      @include breakpoint-up(lg) {
+        width: auto;
+        object-fit: unset;
+      }
+    }
+  }
+
+  .product_protocols {
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
+  .product_usage {
+    margin-bottom: 60px;
+
+    p {
+      margin-bottom: 12px;
     }
   }
 }
@@ -354,7 +443,6 @@ fieldset.product-form__input .form__label {
   justify-content: space-between;
   text-align: left;
   flex: 0 0 100%;
-  margin-bottom: 15px;
   box-sizing: border-box;
   padding: 17px;
   font-size: 20px;
@@ -373,7 +461,11 @@ fieldset.product-form__input .form__label {
   @include breakpoint-up(lg) {
     padding: 20px 30px;
     min-height: 215px;
-    flex: 0 0 calc((100% - 15px) / 2);
+    flex: 0 0 calc((100% - 20px) / 2);
+  }
+
+  @include breakpoint-up(xxl) {
+    flex: 0 0 calc((100% - 38px) / 2);
   }
 
   .price {
@@ -400,4 +492,147 @@ fieldset.product-form__input .form__label {
 
 .product-form__input input[type='radio']:checked + label {
   border-color: var(--color-purple);
+}
+
+// Related publications
+.related-publications {
+  margin-top: 30px;
+  display: none;
+
+  h2 {
+    font-size: 20px;
+    line-height: 30px;
+
+    @include breakpoint-up(mobile) {
+      font-size: 60px;
+      line-height: 70px;
+    }
+  }
+
+  &-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 40px 0;
+
+    @include breakpoint-up(mobile) { 
+      margin: 40px -15px 0 -15px;
+    }
+  }
+
+  &-article {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 10px;
+    background-color: #F2F2F0;
+    flex: 0 0 100%;
+    margin: 15px 0;
+
+    &__img {
+      position: relative;
+      width: 100%;
+
+      &:before {
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: calc(88 / 169 * 100%);
+      }
+
+      > img {
+        position: absolute;
+        border-radius: 10px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__content {
+      padding: 25px;
+    }
+
+    h2 {
+      font-size: 27px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 37px;
+      margin: 20px 0;
+      color: var(--color-indigo-deep);
+    }
+
+    .date {
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      text-transform: uppercase;
+    }
+
+    &__btn {
+      font-family: var(--font-secondary);
+      color: var(--color-purple);
+      font-size: 20px;
+      line-height: 28px;
+      display: inline-flex;
+      cursor: pointer;
+      text-decoration: none;
+      line-height: 1.2;
+      letter-spacing: -.03em;
+      padding: 0 31px 0 0;
+      font-weight: 400;
+      white-space: nowrap;
+      position: relative;
+      box-sizing: border-box;
+
+      .link--arrow {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        overflow: hidden;
+        border-radius: 50%;
+
+        svg {
+          position: relative;
+
+          path {
+            transition: all .3s;
+          }
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          top: 0;
+          left: -100%;
+          background-color: var(--color-purple-light);
+          transition: all .5s;
+        }
+      }
+
+      &:hover {
+        .link--arrow:before {
+          left: 0;
+        }
+
+        .link--arrow path {
+          fill: var(--color-white) !important;
+        }
+      }
+    }
+
+    @include breakpoint-up(mobile) {
+      flex: 0 0 calc((100% - 60px) / 2);
+      margin: 15px;
+    }
+  }
 }
