@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   const addToCartForms = document.querySelectorAll('form[action="/cart/add"]');
   addToCartForms.forEach((form) => {
-    form.addEventListener('submit', (e) => handleFormSubmit(e, form));
+    form.addEventListener('submit', (e) => handleAddToCartFormSubmit(e, form));
   });
 
   document.addEventListener('click', handleCartClick);
 });
 
-async function handleFormSubmit(e, form) {
+async function handleAddToCartFormSubmit(e, form) {
   e.preventDefault();
 
   const btn = form.querySelector('button');
@@ -79,9 +79,13 @@ async function UpdateCart() {
 function handleCartClick(e) {
   const target = e.target;
 
+  const cart = document.getElementById('cart_form');
+
   if (target.matches('.cart-toggle') || target.matches('.cart-drawer')) toggleCart();
-  if (target.matches('.plus') || target.matches('.minus') || target.matches('.remove-product'))
+  if (target.matches('.plus') || target.matches('.minus') || target.matches('.remove-product')) {
+    if (!cart.contains(target)) return;
     changeCartQuantity(target);
+  }
 }
 
 function getProductKey(target) {
