@@ -2,14 +2,42 @@
   "sections": {
     "main": {
       "type": "main-list-collections",
+      "disabled": true,
       "settings": {
         "title": "Collections",
         "sort": "alphabetical",
-        "image_ratio": "square"
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "columns_mobile": "2"
+      }
+    },
+    "0eb35fbe-8634-4771-a8a0-e31ed2e22fc3": {
+      "type": "main-hero",
+      "blocks": {
+        "template--21293313917220__0eb35fbe-8634-4771-a8a0-e31ed2e22fc3-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/AdobeStock_5511742771.jpg"
+          }
+        },
+        "template--21293313917220__0eb35fbe-8634-4771-a8a0-e31ed2e22fc3-content-1": {
+          "type": "content",
+          "settings": {
+            "heading": "",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--21293313917220__0eb35fbe-8634-4771-a8a0-e31ed2e22fc3-image-1",
+        "template--21293313917220__0eb35fbe-8634-4771-a8a0-e31ed2e22fc3-content-1"
+      ],
+      "settings": {
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "0eb35fbe-8634-4771-a8a0-e31ed2e22fc3"
   ]
 }
