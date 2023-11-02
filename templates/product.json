@@ -60,25 +60,6 @@
         "padding_bottom": 12
       }
     },
-    "multicolumn": {
-      "type": "multicolumn",
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "columns_desktop": 2,
-        "column_alignment": "left",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "background-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "related-products": {
       "type": "related-products",
       "disabled": true,
@@ -97,11 +78,20 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "5cdbdd99-33ff-4288-b7a2-807a69aca951": {
+      "type": "get-in-touch",
+      "settings": {
+        "subtitle_id": "CONTACT US",
+        "title_id": "Get in touch",
+        "adress_id": "<p>760 Parkside Avenue<br\/>Brooklyn, NY 11226<\/p><p><a href=\"tel:2126899005\">+1 (212) 689-9005<\/a><\/p><p><a href=\"mailto:info@xylyxbio.com\">info@xylyxbio.com<\/a><\/p>",
+        "form_action_id": ""
+      }
     }
   },
   "order": [
     "main",
-    "multicolumn",
-    "related-products"
+    "related-products",
+    "5cdbdd99-33ff-4288-b7a2-807a69aca951"
   ]
 }
