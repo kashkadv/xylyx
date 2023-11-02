@@ -85,7 +85,7 @@
         "subtitle_id": "CONTACT US",
         "title_id": "Get in touch",
         "adress_id": "<p>760 Parkside Avenue<br\/>Brooklyn, NY 11226<\/p><p><a href=\"tel:2126899005\">+1 (212) 689-9005<\/a><\/p><p><a href=\"mailto:info@xylyxbio.com\">info@xylyxbio.com<\/a><\/p>",
-        "form_action_id": ""
+        "form_action_id": "https:\/\/wp-dev.space\/craftandroot\/xylyxbio\/develop\/wp-json\/gf\/v2\/forms\/1\/submissions"
       }
     }
   },
