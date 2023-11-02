@@ -23,8 +23,8 @@
         "template--21293313917220__0eb35fbe-8634-4771-a8a0-e31ed2e22fc3-content-1": {
           "type": "content",
           "settings": {
-            "heading": "",
-            "text": ""
+            "heading": "Shop TissueSpec® dECM Kits",
+            "text": "Primary tissue-derived ECMs. Easy to use, well-characterized, validated. Reproducible, predictive results. Grow cells, model disease, test drugs, and more in tissue-specific ECMs. Get predictive results."
           }
         }
       },
@@ -34,10 +34,34 @@
       ],
       "settings": {
       }
+    },
+    "26e4a5fd-629e-480d-b2d8-4124209254e7": {
+      "type": "main-list-products",
+      "blocks": {
+        "fb07030a-a533-4871-aef9-bd9a8390297f": {
+          "type": "collection",
+          "settings": {
+            "item": "ecm-kits"
+          }
+        },
+        "70b2b557-1d30-44b5-ab02-d88570237661": {
+          "type": "collection",
+          "settings": {
+            "item": "assays"
+          }
+        }
+      },
+      "block_order": [
+        "fb07030a-a533-4871-aef9-bd9a8390297f",
+        "70b2b557-1d30-44b5-ab02-d88570237661"
+      ],
+      "settings": {
+      }
     }
   },
   "order": [
     "main",
-    "0eb35fbe-8634-4771-a8a0-e31ed2e22fc3"
+    "0eb35fbe-8634-4771-a8a0-e31ed2e22fc3",
+    "26e4a5fd-629e-480d-b2d8-4124209254e7"
   ]
 }
