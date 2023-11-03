@@ -64,6 +64,17 @@
         unavailable: `{{ 'products.product.unavailable' | t }}`,
         unavailable_with_option: `{{ 'products.product.value_unavailable' | t: option_value: '[value]' }}`,
       };
+
+      window.Userback = window.Userback || {};
+      Userback.access_token = '6400|9304|WrTxLlJr0rqAkUcAZp1BkfKHdTO3XStGphdSVhYaten0s90jUW';
+      Userback.custom_data = {
+          project_id: '0-207',
+      };
+      (function(d) {
+          var s = d.createElement('script');s.async = true;
+          s.src = 'https://static.userback.io/widget/v1.js';
+          (d.head || d.body).appendChild(s);
+      })(document);
     </script>
   </body>
 </html>
