@@ -5,7 +5,7 @@
   </div>
   <div class="list-product__variants">
     {% for variant in product.variants %}
-      <div class="variant">
+      <div class="variant" data-aos="fade-up">
         <div class="variant__title">
           <a class="link text--m-s" href="{{ product.url }}?variant={{ variant.id }}">{{ variant.title }}</a>
         </div>

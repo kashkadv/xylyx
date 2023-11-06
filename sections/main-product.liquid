@@ -3,14 +3,9 @@
   class="page-width section-{{ section.id }}-padding"
   data-section="{{ section.id }}"
 >
-  {% comment %} {{ 'section-main-product.css' | asset_url | stylesheet_tag }} {% endcomment %}
   {{ 'section-product-desc.css' | asset_url | stylesheet_tag }}
   {{ 'product-gallery-modal.css' | asset_url | stylesheet_tag }}
-  {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
-  {% comment %} {{ 'component-slider.css' | asset_url | stylesheet_tag }} {% endcomment %}
-  {% comment %} {{ 'component-rating.css' | asset_url | stylesheet_tag }} {% endcomment %}
-  {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   {%- if product.quantity_price_breaks_configured? -%}
     {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
@@ -59,7 +54,7 @@
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
       <div class="product-title--mobile">
         <div class="product__breadcrumbs">
-          <p><span>{{ product.type | escape }}</span><span class="divider">/</span><span>{{ product.title | escape }}</span></p>
+          <p><a href="/">{{ product.type | escape }}</a><span class="divider">/</span><span>{{ product.title | escape }}</span></p>
         </div>
         <div class="product__title" {{ block.shopify_attributes }}>
           <h1>{{ product.title | escape }}</h1>
@@ -94,7 +89,7 @@
             {%- when 'title' -%}
               <div class="product-title">
                 <div class="product__breadcrumbs">
-                  <p><span>{{ product.type | escape }}</span><span class="divider">/</span><span>{{ product.title | escape }}</span></p>
+                  <p><a href="/">{{ product.type | escape }}</a><span class="divider">/</span><span>{{ product.title | escape }}</span></p>
                 </div>
                 <div class="product__title" {{ block.shopify_attributes }}>
                   <h1>{{ product.title | escape }}</h1>
@@ -130,13 +125,11 @@
                   {{ form | payment_terms }}
                 {%- endform -%}
               </div>
-              {% if product.selected_variant %}
                 {% for variant in product.variants %}
                   <div class="variant__description variant-title" data-variant-id="{{variant.id}}">
                     {{ variant.title }}
                   </div>
                 {% endfor %}
-              {% endif %}
               </div>
             {%- when 'inventory' -%}
               <p
@@ -236,7 +229,7 @@
               <form class="variant__controls" action="/cart/add">
                 <input type="hidden" name="form_type" value="product">
                 <input type="hidden" name="utf8" value="✓">
-                <input type="hidden" name="id" value="{{ variant.id }}">
+                <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
                 <input type="hidden" name="product-id" value="{{ product.id }}">
                 {% render 'input-quantity', value: 1, id: variant.id %}
                 {% render 'button', label: 'Add to cart', color: 'purple', class="add-to-cart", tag: 'button' %}
@@ -394,7 +387,6 @@
               %}
           {%- endcase -%}
         {%- endfor -%}
-        {% if product.selected_variant %}
         {% for variant in product.variants %}
           <div class="variant__description" data-variant-id="{{variant.id}}">
           {% if variant.metafields.custom.kit_contents %}
@@ -452,7 +444,6 @@
           {% endif %}
           </div>
         {% endfor %}
-        {% endif %}
       </product-info>
     </div>
     {%- if section.settings.media_position == 'right' -%}
@@ -461,6 +452,15 @@
         {% render 'product-media-gallery', variant_images: variant_images, is_duplicate: true %}
       </div>
     {%- endif -%}
+  </div>
+
+  <div id="scroll-top">
+    <span class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="29" viewBox="0 0 17 29" fill="none">
+        <path d="M7.39583 27.75C7.39583 28.3598 7.89019 28.8542 8.5 28.8542C9.10981 28.8542 9.60417 28.3598 9.60417 27.75L7.39583 27.75ZM9.28076 0.469236C8.84956 0.0380325 8.15044 0.0380325 7.71924 0.469236L0.692363 7.49611C0.261159 7.92731 0.261159 8.62643 0.692363 9.05764C1.12357 9.48884 1.82269 9.48884 2.25389 9.05764L8.5 2.81153L14.7461 9.05764C15.1773 9.48884 15.8764 9.48884 16.3076 9.05764C16.7388 8.62643 16.7388 7.92731 16.3076 7.49611L9.28076 0.469236ZM9.60417 27.75L9.60417 1.25L7.39583 1.25L7.39583 27.75L9.60417 27.75Z" fill="#7A53D1"/>
+      </svg>
+    </span>
+    <span>Scroll to top</span>
   </div>
 
   {% for variant in product.variants %}
@@ -502,46 +502,6 @@
     {% endif %}
   {% endfor %}
 
-  {% comment %} {% render 'product-media-modal' variant_images: variant_images %}
-
-  {% assign popups = section.blocks | where: 'type', 'popup' %}
-  {%- for block in popups -%}
-    <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal" {{ block.shopify_attributes }}>
-      <div
-        role="dialog"
-        aria-label="{{ block.settings.text }}"
-        aria-modal="true"
-        class="product-popup-modal__content"
-        tabindex="-1"
-      >
-        <button
-          id="ModalClose-{{ block.id }}"
-          type="button"
-          class="product-popup-modal__toggle"
-          aria-label="{{ 'accessibility.close' | t }}"
-        >
-          {% render 'icon-close' %}
-        </button>
-        <div class="product-popup-modal__content-info">
-          <h1 class="h2">{{ block.settings.page.title }}</h1>
-          {{ block.settings.page.content }}
-        </div>
-      </div>
-    </modal-dialog>
-  {%- endfor -%} {% endcomment %}
-
-  {%- if product.media.size > 0 -%}
-    <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
-  {%- endif -%}
-
-  {%- if first_3d_model -%}
-    <script type="application/json" id="ProductJSON-{{ product.id }}">
-      {{ product.media | where: 'media_type', 'model' | json }}
-    </script>
-    <script src="{{ 'product-model.js' | asset_url }}" defer></script>
-  {%- endif -%}
-
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
@@ -550,6 +510,7 @@
       function showVariant() {
         const variantEl = document.querySelector('variant-radios[data-section="{{ section.id }}"] input:checked');
         const variants = document.querySelectorAll('[data-variant-id]');
+        const firstVariant = document.querySelector('[data-variant-info]');
         const prodId = window.location.search.split('=')[1];
         const variantInputControl = document.querySelector('.variant__controls input[name="id"]');
 
@@ -560,7 +521,12 @@
         variants.forEach(function (variant) {
           if (prodId == variant.dataset.variantId || match[1] == variant.dataset.variantId) {
             variant.style.display = 'block';
-            variantInputControl.value = prodId; 
+            variantInputControl.value = prodId ? prodId : firstVariant.dataset.variantInfo;
+          } else if (!prodId && variant.dataset.variantId == firstVariant.dataset.variantInfo) {
+            variant.style.display = 'block';
+            variantInputControl.value = firstVariant.dataset.variantInfo;
+          } else {
+            variant.style.display = 'none';
           }
         });
       }
@@ -697,6 +663,28 @@
         hiddenInput.value = event.currentTarget.value;
       });
     });
+
+    function scrollToTop() {
+      const scrollBtn = document.querySelector('#scroll-top');
+
+
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          scrollBtn.classList.add('show');
+        } else {
+          scrollBtn.classList.remove('show');
+        }
+      })
+
+      scrollBtn.addEventListener('click', function () {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    scrollToTop();
 
 
   </script>

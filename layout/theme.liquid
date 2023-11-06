@@ -29,10 +29,15 @@
     {{ content_for_header }}
 
     {{ 'main.css' | asset_url | stylesheet_tag }}
-    {{ 'global.js' | asset_url | script_tag }}
+    {{ 'constants.js' | asset_url | script_tag }}
+    {{ 'pubsub.js' | asset_url | script_tag }}
+    {{ 'variant.js' | asset_url | script_tag }}
     {{ 'menu.js' | asset_url | script_tag }}
     {{ 'cart.js' | asset_url | script_tag }}
     {{ 'forms.js' | asset_url | script_tag }}
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   </head>
 
   <body>
@@ -57,7 +62,10 @@
       {{ content_for_layout }}
     </main>
     {% section 'footer' %}
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+      AOS.init();
+
       window.variantStrings = {
         addToCart: `{{ 'products.product.add_to_cart' | t }}`,
         soldOut: `{{ 'products.product.sold_out' | t }}`,

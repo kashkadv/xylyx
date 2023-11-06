@@ -5,6 +5,7 @@
   - product: {Object} product object.
   - option: {Object} current product_option object.
   - block: {Object} block object.
+  - variant: {Object} variant object.
 
 
   Usage:
@@ -22,7 +23,6 @@
 
   assign product_form_id = 'product-form-' | append: section.id
 -%}
-
 {%- for value in option.values -%}
   {%- liquid
     assign option_disabled = true
@@ -53,6 +53,7 @@
       value="{{ value | escape }}"
       form="{{ product_form_id }}"
       {% if option.selected_value == value %}
+        data-variant-info="{{ variant.id }}"
         checked
       {% endif %}
       {% if option_disabled %}

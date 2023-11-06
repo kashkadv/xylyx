@@ -191,7 +191,7 @@
     align-items: flex-start;
     flex-direction: row-reverse;
     justify-content: space-between;
-    max-width: 750px;
+    max-width: 833px;
     margin-bottom: 25px;
 
     .variant-title {
@@ -633,6 +633,84 @@ fieldset.product-form__input .form__label {
     @include breakpoint-up(mobile) {
       flex: 0 0 calc((100% - 60px) / 2);
       margin: 15px;
+    }
+  }
+}
+
+#scroll-top {
+  display: flex;
+  flex-direction: column;
+  width: 55px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: fixed;
+  top: 50%;
+  right: 32px;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all ease-in-out .3s;
+
+  @include breakpoint-up(xl) {
+    display: block;
+  }
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  span {
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 300;
+  }
+
+  .icon {
+    width: 53px;
+    height: 53px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 2px solid var(--color-purple);
+    margin-bottom: 5px;
+    position: relative;
+    overflow: hidden;
+
+    svg {
+      position: relative;
+      z-index: 99;
+      path {
+        transition: all .3s;
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--color-purple);
+      top: 0;
+      left: 0;
+      transform: translateY(100%);
+      transition: all .3s;
+    }
+  }
+
+  &:hover {
+    .icon {
+      svg path {
+        fill: var(--color-white) !important;
+      }
+    }
+    .icon::after {
+      transform: translateY(0);
     }
   }
 }
