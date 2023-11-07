@@ -27,6 +27,12 @@
   &.active {   
     visibility: visible;
     background-color: rgba(0,0,0,.5);
+
+    .cart-product {
+      &:nth-child(n) {
+        animation: fade-in-bottom 0.8s ease 0.2s forwards;
+      }
+    }
   }
 
   .close-cart-drawer {
@@ -124,6 +130,7 @@
   }
 
   .cart-product {
+    opacity: 0;
     padding: 25px 0;
 
     &:not(:last-of-type) {
@@ -231,5 +238,30 @@
         }
       }
     }
+  }
+}
+
+@-webkit-keyframes fade-in-bottom {
+  0% {
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-bottom {
+  0% {
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
   }
 }

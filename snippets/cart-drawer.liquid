@@ -19,7 +19,7 @@
             {% assign product = line_item.product %}
             {% assign variant = product.variants | where: 'id', line_item.variant_id | first %}
 
-            <div class="cart-product" data-key="{{ line_item.key }}">
+            <div class="cart-product" data-key="{{ line_item.key }}" style="animation-delay: {{ forloop.index | times: 0.1 }}s;">
               <div class="cart-product__wrapper">
                 <div class="image">
                   {% if product.metafields.custom.product_icon.value != blank %}
