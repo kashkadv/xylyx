@@ -37,7 +37,7 @@
     @include breakpoint-up(mobile) {
       font-size: 60px;
       line-height: 68px;
-      margin: 45px 0;
+      margin: 0 0 45px 0;
     }
   }
 
@@ -129,7 +129,7 @@
     }
 
     @include breakpoint-up(xl) {
-      flex: 0 0 59.5%;
+      flex: 0 0 calc(100% - 541px);
     }
 
     .shopify-payment-button {
@@ -143,13 +143,15 @@
     margin-bottom: 40px;
 
     @include breakpoint-up(mobile) {
-      flex: 0 0 calc(50% - 70px);
+      flex: 0 0 45%;
       margin-bottom: 0;
+      margin-right: 20px;
     }
 
     @include breakpoint-up(xl) {
-      flex: 0 0 calc(42.7% - 70px);
+      flex: 0 0 518px;
       margin-left: -28px;
+      margin-right: 70px;
     }
   }
 
@@ -191,8 +193,12 @@
     align-items: flex-start;
     flex-direction: row-reverse;
     justify-content: space-between;
-    max-width: 833px;
+    max-width: 100%;
     margin-bottom: 25px;
+
+    @include breakpoint-up(xxl) {
+      max-width: calc((100% - 38px));
+    }
 
     .variant-title {
       font-size: 20px;
@@ -376,7 +382,7 @@
       height: 100%;
       object-fit: contain;
 
-      @include breakpoint-up(lg) {
+      @include breakpoint-up(xl) {
         width: auto;
         object-fit: unset;
       }
@@ -461,11 +467,10 @@ fieldset.product-form__input .form__label {
   @include breakpoint-up(lg) {
     padding: 20px 30px;
     min-height: 215px;
-    flex: 0 0 calc((100% - 20px) / 2);
   }
 
   @include breakpoint-up(xxl) {
-    flex: 0 0 calc((100% - 38px) / 2);
+    flex: 0 0 calc((100% - 52px) / 2);
   }
 
   .price {
@@ -649,6 +654,7 @@ fieldset.product-form__input .form__label {
   right: 32px;
   display: none;
   opacity: 0;
+  z-index: 99;
   visibility: hidden;
   transition: all ease-in-out .3s;
 

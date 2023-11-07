@@ -485,7 +485,7 @@
           <div class="related-publications-row">
           {% assign article = variant.metafields.custom.related_publications.value %}
             {% for item in article %}
-            <div class="related-publications-article">
+            <div class="related-publications-article" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
               <div class="related-publications-article__img">
                 <img src="{{ item.image | img_url: '1024x' }}" alt="{{ item.title }}">
               </div>
