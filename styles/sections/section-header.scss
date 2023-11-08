@@ -28,6 +28,10 @@
     color: var(--color-black);
     width: 117px;
     height: auto;
+
+    @include breakpoint-down(mobile) {
+      width: 88px;
+    }
   }
 
   .nav {

@@ -1,7 +1,7 @@
 <div class="list-product" id="{{ product.handle }}" data-product>
   <div class="list-product__head">
     <img src="{{ product.metafields.custom.product_icon.value | image_url }}">
-    <h3 class="text--xl">{{ product.title }}</h3>
+    <h3 class="text--xl"><a class="link" href="{{ product.url }}">{{ product.title }}</a></h3>
   </div>
   <div class="list-product__variants">
     {% for variant in product.variants %}

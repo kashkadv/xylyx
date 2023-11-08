@@ -6,7 +6,8 @@ $breakpoints: (
   md: 768px,
   sm: 576px,
   xs: 480px,
-  mobile: 768px
+  mobile: 768px,
+  mobile-s: 350px
 ) !default;
 
 @function get-media($breakpoint) {

@@ -4,7 +4,7 @@
   {% assign dataType = 'data-' | append: type %}
 {% endif %}
 
-<div class="input-quantity">
+<div class="input-quantity{% if type == 'cart-drawer' %} input-quantity--small{% endif %}">
   <span class="minus" {{ dataType }}>
     <svg width="14" height="3" viewBox="0 0 14 3" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M14 0.891441H7.6087L6.3913 0.891357L0 0.891441V2.10883H6.3913L7.6087 2.10875L14 2.10883V0.891441Z" fill="currentColor"/>
