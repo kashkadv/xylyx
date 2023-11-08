@@ -4,13 +4,14 @@
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
-  padding: 0 32px;
+  padding: 0 20px;
   justify-content: space-between;
   flex-wrap: wrap;
 
   @include breakpoint-up(mobile) {
     flex-wrap: nowrap;
     justify-content: space-between;
+    padding: 0 32px;
   }
 
   img {
@@ -26,7 +27,7 @@
     }
   }
 
-  &__title {
+  &__title h1 {
     font-size: 35px;
     font-style: normal;
     font-weight: 300;
@@ -48,13 +49,22 @@
       margin: 0 10px;
     }
 
-    span {
+    span,
+    a {
       font-family: var(--font-secondary);
+      color: #636069;
       font-size: 15px;
       font-style: normal;
       font-weight: 400;
       line-height: 22px;
       text-transform: uppercase;
+      transition: all ease-in-out 0.3s;
+    }
+
+    a {
+      &:hover {
+        opacity: 0.7;
+      }
     }
   }
 
@@ -125,6 +135,7 @@
     flex: 0 0 100%;
 
     @include breakpoint-up(mobile) {
+      margin-top: 45px;
       flex: 0 0 50%;
     }
 
@@ -191,10 +202,14 @@
   .price-block {
     display: flex;
     align-items: flex-start;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+    flex-direction: column-reverse;
     max-width: 100%;
     margin-bottom: 25px;
+
+    @include breakpoint-up(mobile) {
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
 
     @include breakpoint-up(xxl) {
       max-width: calc((100% - 38px));
@@ -210,6 +225,19 @@
       @include breakpoint-up(mobile) {
         font-size: 27px;
         line-height: 37px;
+      }
+    }
+
+    .price-item {
+      color: var(--Deep-Indigo, #1D182D);
+      font-size: 27px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 37px; 
+      margin-top: 10px;
+
+      @include breakpoint-up(mobile) {
+        margin-top: 0;
       }
     }
   }
@@ -317,6 +345,7 @@
     font-weight: 300;
     line-height: 30px;
     margin-bottom: 15px;
+    color: var(--color-indigo-deep);
 
     @include breakpoint-up(mobile) {
       font-size: 27px;
@@ -353,6 +382,10 @@
 
   .product_description {
     margin-bottom: 25px;
+
+    strong {
+      font-weight: 500;
+    }
 
     p {
       margin-bottom: 10px;
@@ -450,10 +483,11 @@ fieldset.product-form__input .form__label {
   text-align: left;
   flex: 0 0 100%;
   box-sizing: border-box;
+  color: var(--color-indigo-deep);
   padding: 17px;
   font-size: 20px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 300;
   line-height: 30px;
   transition: border var(--duration-short) ease;
   cursor: pointer;
@@ -475,6 +509,14 @@ fieldset.product-form__input .form__label {
 
   .price {
     margin-top: 25px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+
+    @include breakpoint-up(mobile) {
+      font-size: 24px;
+      line-height: 37px;
+    }
   }
 }
 
@@ -546,7 +588,8 @@ fieldset.product-form__input .form__label {
 
       > img {
         position: absolute;
-        border-radius: 10px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
         top: 0;
         right: 0;
         bottom: 0;
@@ -554,6 +597,10 @@ fieldset.product-form__input .form__label {
         width: 100%;
         height: 100%;
         object-fit: cover;
+
+        @include breakpoint-up(mobile) {
+          border-radius: 10px;
+        }
       }
     }
 
@@ -571,6 +618,7 @@ fieldset.product-form__input .form__label {
     }
 
     .date {
+      font-family: var(--font-secondary);
       font-size: 15px;
       font-style: normal;
       font-weight: 400;
@@ -686,10 +734,11 @@ fieldset.product-form__input .form__label {
     margin-bottom: 5px;
     position: relative;
     overflow: hidden;
+    transition: background linear .5s;
 
     svg {
       position: relative;
-      z-index: 99;
+      z-index: 20;
       path {
         transition: all .3s;
       }
@@ -697,10 +746,13 @@ fieldset.product-form__input .form__label {
 
     &::after {
       content: '';
+      display: flex;
       position: absolute;
       width: 100%;
       height: 100%;
+      box-sizing: border-box;
       border-radius: 50%;
+      border: 2px solid var(--color-purple);
       background: var(--color-purple);
       top: 0;
       left: 0;
@@ -711,6 +763,7 @@ fieldset.product-form__input .form__label {
 
   &:hover {
     .icon {
+      background: var(--color-purple);
       svg path {
         fill: var(--color-white) !important;
       }
