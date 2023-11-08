@@ -93,6 +93,7 @@ a {
   transition: var(--transition);
   cursor: pointer !important;
   font-family: var(--font-secondary);
+  letter-spacing: -0.03rem;
 
   span {
     z-index: 1;

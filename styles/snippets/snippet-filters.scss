@@ -32,6 +32,7 @@
   .block {
     &__title {
       margin-bottom: 15px;
+      font-family: var(--font-secondary);
 
       @include breakpoint-down(mobile) {
         margin-bottom: 10px;
@@ -47,6 +48,13 @@
       .clear-filter-group {
         margin-left: 20px;
         display: none;
+        font-family: var(--font-secondary);
+        letter-spacing: -0.03rem;
+
+        @include breakpoint-down(mobile) {
+          margin-left: 0;
+          margin-top: -10px;
+        }
       }
 
       &.active {
@@ -94,6 +102,12 @@
       .option__clear {
         display: block;
       }
+    }
+  }
+  
+  @include breakpoint-down(mobile) {
+    .break-line {
+      width: 100%;
     }
   }
 }

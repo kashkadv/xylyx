@@ -13,6 +13,19 @@ input {
     height: 46px;
     box-sizing: border-box;
     font-weight: 300;
+    
+    @include breakpoint-down(mobile-s) {
+      max-width: 90px;
+    }
+  }
+
+  .input-quantity--small & {
+    @include breakpoint-down(mobile) {
+      width: 72px;
+      height: 32px;
+      font-size: 17px;
+      line-height: 25px;
+    }
   }
 }
 
@@ -20,6 +33,14 @@ input {
   display: flex;
   align-items: center;
   position: relative;
+
+  &--small {
+    @include breakpoint-down(mobile) {
+      svg {
+        width: 10px;
+      }
+    }
+  }
   
   span {
     position: absolute;
