@@ -5,29 +5,42 @@
 
   & > * {
     padding-top: 50px;
+
+    @include breakpoint-down(mobile) {
+      padding-top: 20px;
+    }
   }
 }
 
 .cart {
-
   &__heading {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
   }
 
   &__items {
     .cart-product {
       padding: 25px 0;
   
+      @include breakpoint-down(mobile) {
+        &:first-of-type {
+          padding-top: 0;
+        }
+      }
+  
       &:not(:last-of-type) {
         border-bottom: 1px solid var(--color-indigo-deep);
-        margin-bottom: 25px;
+        margin-bottom: 20px;
       }
   
       &__wrapper {
         display: flex;
         gap: 50px;
+  
+        @include breakpoint-down(mobile) {
+          gap: 16px;
+        }
       }
   
       .image {
@@ -35,10 +48,10 @@
         height: auto;
         position: relative;
         flex-shrink: 0;
+        aspect-ratio: 5 / 4;
         background-color: rgba(0,0,0,.05);
         line-height: 0;
-        aspect-ratio: 5/4;
-
+  
         @include breakpoint-down(mobile) {
           width: 72px;
           height: fit-content;
@@ -56,6 +69,15 @@
           border: 1px solid var(--color-indigo-deep);
           border-radius: 50%;
           background-color: var(--color-white);
+  
+          @include breakpoint-down(mobile) {
+            width: 37px;
+            height: 37px;
+            bottom: 0;
+            top: unset;
+            padding: 7px;
+            transform: translateY(30px);
+          }
         }
   
         img {
@@ -70,12 +92,21 @@
         position: relative;
         width: 100%;
   
+        @include breakpoint-down(mobile) {
+          gap: 5px;
+        }
+  
         .product-label {
           position: absolute;
           top: 0;
           left: 0;
           transform: translateY(-100%);
           width: fit-content;
+  
+          @include breakpoint-down(mobile) {
+            position: relative;
+            transform: unset;
+          }
         }
   
         &__row {
@@ -86,16 +117,21 @@
   
           &.top {
             padding-top: 10px;
-
+  
             @include breakpoint-down(mobile) {
               flex-direction: column;
               gap: 5px;
+              padding-top: 0;
             }
           }
   
           &.bottom {
             margin-top: auto;
             align-items: flex-end;
+  
+            @include breakpoint-down(mobile) {
+              margin-top: 10px;
+            }
           }
         }
       }
@@ -110,9 +146,18 @@
       display: flex;
       justify-content: space-between;
 
+      @include breakpoint-down(mobile) {
+        flex-direction: column;
+        gap: 40px;
+      }
+
       .subtotal {
         display: flex;
         gap: 50px;
+
+        @include breakpoint-down(mobile) {
+          justify-content: space-between;
+        }
       }
     }
 

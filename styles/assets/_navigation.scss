@@ -93,6 +93,11 @@ a {
   transition: var(--transition);
   cursor: pointer !important;
   font-family: var(--font-secondary);
+  letter-spacing: -0.03rem;
+
+  .label {
+    transition: var(--transition);
+  }
 
   span {
     z-index: 1;
@@ -137,6 +142,7 @@ a {
         &:first-of-type {
           transform: translateX(0);
           transition-delay: 0.15s;
+          transition-property: transform;
         }
 
         &:last-of-type {
@@ -156,6 +162,8 @@ a {
     background-color: var(--color-purple);
     transform: translateX(-101%);
     transition: var(--transition);
+    transition-property: color;
+    transition-delay: 0s;
     z-index: 0;
   }
 
@@ -175,6 +183,7 @@ a {
     color: var(--color-white);
     border-color: var(--color-purple);
     background-color: var(--color-purple);
+    transition: 0s;
 
     &.loading {
       animation: blink 2s infinite both;
@@ -194,6 +203,17 @@ a {
 
       &::before {
         background-color: var(--color-purple-light);
+      }
+
+      &:not(.btn-with-icon) {
+        color: var(--color-indigo);
+      }
+
+      &.btn-with-icon {
+        span:first-of-type,
+        .label {
+          color: var(--color-indigo);
+        }
       }
     }
   }
@@ -219,7 +239,6 @@ a {
   }
 
   &:hover {
-    color: var(--color-white);
     border-color: var(--color-purple);
 
     &::before {

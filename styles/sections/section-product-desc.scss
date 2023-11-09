@@ -92,7 +92,7 @@
       background:#F2F2F0;
       cursor: pointer;
 
-      @include breakpoint-up(lg) {
+      @include breakpoint-up(sm) {
         height: 682px;
       }
 
@@ -489,7 +489,7 @@ fieldset.product-form__input .form__label {
   font-style: normal;
   font-weight: 300;
   line-height: 30px;
-  transition: border var(--duration-short) ease;
+  transition: all ease-in-out 0.4s;
   cursor: pointer;
   position: relative;
 

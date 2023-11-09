@@ -28,7 +28,7 @@
         {% endfor %}
         <div class="nav__group">
           {% assign cart_label = 'Cart'
-            | append: ' <span  id="cart-count">'
+            | append: ' <span  id="cart-count" class="cart-count-label">'
             | append: cart.item_count
             | append: '</span>'
           %}
@@ -38,7 +38,7 @@
       </div>
       <div class="nav nav--mobile">
         {% assign cart_label = 'Cart'
-          | append: ' <span  id="cart-count">'
+          | append: ' <span  id="cart-count" class="cart-count-label">'
           | append: cart.item_count
           | append: '</span>'
         %}

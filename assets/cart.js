@@ -28,8 +28,10 @@ async function handleAddToCartFormSubmit(e, form) {
 }
 
 function updateCartTotal(cart) {
-  const cartCount = document.getElementById('cart-count');
-  cartCount.textContent = cart.item_count;
+  const cartCountLabels = document.querySelectorAll('.cart-count-label');
+  cartCountLabels.forEach((cartCountLabel) => {
+    cartCountLabel.textContent = cart.item_count;
+  });
 }
 
 function showCart() {
@@ -61,7 +63,20 @@ function toggleCart() {
   }
 }
 
-async function UpdateCart() {
+async function UpdateCartPage() {
+  const res = await fetch('/?section_id=cart-items');
+  const text = await res.text();
+  const html = document.createElement('div');
+  html.innerHTML = text;
+
+  const renderedSection = html.querySelector('#cartPage_form').innerHTML;
+
+  const curentSection = document.querySelector('#cartPage_form');
+
+  curentSection.innerHTML = renderedSection;
+}
+
+async function UpdateCart(quite = false) {
   const res = await fetch('/?section_id=cart-drawer');
   const text = await res.text();
   const html = document.createElement('div');
@@ -70,6 +85,8 @@ async function UpdateCart() {
 
   const cart = document.querySelector('.cart-drawer');
   cart.innerHTML = cartDrawer;
+
+  if (quite) return;
 
   setTimeout(() => {
     if (!cart.matches('.active')) toggleCart();
@@ -80,10 +97,11 @@ function handleCartClick(e) {
   const target = e.target;
 
   const cart = document.getElementById('cart_form');
+  const cartPage = document.getElementById('cartPage_form');
 
   if (target.matches('.cart-toggle') || target.matches('.cart-drawer')) toggleCart();
   if (target.matches('.plus') || target.matches('.minus') || target.matches('.remove-product')) {
-    if (!cart.contains(target)) return;
+    if (!cart.contains(target) && !cartPage.contains(target)) return;
     changeCartQuantity(target);
   }
 }
@@ -115,8 +133,16 @@ async function changeCartQuantity(target) {
 
   const json = await res.json();
 
-  updateCartTotal(json);
-  UpdateCart();
+  const cartPage = document.getElementById('cartPage_form');
+
+  if (cartPage) {
+    updateCartTotal(json);
+    UpdateCartPage();
+    UpdateCart(true);
+  } else {
+    updateCartTotal(json);
+    UpdateCart();
+  }
 }
 
 document.addEventListener('click', (e) => {
