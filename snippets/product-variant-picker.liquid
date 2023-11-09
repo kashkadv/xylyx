@@ -22,7 +22,7 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        <fieldset class="js product-form__input" data-aos="fade-up">
+        <fieldset class="js product-form__input">
           <legend class="form__label">{{ option.name }}</legend>
           {% render 'product-variant-options', product: product, option: option, block: block , variant: product.first_available_variant %}
         </fieldset>
