@@ -90,7 +90,7 @@ a {
   font-weight: 400;
   overflow: hidden;
   position: relative;
-  transition: var(--transition);
+  // transition: var(--transition);
   cursor: pointer !important;
   font-family: var(--font-secondary);
   letter-spacing: -0.03rem;
@@ -162,8 +162,9 @@ a {
     background-color: var(--color-purple);
     transform: translateX(-101%);
     transition: var(--transition);
-    transition-property: color;
-    transition-delay: 0s;
+    transition-property: color, transform;
+    transition-duration: 0s, 0.3s;
+    transition-delay: 0s, 0s;
     z-index: 0;
   }
 
@@ -177,6 +178,10 @@ a {
   &.purple-outlined {
     color: var(--color-purple);
     border-color: var(--color-purple);
+
+    &:hover {
+      color: var(--color-white);
+    }
   }
 
   &.purple {
@@ -240,6 +245,7 @@ a {
 
   &:hover {
     border-color: var(--color-purple);
+    color: var(--color-white);
 
     &::before {
       transform: translateX(0);
