@@ -8,7 +8,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
 
-  @include breakpoint-up(mobile) {
+  @include breakpoint-up(lg) {
     flex-wrap: nowrap;
     justify-content: space-between;
     padding: 0 32px;
@@ -22,7 +22,7 @@
   &-title {
     display: none;
 
-    @include breakpoint-up(mobile) {
+    @include breakpoint-up(lg) {
       display: block;
     }
   }
@@ -71,7 +71,7 @@
   &-title--mobile {
     display: block;
 
-    @include breakpoint-up(mobile) {
+    @include breakpoint-up(lg) {
       display: none;
     }
   }
@@ -87,13 +87,13 @@
 
     .swiper-slide {
       width: 100%;
-      height: 366px;
+      height: 414px;
       display: flex;
       background:#F2F2F0;
       cursor: pointer;
 
       @include breakpoint-up(lg) {
-        height: 569px;
+        height: 682px;
       }
 
       img {
@@ -110,7 +110,7 @@
         box-sizing: border-box;
         border: 2px solid transparent;
 
-        @include breakpoint-up(lg) {
+        @include breakpoint-up(mobile) {
           height: 83px;
         }
 
@@ -134,9 +134,9 @@
   &__info-wrapper {
     flex: 0 0 100%;
 
-    @include breakpoint-up(mobile) {
+    @include breakpoint-up(lg) {
       margin-top: 45px;
-      flex: 0 0 50%;
+      flex: 0 0 55%;
     }
 
     @include breakpoint-up(xl) {
@@ -149,12 +149,12 @@
   }
 
   &__media-wrapper {
-    flex: 0 0 100%;
+    max-width: 552px;
     overflow-x: hidden;
     margin-bottom: 40px;
 
-    @include breakpoint-up(mobile) {
-      flex: 0 0 45%;
+    @include breakpoint-up(lg) {
+      flex: 0 0 40%;
       margin-bottom: 0;
       margin-right: 20px;
     }
@@ -493,14 +493,12 @@ fieldset.product-form__input .form__label {
   cursor: pointer;
   position: relative;
 
-  @include breakpoint-up(mobile) {
+  @include breakpoint-up(sm) {
     font-size: 24px;
     line-height: 37px;
-  }
-
-  @include breakpoint-up(lg) {
     padding: 20px 30px;
     min-height: 215px;
+    flex: 0 0 calc((100% - 15px) / 2);
   }
 
   @include breakpoint-up(xxl) {
