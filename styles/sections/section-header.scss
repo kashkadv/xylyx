@@ -32,6 +32,10 @@
     @include breakpoint-down(mobile) {
       width: 88px;
     }
+
+    @include breakpoint-down(mobile-s) {
+      width: 60px;
+    }
   }
 
   .nav {
@@ -58,13 +62,13 @@
         margin-left: 10px;
       }
 
-      @include breakpoint-up(mobile) {
+      @include breakpoint-up(lg) {
         display: none;
       }
     }
 
     &--desktop {
-      @include breakpoint-down(mobile) {
+      @include breakpoint-down(lg) {
         display: none;
       }
     }

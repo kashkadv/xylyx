@@ -7,12 +7,25 @@
   &__top {
     display: flex;
     gap: 68px;
+    
+    @include breakpoint-between(md, lg) {
+      flex-wrap: wrap;
+      gap: 60px;
+    }
 
     & > div {
       flex-basis: 17%;
 
+      @include breakpoint-between(md, lg) {
+        flex-basis: 25%;
+      }
+
       &:first-child {
         flex-basis: 55%;
+
+        @include breakpoint-between(md, lg) {
+          flex-basis: 100%;
+        }
       }
     }
 

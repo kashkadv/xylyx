@@ -47,6 +47,10 @@
       z-index: -1;
       bottom: -1px;
 
+      @include breakpoint-between(md, lg) {
+        min-width: 90%;
+      }
+
       @include breakpoint-down(mobile) {
         border-radius: 0;
         width: 100%;
@@ -57,6 +61,11 @@
       width: 50%;
       padding: 50px 0;
       max-width: 660px;
+
+      @include breakpoint-between(md, lg) {
+        width: 90%;
+        max-width: 90%;
+      }
 
       @include breakpoint-down(mobile) {
         width: 100%;
