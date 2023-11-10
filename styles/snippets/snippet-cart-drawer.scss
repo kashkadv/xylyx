@@ -80,6 +80,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include breakpoint-between(mobile, lg) {
+      h2 {
+        font-size: 37px !important;
+      }
+    }
   }
 
   &__footer {
@@ -198,6 +204,11 @@
 
       img {
         max-width: 100%;
+        
+        @include breakpoint-between(mobile, lg) {
+          height: 100%;
+          object-fit: cover;
+        }
       }
     }
 
