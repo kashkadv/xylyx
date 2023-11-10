@@ -96,7 +96,11 @@
         &__description {
           flex: 0 0 100%;
           color: var(--color-indigo);
-          margin-top: 100px;
+          margin-top: 145px;
+
+          @include breakpoint-up(sm) {
+            margin-top: 100px;
+          }
 
           @include breakpoint-up(lg) {
             flex: 0 0 calc(58% - 65px);
@@ -200,7 +204,10 @@
     align-items: center;
     display: flex;
     margin-top: 10px;
-    display: none;
+
+    @include breakpoint-up(sm) {
+      display: none;
+    }
 
     @include breakpoint-up(lg) {
       display: flex;
@@ -212,7 +219,11 @@
     }
 
     &.mobile {
-      display: flex;
+      display: none;
+
+      @include breakpoint-up(sm) {
+        display: flex;
+      }
 
       @include breakpoint-up(lg) {
         display: none;

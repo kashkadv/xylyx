@@ -94,7 +94,7 @@
       cursor: pointer;
 
       @include breakpoint-up(sm) {
-        height: 682px;
+        height: 566px;
       }
 
       img {
@@ -231,14 +231,16 @@
 
     .price-item {
       color: var(--Deep-Indigo, #1D182D);
-      font-size: 27px;
+      font-size: 20px;
       font-style: normal;
       font-weight: 500;
-      line-height: 37px; 
+      line-height: 30px; 
       margin-top: 10px;
 
       @include breakpoint-up(mobile) {
         margin-top: 0;
+        font-size: 27px;
+        line-height: 37px; 
       }
     }
   }
@@ -340,6 +342,10 @@
 .variant__description {
   display: none;
 
+  strong {
+    font-weight: 500;
+  }
+
   h2 {
     font-size: 20px;
     font-style: normal;
@@ -383,10 +389,6 @@
 
   .product_description {
     margin-bottom: 25px;
-
-    strong {
-      font-weight: 500;
-    }
 
     p {
       margin-bottom: 10px;
@@ -546,8 +548,8 @@ fieldset.product-form__input .form__label {
   display: none;
 
   h2 {
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 35px;
+    line-height: 38px;
 
     @include breakpoint-up(mobile) {
       font-size: 60px;
@@ -604,16 +606,26 @@ fieldset.product-form__input .form__label {
     }
 
     &__content {
-      padding: 25px;
+      padding: 16px 10px;
+
+      @include breakpoint-up(mobile) {
+        padding: 25px;
+      }
     }
 
     h2 {
-      font-size: 27px;
+      font-size: 20px;
       font-style: normal;
       font-weight: 300;
-      line-height: 37px;
-      margin: 20px 0;
+      line-height: 30px;
+      margin: 10px 0;
       color: var(--color-indigo-deep);
+
+      @include breakpoint-up(mobile) { 
+        font-size: 27px;
+        line-height: 37px;
+        margin: 20px 0;
+      }
     }
 
     .date {
