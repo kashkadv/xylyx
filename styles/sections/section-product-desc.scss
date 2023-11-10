@@ -678,7 +678,7 @@ fieldset.product-form__input .form__label {
           border-radius: 50%;
           top: 0;
           left: -100%;
-          background-color: var(--color-purple-light);
+          background-color: var(--color-purple);
           transition: all .5s;
         }
       }
@@ -689,7 +689,7 @@ fieldset.product-form__input .form__label {
         }
 
         .link--arrow path {
-          fill: var(--color-white) !important;
+          fill: var(--color-indigo) !important;
         }
       }
     }
