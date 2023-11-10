@@ -69,6 +69,7 @@
   }
 
   &-title--mobile {
+    padding-top: 30px;
     display: block;
 
     @include breakpoint-up(lg) {
