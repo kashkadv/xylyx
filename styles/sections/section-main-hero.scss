@@ -11,6 +11,11 @@
       flex-direction: column-reverse;
       height: fit-content;
     }
+
+    @include breakpoint-up(xxxl) {
+      min-height: 658px;
+      max-height: 658px;
+    }
   }
 
   &__image {
