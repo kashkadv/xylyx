@@ -186,7 +186,7 @@ a {
 
   &.purple {
     color: var(--color-white);
-    border-color: var(--color-purple);
+    border: unset !important;
     background-color: var(--color-purple);
     transition: 0s;
 
