@@ -81,9 +81,10 @@
     justify-content: space-between;
     align-items: center;
 
-    @include breakpoint-between(mobile, lg) {
+    @include breakpoint-between(lg, xl) {
       h2 {
         font-size: 37px !important;
+        line-height: 40px !important;
       }
     }
   }
