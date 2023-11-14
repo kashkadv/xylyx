@@ -4,9 +4,19 @@
   background-color: var(--color-indigo-deep);
   color: var(--color-white);
 
+  &__section {
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
   &__top {
     display: flex;
     gap: 68px;
+
+    @include breakpoint-between(lg, xl) {
+      gap: 26px;
+    }
     
     @include breakpoint-between(md, lg) {
       flex-wrap: wrap;
@@ -14,7 +24,7 @@
     }
 
     & > div {
-      flex-basis: 17%;
+      flex-basis: 16%;
 
       @include breakpoint-between(md, lg) {
         flex-basis: 25%;
@@ -22,6 +32,15 @@
 
       &:first-child {
         flex-basis: 55%;
+
+        @include breakpoint-between(lg, xl) {
+          flex-basis: 33%;
+          margin-right: 7%;
+
+          .footer__slogan br {
+            display: none;
+          }
+        }
 
         @include breakpoint-between(md, lg) {
           flex-basis: 100%;
@@ -42,6 +61,8 @@
   &__slogan {
     max-width: 440px;
     margin-top: 18px;
+    letter-spacing: 0.74px;
+    line-height: 44.4px;
   }
 
   &__wrapper {
@@ -49,6 +70,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 63px;
+    box-sizing: border-box;
 
     @include breakpoint-down(mobile) {
       padding-top: 30px;
@@ -57,7 +79,7 @@
   }
 
   &__subscription {
-    margin-top: 100px;
+    margin-top: 50px;
 
     form {
       width: 100%;
@@ -130,6 +152,7 @@
           left: 0;
           display: flex;
           justify-content: center;
+          align-items: center;
           color: var(--color-purple-light);
           transition: var(--transition);
           
@@ -143,6 +166,10 @@
             color: var(--color-white);
             border-top-right-radius: 8px;
             border-bottom-right-radius: 8px;
+
+            svg path {
+              fill: var(--color-white);
+            }
           }
         }
 
@@ -161,7 +188,7 @@
     }
 
     .heading {
-      margin-bottom: 28px;
+      margin-bottom: 12px;
     }
 
     @include breakpoint-down(mobile) {
@@ -172,11 +199,12 @@
   &__column {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 15px;
 
     .heading {
       color: var(--color-purple-light);
-      font-weight: 400;
+      font-weight: 300;
+      font-family: var(--font-secondary);
     }
 
     &.contacts {
@@ -189,6 +217,13 @@
         align-items: center;
         gap: 20px;
         flex-wrap: wrap;
+      }
+    }
+
+    &.links {
+      a {
+        font-size: 20px;
+        line-height: 30px;
       }
     }
 
@@ -226,6 +261,11 @@
     .links {
       display: flex;
       gap: 38px;
+
+      .link {
+        font-weight: 400;
+        letter-spacing: 0.26px;
+      }
 
       .mobile & {
         border-bottom: 1px solid var(--color-purple-light);

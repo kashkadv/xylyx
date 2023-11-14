@@ -1,108 +1,110 @@
 {{ 'section-footer.css' | asset_url | stylesheet_tag }}
 
 <footer class="footer">
-  <div class="container footer__wrapper">
-    <div class="footer__top">
-      <div class="">
-        <div class="footer__logo">{% render 'logo' %}</div>
-        <div class="footer__slogan text--l">{{ section.settings.footer_slogan }}</div>
-        {% if section.settings.footer_subscription %}
-          <div class="footer__subscription">
-            <div class="heading text--m">{{ section.settings.subscription_heading }}</div>
-            <form class="form" id="subscription-form" data-external-form action="{{ section.settings.subscription_action }}">
-              <input class="text--s" name="input_1" type="email" placeholder="Email address" required>
-              <label class="text--s">Email address</label>
-              <button type="submit">
-                <span>{% render 'icon-arrow' %}</span>
-                <span>{% render 'icon-arrow' %}</span>
-              </button>
-            </form>
-          </div>
-        {% endif %}
-      </div>
-      {% for block in section.blocks %}
-        {% case block.type %}
-          {% when 'footer_navigation_block' %}
-            <div class="footer__column links">
-              <div class="heading uppercase text--xs">{{ block.settings.heading }}</div>
-              {% for link in block.settings.menu.links %}
-                <a class="text--m link link--white" href="{{ link.url }}">{{ link.title }}</a>
-              {% endfor %}
+  <div class="footer__section">
+    <div class="container footer__wrapper">
+      <div class="footer__top">
+        <div class="">
+          <div class="footer__logo">{% render 'logo' %}</div>
+          <div class="footer__slogan text--l">{{ section.settings.footer_slogan }}</div>
+          {% if section.settings.footer_subscription %}
+            <div class="footer__subscription">
+              <div class="heading text--m">{{ section.settings.subscription_heading }}</div>
+              <form class="form" id="subscription-form" data-external-form action="{{ section.settings.subscription_action }}">
+                <input class="text--s" name="input_1" type="email" placeholder="Email address" required>
+                <label class="text--s">Email address</label>
+                <button type="submit">
+                  <span>{% render 'icon-arrow-footer' %}</span>
+                  <span>{% render 'icon-arrow-footer' %}</span>
+                </button>
+              </form>
             </div>
-
-          {% when 'footer_contacts_block' %}
-            <div class="footer__column contacts">
-              <div class="heading uppercase text--xs">{{ block.settings.heading }}</div>
-              <div class="address text--s">{{ block.settings.address }}</div>
-              <a
-                class="link link--white text--s"
-                href="tel:{{ block.settings.phone | replace: "(", "" | replace: ")", "" | replace: " ", "" | replace: "-", "" }}"
-              >
-                {{- block.settings.phone -}}
-              </a>
-              <a
-                class="link link--white text--s"
-                href="mailto:{{ block.settings.email }}"
-              >
-                {{- block.settings.email -}}
-              </a>
-              <div class="social-links">
-                {% for link in linklists.social.links %}
-                  {% render 'social-link', link: link %}
+          {% endif %}
+        </div>
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'footer_navigation_block' %}
+              <div class="footer__column links">
+                <div class="heading uppercase text--xs">{{ block.settings.heading }}</div>
+                {% for link in block.settings.menu.links %}
+                  <a class="text--m link link--white" href="{{ link.url }}">{{ link.title }}</a>
                 {% endfor %}
               </div>
-            </div>
-        {% endcase %}
-      {% endfor %}
-    </div>
-    <div class="footer__bottom desktop">
-      {% for block in section.blocks %}
-        {% case block.type %}
-          {% when 'copyright_block' %}
-            <div class="footer__copyright text--2xs">
-              <label>© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</label>
-              <div class="links">
-                <div class="link">
-                  <a class="link link--white" href="{{ block.settings.terms_and_conditions_link }}"
-                    >Terms and Conditions</a
-                  >
+
+            {% when 'footer_contacts_block' %}
+              <div class="footer__column contacts">
+                <div class="heading uppercase text--xs">{{ block.settings.heading }}</div>
+                <div class="address text--s">{{ block.settings.address }}</div>
+                <a
+                  class="link link--white text--s"
+                  href="tel:{{ block.settings.phone | replace: "(", "" | replace: ")", "" | replace: " ", "" | replace: "-", "" }}"
+                >
+                  {{- block.settings.phone -}}
+                </a>
+                <a
+                  class="link link--white text--s"
+                  href="mailto:{{ block.settings.email }}"
+                >
+                  {{- block.settings.email -}}
+                </a>
+                <div class="social-links">
+                  {% for link in linklists.social.links %}
+                    {% render 'social-link', link: link %}
+                  {% endfor %}
                 </div>
-                <div class="link">
-                  <a class="link link--white" href="{{ block.settings.privacy_policy_link }}">Privacy Policy</a>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+      <div class="footer__bottom desktop">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'copyright_block' %}
+              <div class="footer__copyright text--2xs">
+                <label>© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</label>
+                <div class="links">
+                  <div class="link">
+                    <a class="link link--white" href="{{ block.settings.terms_and_conditions_link }}"
+                      >Terms and Conditions</a
+                    >
+                  </div>
+                  <div class="link">
+                    <a class="link link--white" href="{{ block.settings.privacy_policy_link }}">Privacy Policy</a>
+                  </div>
+                  <div class="link">
+                    <label>Website by </label>
+                    <a class="link link--white" href="{{ block.settings.developer_link }}">Craft & Root</a>
+                  </div>
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+
+      <div class="footer__bottom mobile">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'copyright_block' %}
+              <div class="footer__copyright text--2xs">
+                <div class="links">
+                  <div class="link">
+                    <a class="link link--white" href="{{ block.settings.terms_and_conditions_link }}"
+                      >Terms and Conditions</a
+                    >
+                  </div>
+                  <div class="link">
+                    <a class="link link--white" href="{{ block.settings.privacy_policy_link }}">Privacy Policy</a>
+                  </div>
                 </div>
                 <div class="link">
                   <label>Website by </label>
                   <a class="link link--white" href="{{ block.settings.developer_link }}">Craft & Root</a>
                 </div>
+                <label>© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</label>
               </div>
-            </div>
-        {% endcase %}
-      {% endfor %}
-    </div>
-
-    <div class="footer__bottom mobile">
-      {% for block in section.blocks %}
-        {% case block.type %}
-          {% when 'copyright_block' %}
-            <div class="footer__copyright text--2xs">
-              <div class="links">
-                <div class="link">
-                  <a class="link link--white" href="{{ block.settings.terms_and_conditions_link }}"
-                    >Terms and Conditions</a
-                  >
-                </div>
-                <div class="link">
-                  <a class="link link--white" href="{{ block.settings.privacy_policy_link }}">Privacy Policy</a>
-                </div>
-              </div>
-              <div class="link">
-                <label>Website by </label>
-                <a class="link link--white" href="{{ block.settings.developer_link }}">Craft & Root</a>
-              </div>
-              <label>© {{ 'now' | date: '%Y' }}. {{ block.settings.copyright_text }}</label>
-            </div>
-        {% endcase %}
-      {% endfor %}
+          {% endcase %}
+        {% endfor %}
+      </div>
     </div>
   </div>
 </footer>
