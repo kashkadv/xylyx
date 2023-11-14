@@ -29,6 +29,10 @@
     width: 117px;
     height: auto;
 
+    &:hover a {
+      color: unset;
+    }
+
     @include breakpoint-down(mobile) {
       width: 88px;
     }

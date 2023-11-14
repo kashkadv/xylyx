@@ -486,6 +486,7 @@
           {% assign article = variant.metafields.custom.related_publications.value %}
             {% for item in article %}
             <div class="related-publications-article" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+              <a class="related-publications-link" href="{{ item.link }}" target="_blank" rel="noreferrer noopener"></a>
               <div class="related-publications-article__img">
                 <img src="{{ item.image | img_url: '1024x' }}" alt="{{ item.title }}">
               </div>
@@ -568,7 +569,8 @@
           const swiperThumb = new Swiper(sliderThumb, {
               spaceBetween: 10,
               slidesPerView: 5,
-          });
+            },
+          );
 
           const swiperSlider = new Swiper(sliderFull, {
               effect : 'fade',
@@ -584,13 +586,18 @@
               },
           });
 
-          return swiperSlider;
+          return {
+            swiperSlider,
+            swiperThumb
+          };
       }
 
       function openGalleryModal() {
           const activeSlider = document.querySelectorAll('.product-gallery-full__img');
+          const activeThumb = document.querySelectorAll('.product-gallery-thumb .image');
           const body = document.querySelector('body');
           const html = document.querySelector('html');
+          const main = document.querySelector('main');
 
           activeSlider.forEach((item) => {
               item.addEventListener('click', function () {
@@ -600,15 +607,99 @@
                   const itemPos = ariaLabel[0] - 1;
 
                   const modalEl = document.querySelector(`.product-gallery-modal[data-modal-id="${variantId}"]`);
-                  const slider = initGallerySlider(modalEl);
+                  const sliders = initGallerySlider(modalEl);
 
-                  slider.slideTo(itemPos);
+                  sliders.swiperSlider.on('slideChange', function () {
+                    const activeSlide = sliders.swiperSlider.realIndex;
+
+                    if (activeSlide === sliders.swiperSlider.slides.length - 1) {
+                      modalEl.querySelector('.product-gallery-modal__item-thumb').classList.add('fade-first');
+                      modalEl.querySelector('.product-gallery-modal__item-thumb').classList.remove('fade-last');
+                    } else {
+                      modalEl.querySelector('.product-gallery-modal__item-thumb').classList.add('fade-last');
+                      modalEl.querySelector('.product-gallery-modal__item-thumb').classList.remove('fade-first');
+                    }
+                  });
+
+                  modalEl.classList.add('active');
+
                   setTimeout(() => {
                     body.style.overflow = 'hidden';
                     html.style.overflow = 'hidden';
+                    main.style.zIndex = 'unset';
                     modalEl.style.opacity = '1';
                     modalEl.style.visibility = 'visible';
+                    sliders.swiperSlider.slideTo(itemPos);
+                    sliders.swiperSlider.updateProgress()
                   }, 100);
+
+                  const modalThumbs = document.querySelectorAll('.product-gallery-modal.active .product-gallery-modal__item-thumb .swiper-slide__thumb');
+                  const thumbsNum = modalThumbs.length;
+
+                  modalThumbs.forEach((item, index) => {
+                    item.addEventListener('click', function() {
+                      const ariaLabelThumb = parseInt(item.getAttribute('aria-label').split('/'));
+                      if (ariaLabelThumb == thumbsNum) {
+                        modalEl.querySelector('.product-gallery-modal__item-thumb').classList.add('fade-first');
+                        modalEl.querySelector('.product-gallery-modal__item-thumb').classList.remove('fade-last');
+                      } else {
+                        modalEl.querySelector('.product-gallery-modal__item-thumb').classList.add('fade-last');
+                        modalEl.querySelector('.product-gallery-modal__item-thumb').classList.remove('fade-first');
+                      }
+                    })
+                  })
+              });
+          });
+
+          activeThumb.forEach((item) => {
+            item.addEventListener('click', function () {
+                  const variantId = item.closest('[data-variant-id]').dataset.variantId;
+                  const itemId = item.id;
+                  const ariaLabel = item.getAttribute('aria-label').split('/');
+                  const itemPos = ariaLabel[0] - 1;
+
+                  const modalEl = document.querySelector(`.product-gallery-modal[data-modal-id="${variantId}"]`);
+                  const sliders = initGallerySlider(modalEl);
+
+                  sliders.swiperSlider.on('slideChange', function () {
+                    const activeSlide = sliders.swiperSlider.realIndex;
+
+                    if (activeSlide === sliders.swiperSlider.slides.length - 1) {
+                      modalEl.querySelector('.product-gallery-modal__item-thumb').classList.add('fade-first');
+                      modalEl.querySelector('.product-gallery-modal__item-thumb').classList.remove('fade-last');
+                    } else {
+                      modalEl.querySelector('.product-gallery-modal__item-thumb').classList.add('fade-last');
+                      modalEl.querySelector('.product-gallery-modal__item-thumb').classList.remove('fade-first');
+                    }
+                  });
+
+                  modalEl.classList.add('active');
+
+                  setTimeout(() => {
+                    body.style.overflow = 'hidden';
+                    html.style.overflow = 'hidden';
+                    main.style.zIndex = 'unset';
+                    modalEl.style.opacity = '1';
+                    modalEl.style.visibility = 'visible';
+                    sliders.swiperSlider.slideTo(itemPos);
+                    sliders.swiperSlider.updateProgress()
+                  }, 100);
+
+                  const modalThumbs = document.querySelectorAll('.product-gallery-modal.active .product-gallery-modal__item-thumb .swiper-slide__thumb');
+                  const thumbsNum = modalThumbs.length;
+
+                  modalThumbs.forEach((item, index) => {
+                    item.addEventListener('click', function() {
+                      const ariaLabelThumb = parseInt(item.getAttribute('aria-label').split('/'));
+                      if (ariaLabelThumb == thumbsNum) {
+                        modalEl.querySelector('.product-gallery-modal__item-thumb').classList.add('fade-first');
+                        modalEl.querySelector('.product-gallery-modal__item-thumb').classList.remove('fade-last');
+                      } else {
+                        modalEl.querySelector('.product-gallery-modal__item-thumb').classList.add('fade-last');
+                        modalEl.querySelector('.product-gallery-modal__item-thumb').classList.remove('fade-first');
+                      }
+                    })
+                  })
               });
           });
       }
@@ -617,12 +708,15 @@
           const modalClose = document.querySelectorAll('.product-gallery-modal__header .close');
           const body = document.querySelector('body');
           const html = document.querySelector('html');
+          const main = document.querySelector('main');
 
           modalClose.forEach((item) => {
               item.addEventListener('click', function () {
                   const modalEl = item.closest('.product-gallery-modal');
+                  modalEl.classList.remove('active');
                   body.style.overflow = '';
                   html.style.overflow = '';
+                  main.style.zIndex = '';
                   modalEl.style.opacity = '0';
                   modalEl.style.visibility = 'hidden';
               });
@@ -673,6 +767,16 @@
           scrollBtn.classList.add('show');
         } else {
           scrollBtn.classList.remove('show');
+        }
+
+        const footer = document.querySelector('.get-in-touch');
+        const footerHeight = footer.offsetHeight;
+        const footerTop = footer.offsetTop;
+
+        if (window.pageYOffset + window.innerHeight > footerTop) {
+          scrollBtn.classList.add('bottom');
+        } else {
+          scrollBtn.classList.remove('bottom');
         }
       })
 

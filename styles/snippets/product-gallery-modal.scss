@@ -23,7 +23,7 @@
     transition: ease-in-out 0.3s;
 
     &:hover {
-      transform: rotate(180deg);
+      opacity: 0.7;
     }
   }
 
@@ -38,6 +38,7 @@
     }
 
     h2 {
+      max-width: 65%;
       color: var(--color-indigo);
       font-size: 17px;
       font-style: normal;
@@ -74,6 +75,8 @@
         &__image {
            flex: 0 0 100%;
            background: #F2F2F0;
+           box-sizing: border-box;
+           padding: 10px;
            height: 331px;
     
            @include breakpoint-up(lg) {
@@ -136,10 +139,26 @@
     overflow: hidden;
     position: relative;
 
-    &::after {
+    &.fade-last::after {
       content: '';
       position: absolute;
       right: -20px;
+      z-index: 10;
+      top: 0;
+      width: 40px;
+      height: 53px;
+      background: var(--color-white);
+      filter: blur(15px);
+
+      @include breakpoint-up(lg) {
+        height: 87px;
+      }
+    }
+
+    &.fade-first::after {
+      content: '';
+      position: absolute;
+      left: -20px;
       z-index: 10;
       top: 0;
       width: 40px;
@@ -160,6 +179,7 @@
       height: 53px;
       background: #F2F2F0;
       border: 2px solid transparent;
+      box-sizing: border-box;
       cursor: pointer;
 
       @include breakpoint-up(lg) {

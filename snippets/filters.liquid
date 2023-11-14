@@ -26,7 +26,7 @@
     {% endfor %}
 
     <div class="filters">
-      <div class="text--l text-color--purple">{{ collection.title }}</div>
+      <div class="text--l text-color--purple">Shop {{ collection.title }}</div>
       {% if has_filters %}
         {% assign tissues = tissues | split: ',' %}
         {% assign disease_areas = disease_areas | split: ',' %}

@@ -2,7 +2,7 @@
 
 .get-in-touch {
   background: var(--color-indigo);
-  padding: 40px 0;
+  padding: 40px 24px;
 
   .container {
     display: flex;
@@ -15,7 +15,6 @@
     @include breakpoint-up(lg) {
       flex-wrap: nowrap;
       border: 1px solid var(--color-purple-light);
-      margin: 0 24px;
     }
 
     @include breakpoint-up(xxl) {
@@ -110,9 +109,14 @@
       display: flex;
       flex-direction: column;
       flex: 0 0 100%;
+      max-width: 100%;
       width: 100%;
       margin-top: 0;
       margin-bottom: 25px;
+
+      @include breakpoint-up(mobile-m) {
+        max-width: 560px;
+      }
 
       @include breakpoint-up(lg) {
         margin-top: 40px;
@@ -126,15 +130,16 @@
       .form__row {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
 
-        @include breakpoint-up(lg) {
+        @include breakpoint-up(mobile-m) {
           flex-wrap: nowrap;
         }
 
         .form__container {
           flex: 0 0 100%;
 
-          @include breakpoint-up(lg) {
+          @include breakpoint-up(mobile-m) {
             flex: 0 0 47.5%;
             margin-right: 25px;
           }
