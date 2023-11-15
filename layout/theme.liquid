@@ -42,6 +42,19 @@
   </head>
 
   <body>
+    <style>
+      #loader {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        z-index: 1000;
+        background: #252538;
+        overflow: hidden;
+        pointer-events: none;
+      }
+    </style>
+    <div id="loader"></div>
+
     {% section 'header' %}
     {% section 'cart-drawer' %}
     <main id="MainContent" class="content" role="main" tabindex="-1">
@@ -67,6 +80,15 @@
     <script>
       AOS.init({
         once: true
+      });
+
+      setTimeout(() => {
+        document.body.background = "#ffffff";
+        document.querySelector('#loader').classList.add('loading');
+      }, 100);
+
+      window.addEventListener('beforeunload', () => {
+        document.querySelector('#loader').classList.remove('loading');
       });
 
       window.variantStrings = {

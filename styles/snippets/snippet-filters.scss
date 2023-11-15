@@ -70,7 +70,7 @@
     border: 1px solid var(--color-grey-light);
     border-radius: 3px;
     cursor: pointer;
-    transition: var(--transition);
+    transition: ease-in-out 0.3s;
     display: flex;
     align-items: center;
     gap: 10px;
