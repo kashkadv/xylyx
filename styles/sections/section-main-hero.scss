@@ -34,6 +34,15 @@
       position: unset;
       min-height: 430px;
     }
+
+    @include breakpoint-down(lg) {
+      background-position-y: -40px;
+    }
+
+    @include breakpoint-down(xs) {
+      background-position-y: 0;
+      background-position-x: -420px;
+    }
   }
 
   &__content {

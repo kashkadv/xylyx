@@ -234,6 +234,14 @@
       }
     }
 
+    .price--large {
+      letter-spacing: unset;
+    }
+
+    .price__container {
+      letter-spacing: unset;
+    }
+
     .price-item {
       color: var(--Deep-Indigo, #1D182D);
       font-size: 20px;
@@ -241,6 +249,7 @@
       font-weight: 500;
       line-height: 30px; 
       margin-top: 10px;
+      letter-spacing: unset;
 
       @include breakpoint-up(mobile) {
         margin-top: 0;
@@ -395,6 +404,7 @@
 
   .product_description {
     margin-bottom: 25px;
+    max-width: 560px;
 
     p {
       margin-bottom: 10px;
@@ -499,7 +509,6 @@ fieldset.product-form__input .form__label {
   font-style: normal;
   font-weight: 300;
   line-height: 30px;
-  // transition: box-shadow ease-in-out 0.2s;
   cursor: pointer;
   position: relative;
 
@@ -520,6 +529,7 @@ fieldset.product-form__input .form__label {
     font-weight: 500;
     font-size: 20px;
     line-height: 30px;
+    letter-spacing: unset;
 
     @include breakpoint-up(mobile) {
       font-size: 24px;

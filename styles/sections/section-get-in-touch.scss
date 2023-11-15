@@ -64,9 +64,13 @@
       color: var(--color-white);
       margin-bottom: 25px;
       
-      @include breakpoint-up(lg) {
+      @include breakpoint-up(md) {
         font-size: 60px;
         line-height: 68px;
+        margin-bottom: 25px;
+      }
+
+      @include breakpoint-up(lg) {
         margin-bottom: 140px;
       }
     }
@@ -153,6 +157,7 @@
       label {
         color: var(--color-indigo);
         font-size: 17px;
+        line-height: 140%;
         font-weight: 300;
         position: absolute;
         top: 0;
@@ -202,6 +207,14 @@
 
         &:focus {
           outline: none;
+        }
+      }
+
+      button {
+        &:hover {
+          span {
+            color: var(--color-white);
+          }
         }
       }
     }
