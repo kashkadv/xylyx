@@ -22,10 +22,12 @@
   &__block {
     min-width: 560px;
     margin-top: 30px;
+    flex: 0 0 40%;
 
     @include breakpoint-down(mobile) {
       min-width: unset;
       margin-top: 20px;
+      flex: 0 0 100%;
     }
   }
 

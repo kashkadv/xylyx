@@ -19,6 +19,13 @@
       max-height: 0;
       margin-bottom: 0;
     }
+
+    &.shown {
+      .variant {
+        opacity: 1;
+        transform: unset;
+      }
+    }
   
     &__head {
       gap: 20px;
@@ -58,6 +65,7 @@
         padding: 15px;
         border: 1px solid var(--color-grey);
         border-radius: 10px;
+        position: relative;
         display: flex;
         flex-direction: column;
         gap: 5px;

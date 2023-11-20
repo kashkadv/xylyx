@@ -29,6 +29,12 @@
     background-color: rgba(0,0,0,.5);
 
     .cart-product {
+      opacity: 1;
+    }
+  }
+
+  &.animated {
+    .cart-product {
       &:nth-child(n) {
         animation: fade-in-bottom 0.8s ease 0.2s forwards;
       }

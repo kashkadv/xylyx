@@ -68,6 +68,12 @@
         overflow: hidden;
         flex-wrap: wrap;
 
+        &:first-child {
+          .swiper-slide__image {
+            padding: 0;
+          }
+        }
+
         @include breakpoint-up(lg) {
           flex-wrap: nowrap;
         }

@@ -63,7 +63,7 @@
 
     a {
       &:hover {
-        opacity: 0.7;
+        color: var(--color-purple);
       }
     }
   }
@@ -94,6 +94,10 @@
       background:#F2F2F0;
       box-sizing: border-box;
       cursor: pointer;
+
+      &:first-child {
+        padding: 0;
+      }
 
       @include breakpoint-up(sm) {
         height: 566px;

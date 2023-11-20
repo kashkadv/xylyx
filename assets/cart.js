@@ -54,6 +54,11 @@ function toggleCart() {
     document.body.style.paddingRight = `${scrollbarWidth}px`;
     document.body.style.overflow = 'hidden';
     header.style.width = `calc(100% - ${scrollbarWidth}px)`;
+    cart.classList.add('animated');
+
+    setTimeout(() => {
+      cart.classList.remove('animated');
+    }, 800);
   } else {
     setTimeout(() => {
       document.body.style.paddingRight = 0;
