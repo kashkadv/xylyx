@@ -399,7 +399,7 @@
             <div class="product_downloads variant__description--col">
               <h2>Downloads</h2>
               {% for item in variant.metafields.custom.download.value %}
-                {% render 'button', href: item.url, label: item.alt, color: 'purple', icon: 'download' %}
+                {% render 'button', href: item.url, label: item.alt, color: 'purple', icon: 'download', target: '_blank', %}
               {% endfor %}
             </div>
           {% endif %}
