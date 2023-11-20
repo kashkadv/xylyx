@@ -23,6 +23,10 @@
     id="{{ id }}"
   {% endif %}
 
+  {% if target != blank %}
+    target="{{target}}"
+  {% endif %}
+
   class="btn{% if btnColor != '' %} {{ btnColor }}{% endif %}{% if btnSize != '' %} {{ btnSize }}{% endif %}{% if btnIcon %} btn-with-icon{% endif %}{% if class %} {{ class }}{% endif %}"
 >
   {% case btnIcon %}

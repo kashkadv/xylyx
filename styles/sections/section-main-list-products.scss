@@ -18,9 +18,10 @@
       opacity: 0;
       max-height: 0;
       margin-bottom: 0;
+      pointer-events: none;
     }
 
-    &.shown {
+    &.active {
       .variant {
         opacity: 1;
         transform: unset;

@@ -66,14 +66,17 @@ function showProducts(targets) {
       if (targets.includes(product.id)) {
         product.classList.remove('hidden');
         product.classList.add('shown');
+        product.classList.add('active');
       } else {
         product.classList.remove('shown');
+        product.classList.remove('active');
         product.classList.add('hidden');
       }
     });
   } else {
     products.forEach((product) => {
       product.classList.remove('hidden');
+      product.classList.remove('active');
       product.classList.add('shown');
     });
   }
