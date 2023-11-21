@@ -69,6 +69,7 @@
         position: relative;
         display: flex;
         flex-direction: column;
+        transition: all ease-in-out .3s;
         gap: 5px;
 
         &__title {
@@ -97,7 +98,8 @@
         }
 
         &:hover {
-          color: var(--color-purple);
+          border: 1px solid transparent;
+          box-shadow: 0 0 0 2px var(--color-purple);
         }
 
         form {

@@ -521,12 +521,15 @@
         variants.forEach(function (variant) {
           if (prodId == variant.dataset.variantId || match[1] == variant.dataset.variantId) {
             variant.style.display = 'block';
+            variant.classList.add('active');
             variantInputControl.value = prodId ? prodId : firstVariant.dataset.variantInfo;
           } else if (!prodId && variant.dataset.variantId == firstVariant.dataset.variantInfo) {
             variant.style.display = 'block';
+            variant.classList.add('active');
             variantInputControl.value = firstVariant.dataset.variantInfo;
           } else {
             variant.style.display = 'none';
+            variant.classList.remove('active');
           }
         });
       }
@@ -626,8 +629,7 @@
                     body.style.overflow = 'hidden';
                     html.style.overflow = 'hidden';
                     main.style.zIndex = 'unset';
-                    modalEl.style.opacity = '1';
-                    modalEl.style.visibility = 'visible';
+                    modalEl.style.transform = 'translateY(0)';
                     sliders.swiperSlider.slideTo(itemPos);
                     sliders.swiperSlider.updateProgress()
                   }, 100);
@@ -678,8 +680,7 @@
                     body.style.overflow = 'hidden';
                     html.style.overflow = 'hidden';
                     main.style.zIndex = 'unset';
-                    modalEl.style.opacity = '1';
-                    modalEl.style.visibility = 'visible';
+                    modalEl.style.transform = 'translateY(0)';
                     sliders.swiperSlider.slideTo(itemPos);
                     sliders.swiperSlider.updateProgress()
                   }, 100);
@@ -716,8 +717,7 @@
                   body.style.overflow = '';
                   html.style.overflow = '';
                   main.style.zIndex = '';
-                  modalEl.style.opacity = '0';
-                  modalEl.style.visibility = 'hidden';
+                  modalEl.style.transform = 'translateY(-100%)';
               });
           });
       }

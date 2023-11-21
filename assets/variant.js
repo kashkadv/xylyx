@@ -30,9 +30,11 @@ class VariantSelects extends HTMLElement {
     const variants = document.querySelectorAll('[data-variant-id]');
 
     variants.forEach(function (variant) {
+      variant.classList.remove('active');
       variant.style.display = 'none';
       if (variant.dataset.variantId == currentVariant.id) {
         variant.style.display = 'block';
+        variant.classList.add('active');
       }
     });
   }

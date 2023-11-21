@@ -4,6 +4,7 @@ body {
   color: var(--color-indigo-deep);
   font-weight: 300; 
   cursor: default;
+  overscroll-behavior: none;
 }
 
 main {

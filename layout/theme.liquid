@@ -87,9 +87,17 @@
         document.querySelector('#loader').classList.add('loading');
       }, 100);
 
-      window.addEventListener('beforeunload', () => {
-        document.querySelector('#loader').classList.remove('loading');
-      });
+      const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+
+      if (isSafari) {
+        window.addEventListener('unload', () => {
+          document.querySelector('#loader').classList.remove('loading');
+        });
+      } else {
+        window.addEventListener('beforeunload', () => {
+          document.querySelector('#loader').classList.remove('loading');
+        });
+      }
 
       window.variantStrings = {
         addToCart: `{{ 'products.product.add_to_cart' | t }}`,

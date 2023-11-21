@@ -277,6 +277,16 @@
   }
 }
 
+.product-gallery.active {
+  .product-gallery-full {
+    animation: fade-in-up 0.5s ease;
+  }
+
+  .product-gallery-thumb {
+    animation: fade-in-up 0.5s ease;
+  }
+}  
+
 /* component-quantity */
 .quantity {
   position: relative;
@@ -821,5 +831,16 @@ fieldset.product-form__input .form__label {
     .icon::after {
       transform: translateY(0);
     }
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
