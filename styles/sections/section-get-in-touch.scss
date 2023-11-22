@@ -2,7 +2,11 @@
 
 .get-in-touch {
   background: var(--color-indigo);
-  padding: 40px 24px;
+  padding: 40px 0px;
+
+  @include breakpoint-up(md) {
+    padding: 40px 24px;
+  }
 
   .container {
     display: flex;
