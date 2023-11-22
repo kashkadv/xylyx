@@ -12,11 +12,7 @@
 
   &__top {
     display: flex;
-    gap: 35px;
-
-    @include breakpoint-between(lg, xl) {
-      gap: 26px;
-    }
+    gap: 26px;
     
     @include breakpoint-between(md, lg) {
       flex-wrap: wrap;
@@ -210,7 +206,8 @@
 
     &.contacts {
       p {
-        margin: 0;
+        margin: 0 0 5px 0;
+        line-height: 22px;
       }
 
       .address {
