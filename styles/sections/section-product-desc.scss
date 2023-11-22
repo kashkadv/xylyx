@@ -370,6 +370,10 @@
 .variant__description {
   display: none;
 
+  &.active {
+    animation: fade-in-up 0.7s ease;
+  }
+
   strong {
     font-weight: 500;
   }
@@ -620,6 +624,16 @@ fieldset.product-form__input .form__label {
     flex: 0 0 100%;
     margin: 15px 0;
 
+    &:hover {
+      .related-publications-article__btn .link--arrow:before {
+        left: 0;
+      }
+
+      .related-publications-article__btn .link--arrow path {
+        fill: var(--color-white) !important;
+      }
+    }
+
     &__img {
       position: relative;
       width: 100%;
@@ -727,16 +741,6 @@ fieldset.product-form__input .form__label {
           transition: all .5s;
         }
       }
-
-      &:hover {
-        .link--arrow:before {
-          left: 0;
-        }
-
-        .link--arrow path {
-          fill: var(--color-white) !important;
-        }
-      }
     }
 
     @include breakpoint-up(lg) {
@@ -830,6 +834,25 @@ fieldset.product-form__input .form__label {
     }
     .icon::after {
       transform: translateY(0);
+    }
+  }
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+
+  &__animation {
+    transition: all ease-in-out 0.5s;
+    display: inline-block;
+    transform: translateY(200%) skew(10deg, 15deg);
+  }
+}
+
+[data-aos="title-anim"] {
+  &.aos-animate {
+    .word__animation {
+      transform: translateY(0) skew(0);
     }
   }
 }

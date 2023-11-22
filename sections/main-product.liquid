@@ -480,7 +480,7 @@
     {% if variant.metafields.custom.related_publications.value %}
       <div class="related-publications" data-variant-id="{{variant.id}}">
         <div class="container">
-          <h2>Related publications</h2>
+          <h2 class="animation-title__title" data-aos="title-anim">Related publications</h2>
           <div class="related-publications-row">
           {% assign article = variant.metafields.custom.related_publications.value %}
             {% for item in article %}
@@ -788,6 +788,31 @@
     }
 
     scrollToTop();
+
+
+    const wrappWords = ( blockWords ) => {
+      let content = '';
+
+      blockWords.forEach( (word, index) => {
+        content += `<span class="word"><span class="word__animation" style="transition-delay:${(index + 1) * 50}ms;">${word}</span></span> `;
+      });
+
+      return content;
+    }
+
+    const animationTitle = (content) => {
+      const animationTitleBlocks = document.querySelectorAll(content);
+      if(!animationTitleBlocks) return;
+
+      animationTitleBlocks.forEach(block => {
+        const blockWords = block.textContent.split(" ");
+        const blockTextContent = wrappWords(blockWords);
+        block.textContent = '';
+        block.insertAdjacentHTML('beforeend', blockTextContent);
+      });
+    }
+
+    animationTitle('.animation-title__title');
 
 
   </script>
