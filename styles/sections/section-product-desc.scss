@@ -79,7 +79,7 @@
 
   &-gallery {
     display: none;
-    overflow-x: hidden;
+    overflow: hidden;
 
     .swiper {
       width: 100%;
@@ -160,7 +160,7 @@
 
   &__media-wrapper {
     max-width: 552px;
-    overflow-x: hidden;
+    overflow: hidden;
     margin-bottom: 40px;
 
     @include breakpoint-up(lg) {
@@ -417,7 +417,7 @@
 
   &--col {
     margin-bottom: 45px;
-    max-width: 675px;
+    max-width: 560px;
   }
 
   .product_description {

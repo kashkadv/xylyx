@@ -4,7 +4,7 @@
   background: var(--color-indigo);
   padding: 40px 0px;
 
-  @include breakpoint-up(md) {
+  @include breakpoint-up(lg) {
     padding: 40px 24px;
   }
 
@@ -191,6 +191,10 @@
         letter-spacing: 0.01em;
         transition: ease-in-out 0.3s;
         box-sizing: border-box;
+
+        @include breakpoint-down(md) {
+          margin-bottom: 25px;
+        }
 
         &::placeholder {
           font-size: 0;

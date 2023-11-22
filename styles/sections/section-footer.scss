@@ -72,7 +72,7 @@
     row-gap: 78px;
     box-sizing: border-box;
 
-    @include breakpoint-down(mobile) {
+    @include breakpoint-down(md) {
       padding-top: 30px;
       row-gap: 45px;
     }
@@ -227,6 +227,12 @@
     }
 
     &.links {
+      .d-t-only {
+        @include breakpoint-down(lg) {
+          display: none;
+        }
+      }
+
       a {
         font-size: 20px;
         line-height: 30px;
