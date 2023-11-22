@@ -96,35 +96,39 @@
                 </div>
               </div>
             {%- when 'price' -%}  
-              <div class="price-block">
-              <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
-                {%- render 'price',
-                  product: product,
-                  use_variant: true,
-                  show_badges: true,
-                  price_class: 'price--large'
-                -%}
-              </div>
-              {%- if product.quantity_price_breaks_configured? -%}
-                <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
-                  <span>{{ 'products.product.volume_pricing.note' | t }}</span>
+              <div class="price-block {% if product.metafields.custom.request_a_quote == true %} wihout-price{% endif %}">
+              {% if product.metafields.custom.request_a_quote %}
+              
+              {% else %}
+                <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                  {%- render 'price',
+                    product: product,
+                    use_variant: true,
+                    show_badges: true,
+                    price_class: 'price--large'
+                  -%}
                 </div>
-              {%- endif -%}
-                <div class="product__tax caption rte">
-                  {%- if cart.taxes_included -%}
-                    {{ 'products.product.include_taxes' | t }}
-                  {%- endif -%}
-                  {%- if shop.shipping_policy.body != blank -%}
-                    {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                  {%- endif -%}
+                {%- if product.quantity_price_breaks_configured? -%}
+                  <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
+                    <span>{{ 'products.product.volume_pricing.note' | t }}</span>
+                  </div>
+                {%- endif -%}
+                  <div class="product__tax caption rte">
+                    {%- if cart.taxes_included -%}
+                      {{ 'products.product.include_taxes' | t }}
+                    {%- endif -%}
+                    {%- if shop.shipping_policy.body != blank -%}
+                      {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                    {%- endif -%}
+                  </div>
+                <div {{ block.shopify_attributes }}>
+                  {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+                  {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    {{ form | payment_terms }}
+                  {%- endform -%}
                 </div>
-              <div {{ block.shopify_attributes }}>
-                {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
-                {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                  {{ form | payment_terms }}
-                {%- endform -%}
-              </div>
+              {% endif %}
                 {% for variant in product.variants %}
                   <div class="variant__description variant-title" data-variant-id="{{variant.id}}">
                     {{ variant.title }}
@@ -215,25 +219,40 @@
               </div>
             {%- when 'quantity_selector' -%}
             <div class="quantity-selector">
-              {% if product.selected_variant %}
-                {% for variant in product.variants %}
-                  <div class="variant__description" data-variant-id="{{variant.id}}">
-                  {% if variant.metafields.custom.description %}
-                    <div class="product_description variant__description--col">
-                      {{ variant.metafields.custom.description | metafield_tag }}
+              {% if product.metafields.custom.request_a_quote %}
+                {% if product.selected_variant %}
+                  {% for variant in product.variants %}
+                    <div class="variant__description" data-variant-id="{{variant.id}}">
+                    {% if variant.metafields.custom.description %}
+                      <div class="product_description variant__description--col">
+                        {{ variant.metafields.custom.description | metafield_tag }}
+                      </div>
+                    {% endif %}
                     </div>
-                  {% endif %}
-                  </div>
-                {% endfor %}
-              {% endif %}  
-              <form class="variant__controls" action="/cart/add">
-                <input type="hidden" name="form_type" value="product">
-                <input type="hidden" name="utf8" value="✓">
-                <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
-                <input type="hidden" name="product-id" value="{{ product.id }}">
-                {% render 'input-quantity', value: 1, id: variant.id %}
-                {% render 'button', label: 'Add to cart', color: 'purple', class="add-to-cart", tag: 'button' %}
-              </form>
+                  {% endfor %}
+                {% endif %}  
+                {% render 'button', label: 'Request a quote', color: 'purple', class: "add-to-cart quote-request", href: "https://wp-dev.space/craftandroot/xylyxbio/master/contact-us/" %}
+              {% else %}
+                {% if product.selected_variant %}
+                  {% for variant in product.variants %}
+                    <div class="variant__description" data-variant-id="{{variant.id}}">
+                    {% if variant.metafields.custom.description %}
+                      <div class="product_description variant__description--col">
+                        {{ variant.metafields.custom.description | metafield_tag }}
+                      </div>
+                    {% endif %}
+                    </div>
+                  {% endfor %}
+                {% endif %}  
+                <form class="variant__controls" action="/cart/add">
+                  <input type="hidden" name="form_type" value="product">
+                  <input type="hidden" name="utf8" value="✓">
+                  <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+                  <input type="hidden" name="product-id" value="{{ product.id }}">
+                  {% render 'input-quantity', value: 1, id: variant.id %}
+                  {% render 'button', label: 'Add to cart', color: 'purple', class="add-to-cart", tag: 'button' %}
+                </form>
+              {% endif %}
             </div>
             {%- when 'popup' -%}
               <modal-opener
@@ -395,6 +414,12 @@
                {{ variant.metafields.custom.kit_contents | metafield_tag }}
             </div>
           {% endif %}
+          {% if variant.metafields.custom.assay_components %}
+            <div class="product_assay-components variant__description--col">
+              <h2>Assay components</h2>
+               {{ variant.metafields.custom.assay_components | metafield_tag }}
+            </div>
+          {% endif %}
           {% if variant.metafields.custom.download %}
             <div class="product_downloads variant__description--col">
               <h2>Downloads</h2>
@@ -408,6 +433,14 @@
               <h2>Graphical workflow</h2>
               <div class="product_graphic-workflow__img">
                 <img src="{{ variant.metafields.custom.graphical_workflow | img_url: '584x' }}" width="584" height="280" alt="Graphical workflow">
+              </div>
+            </div>
+          {% endif %}
+          {% if variant.metafields.custom.assays_workflow %}
+            <div class="product_assays-workflow variant__description--col">
+              <h2>Assays workflow</h2>
+              <div class="product_assays-workflow__img">
+                <img src="{{ variant.metafields.custom.assays_workflow | img_url: '584x' }}" width="584" height="280" alt="Assays workflow">
               </div>
             </div>
           {% endif %}
@@ -433,6 +466,11 @@
             <div class="product_quality variant__description--col">
               <h2>Quality</h2>
               {{ variant.metafields.custom.quality | metafield_tag }}
+            </div>
+          {% endif %}
+          {% if variant.metafields.custom.additional_information %}
+            <div class="product_additional-info variant__description--col">
+              {{ variant.metafields.custom.additional_information | metafield_tag }}
             </div>
           {% endif %}
           {% if variant.metafields.custom.ordering %}
@@ -485,14 +523,14 @@
           {% assign article = variant.metafields.custom.related_publications.value %}
             {% for item in article %}
             <div class="related-publications-article" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
-              <a class="related-publications-link" href="{{ item.link }}" target="_blank" rel="noreferrer noopener"></a>
+              <a class="related-publications-link" href="{{ item.link }}" rel="noreferrer noopener"></a>
               <div class="related-publications-article__img">
                 <img src="{{ item.image | img_url: '1024x' }}" alt="{{ item.title }}">
               </div>
               <div class="related-publications-article__content">
                 <p class="date">{{ item.date }}</p>
                 <h2> {{ item.title }}</h2>
-                <a class="related-publications-article__btn" href="{{ item.link }}" target="_blank" rel="noreferrer noopener"><span>Read more</span><span class="link--arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 11.5C5.72386 11.5 5.5 11.7239 5.5 12C5.5 12.2761 5.72386 12.5 6 12.5V11.5ZM18.3536 12.3536C18.5488 12.1583 18.5488 11.8417 18.3536 11.6464L15.1716 8.46447C14.9763 8.2692 14.6597 8.2692 14.4645 8.46447C14.2692 8.65973 14.2692 8.97631 14.4645 9.17157L17.2929 12L14.4645 14.8284C14.2692 15.0237 14.2692 15.3403 14.4645 15.5355C14.6597 15.7308 14.9763 15.7308 15.1716 15.5355L18.3536 12.3536ZM6 12.5H18V11.5H6V12.5Z" fill="#7A53D1"></path><rect x="0.5" y="0.5" width="23" height="23" rx="11.5" stroke="#7A53D1"></rect></svg></span></a>
+                <a class="related-publications-article__btn" href="{{ item.link }}" rel="noreferrer noopener"><span>Read more</span><span class="link--arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 11.5C5.72386 11.5 5.5 11.7239 5.5 12C5.5 12.2761 5.72386 12.5 6 12.5V11.5ZM18.3536 12.3536C18.5488 12.1583 18.5488 11.8417 18.3536 11.6464L15.1716 8.46447C14.9763 8.2692 14.6597 8.2692 14.4645 8.46447C14.2692 8.65973 14.2692 8.97631 14.4645 9.17157L17.2929 12L14.4645 14.8284C14.2692 15.0237 14.2692 15.3403 14.4645 15.5355C14.6597 15.7308 14.9763 15.7308 15.1716 15.5355L18.3536 12.3536ZM6 12.5H18V11.5H6V12.5Z" fill="#7A53D1"></path><rect x="0.5" y="0.5" width="23" height="23" rx="11.5" stroke="#7A53D1"></rect></svg></span></a>
               </div>
             </div>
             {% endfor %}
@@ -522,11 +560,15 @@
           if (prodId == variant.dataset.variantId || match[1] == variant.dataset.variantId) {
             variant.style.display = 'block';
             variant.classList.add('active');
-            variantInputControl.value = prodId ? prodId : firstVariant.dataset.variantInfo;
+            if (variantInputControl) {
+              variantInputControl.value = prodId ? prodId : firstVariant.dataset.variantInfo;
+            }
           } else if (!prodId && variant.dataset.variantId == firstVariant.dataset.variantInfo) {
             variant.style.display = 'block';
             variant.classList.add('active');
-            variantInputControl.value = firstVariant.dataset.variantInfo;
+            if (variantInputControl) {
+              variantInputControl.value = firstVariant.dataset.variantInfo;
+            }
           } else {
             variant.style.display = 'none';
             variant.classList.remove('active');
@@ -788,6 +830,24 @@
     }
 
     scrollToTop();
+
+    // function requestQuote() {
+    //   const btn = document.querySelector('.quote-request');
+
+    //   if (!btn) return;
+
+    //   btn.addEventListener('click', function (e) {
+    //     e.preventDefault();
+    //     const form = document.querySelector('.get-in-touch');
+    //     const formTop = form.offsetTop;
+    //     window.scrollTo({
+    //       top: formTop,
+    //       behavior: 'smooth'
+    //     });
+    //   });
+    // }
+
+    // requestQuote();
 
 
     const wrappWords = ( blockWords ) => {

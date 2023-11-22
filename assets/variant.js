@@ -41,7 +41,9 @@ class VariantSelects extends HTMLElement {
 
   updateQuantity(currentVariant) {
     const variantInputControl = document.querySelector('.variant__controls input[name="id"]');
-    variantInputControl.value = currentVariant.id;
+    if (variantInputControl) {
+      variantInputControl.value = currentVariant.id;
+    }
   }
 
   updateOptions() {

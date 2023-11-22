@@ -62,11 +62,15 @@
     >
     <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
       {{ value -}}
-        {% for variant in product.variants %}
-          {%  if value == variant.title %}
-               <span class="price">{{ variant.price | money }}</span>
-          {%  endif %} 
-         {%  endfor %}
+        {% if product.metafields.custom.request_a_quote %}
+          <span class="price">Request a quote</span>
+        {% else %}
+          {% for variant in product.variants %}
+            {%  if value == variant.title %}
+                <span class="price">{{ variant.price | money }}</span>
+            {%  endif %}
+          {%  endfor %}
+        {% endif %} 
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
   {%- elsif block.settings.picker_type == 'dropdown' -%}
