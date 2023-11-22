@@ -68,9 +68,13 @@
     row-gap: 78px;
     box-sizing: border-box;
 
-    @include breakpoint-down(md) {
+    @include breakpoint-down(lg) {
       padding-top: 30px;
-      row-gap: 45px;
+      row-gap: 30px;
+    }
+
+    @include breakpoint-down(mobile-m) {
+      row-gap: 7px;
     }
   }
 
@@ -262,6 +266,10 @@
     display: flex;
     // align-items: center;
     justify-content: space-between;
+
+    @include breakpoint-down(lg) {
+      padding: 16px 0px 30px 0;
+    }
 
     label {
       opacity: 0.4;
