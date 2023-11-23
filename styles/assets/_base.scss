@@ -16,6 +16,7 @@ main {
 #loader {
   transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 0.995) !important;
   transform: translateZ(0);
+  will-change: transform;
 
   &.loading {
     transform: translate3d(0, 100%, 0);
