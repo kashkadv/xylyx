@@ -774,8 +774,8 @@ fieldset.product-form__input .form__label {
   visibility: hidden;
   transition: all ease-in-out .3s;
 
-  &.bottom span {
-    font-size: 0;
+  &.bottom span:not(.icon) {
+    opacity: 0;
   }
 
   @include breakpoint-up(xl) {
@@ -791,6 +791,7 @@ fieldset.product-form__input .form__label {
     font-size: 10px;
     font-style: normal;
     font-weight: 300;
+    transition: all ease-in-out .3s;
   }
 
   .icon {
