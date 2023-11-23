@@ -227,6 +227,19 @@
         align-items: center;
         gap: 20px;
         flex-wrap: wrap;
+
+        a {
+          display: flex;
+          align-items: center;
+          justify-self: center;
+
+          svg {
+            @include breakpoint-between(xl, xxl) {
+              width: 18px;
+              height: 18px;
+            }
+          }
+        }
       }
     }
 
