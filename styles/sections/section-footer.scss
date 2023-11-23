@@ -65,7 +65,7 @@
     padding-top: 55px;
     display: flex;
     flex-direction: column;
-    row-gap: 100px;
+    row-gap: 85px;
     box-sizing: border-box;
 
     @include breakpoint-down(lg) {
@@ -246,7 +246,7 @@
     &.links {
       a {
         font-size: 24px;
-        line-height: 30px;
+        line-height: 28.8px;
 
         @include breakpoint-between(xl, xxl) {
           font-size: 21px;
