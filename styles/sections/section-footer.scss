@@ -20,14 +20,14 @@
     }
 
     & > div {
-      flex-basis: 18%;
+      flex-basis: 17%;
 
       @include breakpoint-between(md, lg) {
         flex-basis: 25%;
       }
 
       &:first-child {
-        flex-basis: 58%;
+        flex-basis: 55%;
 
         @include breakpoint-between(lg, xl) {
           flex-basis: 33%;
@@ -65,7 +65,7 @@
     padding-top: 55px;
     display: flex;
     flex-direction: column;
-    row-gap: 78px;
+    row-gap: 100px;
     box-sizing: border-box;
 
     @include breakpoint-down(lg) {
@@ -79,7 +79,19 @@
   }
 
   &__subscription {
-    margin-top: 50px;
+    margin-top: 94px;
+
+    @include breakpoint-down(xl) {
+      margin-top: 68px;
+    }
+
+    @include breakpoint-down(md) {
+      margin-top: 50px;
+    }
+
+    @include breakpoint-down(sm) {
+      margin-top: 30px;
+    }
 
     form {
       width: 100%;
@@ -188,18 +200,14 @@
     }
 
     .heading {
-      margin-bottom: 12px;
-    }
-
-    @include breakpoint-down(mobile) {
-      margin-top: 30px;
+      margin-bottom: 28px;
     }
   }
 
   &__column {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 25px;
 
     .heading {
       color: var(--color-purple-light);
@@ -210,13 +218,8 @@
 
     &.contacts {
       p {
-        margin: 0 0 5px 0;
         line-height: 22px;
-      }
-
-      .address {
-        margin-top: 10px;
-        margin-bottom: -10px;
+        margin-bottom: 15px;
       }
   
       .social-links {
@@ -228,15 +231,25 @@
     }
 
     &.links {
-      .d-t-only {
-        @include breakpoint-down(lg) {
-          display: none;
-        }
-      }
-
       a {
-        font-size: 20px;
+        font-size: 24px;
         line-height: 30px;
+
+        @include breakpoint-between(xl, xxl) {
+          font-size: 21px;
+        }
+
+        @include breakpoint-between(lg, xl) {
+          font-size: 18px;
+        }
+
+        @include breakpoint-down(sm) {
+          br {
+            display: none;
+          }
+
+          font-size: 18px;
+        }
       }
     }
 
@@ -264,7 +277,7 @@
     flex-basis: 100%;
     padding: 16px 63px 30px 0;
     display: flex;
-    // align-items: center;
+    align-items: center;
     justify-content: space-between;
 
     @include breakpoint-down(lg) {
@@ -278,11 +291,9 @@
     .links {
       display: flex;
       gap: 38px;
-      padding-top: 10px;
 
       .link {
-        font-weight: 400;
-        letter-spacing: 0.26px;
+        font-weight: 300;
       }
 
       .mobile & {
