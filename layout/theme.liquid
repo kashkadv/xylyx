@@ -87,9 +87,9 @@
         document.querySelector('#loader').classList.add('loading');
       }, 100);
 
-      const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+      const isApple = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
 
-      if (isSafari) {
+      if (isApple) {
         window.addEventListener('unload', () => {
           document.querySelector('#loader').classList.remove('loading');
         });
