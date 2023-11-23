@@ -810,11 +810,10 @@
           scrollBtn.classList.remove('show');
         }
 
-        const footer = document.querySelector('.get-in-touch');
-        const footerHeight = footer.offsetHeight;
-        const footerTop = footer.offsetTop;
+        const mainTag = document.querySelector('main');
+        const mainTagBottom = mainTag.offsetTop + mainTag.offsetHeight;
 
-        if (window.pageYOffset + window.innerHeight > footerTop) {
+        if (window.pageYOffset + window.innerHeight >= mainTagBottom) {
           scrollBtn.classList.add('bottom');
         } else {
           scrollBtn.classList.remove('bottom');
