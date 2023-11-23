@@ -228,8 +228,8 @@
     }
 
     &.links {
-      .d-t-only {
-        @include breakpoint-down(lg) {
+      br {
+        @include breakpoint-down(md) {
           display: none;
         }
       }
