@@ -537,6 +537,7 @@ fieldset.product-form__input .form__label {
   line-height: 30px;
   cursor: pointer;
   position: relative;
+  transition: all ease-in-out 0.3s;
 
   @include breakpoint-up(sm) {
     font-size: 24px;

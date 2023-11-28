@@ -60,7 +60,7 @@
         class="disabled"
       {% endif %}
     >
-    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
       {{ value -}}
         {% if product.metafields.custom.request_a_quote %}
           <span class="price">Request a quote</span>

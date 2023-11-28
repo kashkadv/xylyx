@@ -20,6 +20,8 @@
         data-update-url="false"
       {% endif %}
       {{ block.shopify_attributes }}
+      data-aos="fade-up"
+      data-aos-delay="200"
     >
       {%- for option in product.options_with_values -%}
         <fieldset class="js product-form__input">
