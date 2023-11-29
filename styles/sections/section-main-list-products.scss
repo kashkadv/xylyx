@@ -34,6 +34,12 @@
       align-items: center;
       margin-bottom: 35px;
 
+      .link {
+        &:hover {
+          color: var(--color-purple);
+        }
+      }
+
       @include breakpoint-down(mobile) {
         img {
           max-width: 39px;
