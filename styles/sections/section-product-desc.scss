@@ -852,6 +852,20 @@ fieldset.product-form__input .form__label {
   margin-bottom: 45px;
 }
 
+.related-table {
+  margin-top: 30px;
+  
+  .animation-title__title {
+    font-size: 35px;
+    line-height: 38px;
+
+    @include breakpoint-up(mobile) {
+      font-size: 60px;
+      line-height: 70px;
+    }
+  }
+}
+
 .word {
   display: inline-block;
   overflow: hidden;

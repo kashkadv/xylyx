@@ -516,35 +516,10 @@
     </div>
   {% endfor %}
 
-  {% for variant in product.variants %}
-    {% if variant.metafields.custom.related_publications.value %}
-      <div class="related-publications" data-variant-id="{{variant.id}}">
-        <div class="container">
-          <h2 class="animation-title__title" data-aos="title-anim">Related publications</h2>
-          <div class="related-publications-row">
-          {% assign article = variant.metafields.custom.related_publications.value %}
-            {% for item in article %}
-            <div class="related-publications-article" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
-              <a class="related-publications-link" href="{{ item.link }}" rel="noreferrer noopener"></a>
-              <div class="related-publications-article__img">
-                <img src="{{ item.image | img_url: '1024x' }}" alt="{{ item.title }}">
-              </div>
-              <div class="related-publications-article__content">
-                <p class="date">{{ item.date }}</p>
-                <h2> {{ item.title }}</h2>
-                <a class="related-publications-article__btn" href="{{ item.link }}" rel="noreferrer noopener"><span>Read more</span><span class="link--arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 11.5C5.72386 11.5 5.5 11.7239 5.5 12C5.5 12.2761 5.72386 12.5 6 12.5V11.5ZM18.3536 12.3536C18.5488 12.1583 18.5488 11.8417 18.3536 11.6464L15.1716 8.46447C14.9763 8.2692 14.6597 8.2692 14.4645 8.46447C14.2692 8.65973 14.2692 8.97631 14.4645 9.17157L17.2929 12L14.4645 14.8284C14.2692 15.0237 14.2692 15.3403 14.4645 15.5355C14.6597 15.7308 14.9763 15.7308 15.1716 15.5355L18.3536 12.3536ZM6 12.5H18V11.5H6V12.5Z" fill="#7A53D1"></path><rect x="0.5" y="0.5" width="23" height="23" rx="11.5" stroke="#7A53D1"></rect></svg></span></a>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-    {% endif %}
-  {% endfor %}
-
   {% if product.metafields.custom.catalog_number %}
     <div class="related-table">
       <div class="container">
+        <h2 class="animation-title__title" data-aos="title-anim">Related publications</h2>
         <object id="wobj-19411-q" type="text/html" data="https://www.bioz.com/v_widget_6_0/19411/{{ product.metafields.custom.catalog_number }}" style="width:100%;height: 193px;"></object>
         <div id="bioz-w-pb-19411-q-div" style="width: 100%"><a id="bioz-w-pb-19411-q" style="font-size: 12px;text-decoration:none;color:#8470B2" href="https://www.bioz.com/" target="_blank"><img src="https://cdn.bioz.com/assets/favicon.png" style="width:11px;height:11px;vertical-align: baseline;padding-bottom:0px;margin-left:0px;margin-bottom:0px;float:none"> Powered by Bioz</a>
         <a style="font-size: 12px;text-decoration:none;float: right;color:transparent" href="https://www.bioz.com/result/{{ product.metafields.custom.catalog_number }}/product/Xylyx Bio/?cn={{ product.metafields.custom.catalog_number }}" target="_blank"> See more details on Bioz</a></div>    
