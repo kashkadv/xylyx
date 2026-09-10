@@ -20,10 +20,21 @@
               <input type="hidden" name="id" value="{{ variant.id }}">
               <input type="hidden" name="product-id" value="{{ product.id }}">
               {% render 'input-quantity', value: 1, id: variant.id %}
-              {% render 'button', label: 'Add to cart', color: 'purple', class="add-to-cart", tag: 'button' %}
+              {% render 'button', label: 'Add to cart', color: 'purple', tag: 'button' %}
             </form>             
           {% endif %}
       </div>
     {% endfor %}
   </div>
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% render ''button'', label: ''Add to cart'', color: ''purple'', class="add-to-cart",
+    tag: ''button'' %}'
+  to: "{% render 'button', label: 'Add to cart', color: 'purple', tag: 'button' %}"
+  position: 1372..1447
+{% endcomment %}
